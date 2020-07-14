@@ -1,0 +1,49 @@
+.Login {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.Login img {
+  height: 75px;
+  width: 178px;
+  margin-left: 20px;
+}
+
+.LoginCard {
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 500px;
+  margin: auto;
+  color: #fff;
+  padding: 30px 38px 40px;
+}
+
+@media (min-width: 600px) {
+  .LoginCard {
+    width: 450px;
+    height: 680px;
+    padding: 60px 68px 40px;
+  }
+}
+
+.LoginCard form > * {
+  margin-top: 25px;
+}
+
+.LoginCard button {
+  margin-top: 25px;
+}
+
+.textField {
+  box-sizing: border-box;
+  border-radius: 2px;
+  width: 100%;
+}
+
+.textField input {
+  color: white;
+}

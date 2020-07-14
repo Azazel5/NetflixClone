@@ -1,0 +1,16 @@
+.faqComponent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8em 2.2em 0.8em 1.2em;
+  width: 100%;
+  background: #303030;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .faqComponent {
+    width: 69%;
+  }
+}

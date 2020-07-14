@@ -1,0 +1,97 @@
+.landingSection {
+  height: 470px;
+  width: 100%;
+  border-bottom: 8px solid #222;
+}
+
+.landingTexts {
+  display: flex;
+  width: 70%;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: calc(30% - 45px);
+  text-align: center;
+  color: #fff;
+}
+
+.landingTexts > * {
+  margin-top: 15px;
+}
+
+.landingTexts h1 {
+  font-size: 1.75rem;
+}
+
+.landingTexts h3 {
+  margin-top: 0px;
+  font-weight: 400;
+}
+
+.TextField {
+  background-color: #fff;
+  width: calc(100% + 50px);
+}
+
+.TextField:active {
+  color: white;
+  border: none;
+}
+
+.tv-section {
+  height: 410px;
+  background-color: black;
+  border-bottom: 8px solid #333;
+  color: #fff;
+}
+
+.tv-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  margin: auto;
+}
+
+.tv-section img {
+  width: 80%;
+}
+
+.faq-section {
+  background-color: black;
+  border-bottom: 8px solid #333;
+  color: #fff;
+}
+
+.GetStartedComponent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  width: 85%;
+  padding: 10px;
+}
+
+.GetStartedComponent > * {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 600px) {
+  .landingSection {
+    height: 620px;
+  }
+
+  .landingTexts {
+    top: calc(40% - 45px);
+  }
+
+  .tv-section {
+    height: 470px;
+  }
+
+  .tv-section img {
+    width: 45%;
+  }
+}
