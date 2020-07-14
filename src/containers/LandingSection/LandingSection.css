@@ -78,6 +78,10 @@
   margin-bottom: 20px;
 }
 
+.GetStartedComponent button {
+  margin-top: 20px;
+}
+
 @media (min-width: 600px) {
   .landingSection {
     height: 620px;
