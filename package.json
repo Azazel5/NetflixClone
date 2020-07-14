@@ -30,4 +30,8 @@
     "not ie <= 11",
     "not op_mini all"
   ]
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 2a58dd4ed0c14ba66bfa6b578975b67f6ca49e08
