@@ -1,7 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 
 /**
  * A custom button component. It has a set color scheme and takes in height, eeight, and image
@@ -31,12 +30,10 @@ const button = props => {
   };
 
   return (
-    <Link to={props.link}>
       <button style={ButtonStyle}>
         {props.children}
         {icon}
       </button>
-    </Link>
   );
 };
 

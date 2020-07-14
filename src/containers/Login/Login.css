@@ -47,3 +47,9 @@
 .textField input {
   color: white;
 }
+
+.HorizontalDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
