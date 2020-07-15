@@ -1,0 +1,18 @@
+.ProfileCard {
+    width: 18%;
+    height: 20%;
+    margin: 15px;
+    cursor: pointer;
+
+}
+
+.ProfileCard span {
+    color: grey;
+    font-size: 1.3vw;
+}
+
+.ProfileCard img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+}

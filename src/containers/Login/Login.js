@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css";
 
 import LoginBackground from "../../assets/images/landingPage.jpg";
@@ -7,6 +7,9 @@ import { TextField } from "@material-ui/core";
 import Button from "../../components/UI/Button/Button";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import { useHistory } from "react-router-dom";
+import { AuthenticationContext } from '../../context/Authentication'
+
 
 /**
  * The login component, which validates the email and password
@@ -29,6 +32,9 @@ const Login = props => {
 
     onSubmitInvalid: false
   })
+
+  const history = useHistory()
+  const authContext = useContext(AuthenticationContext)
 
   const inputChangeHandler = event => {
     const { name, value } = event.target;
@@ -81,7 +87,7 @@ const Login = props => {
         Please enter a valid email or phone number.
       </span>
     );
-  } 
+  }
 
   if ((!form.password.valid && form.password.touched) || (form.onSubmitInvalid && !form.password.valid)) {
     passwordSpan = (
@@ -96,7 +102,8 @@ const Login = props => {
     if (!form.email.valid || !form.password.valid) {
       setForm(prevForm => ({ ...prevForm, onSubmitInvalid: true }))
     } else {
-      setForm(prevForm => ({ ...prevForm, onSubmitInvalid: false }))
+      authContext.login()
+      history.push("/browse");
     }
   }
 
@@ -112,7 +119,6 @@ const Login = props => {
           <TextField
             name="email"
             className="textField"
-            id="standard-basic"
             label="Email or phone number"
             variant="filled"
             type="email"
@@ -132,7 +138,6 @@ const Login = props => {
           <TextField
             name="password"
             className="textField"
-            id="filled-basic"
             label="Password"
             variant="filled"
             type="password"
@@ -148,22 +153,20 @@ const Login = props => {
           />
 
           {passwordSpan}
-
-          <Button height="45px" width="100%">
-            Sign In
-          </Button>
+          
+          <Button height="45px" width="100%">Sign In</Button>
 
         </form>
 
         <div className="HorizontalDiv">
-        <FormControlLabel
-          style={{ marginLeft: "-12px" }}
-          control={
-            <Checkbox style={{ color: "rgb(229, 9, 20)" }} name="checkedB" />
-          }
-          label="Remember Me"
-        />
-        <span>Need help?</span>
+          <FormControlLabel
+            style={{ marginLeft: "-12px" }}
+            control={
+              <Checkbox style={{ color: "rgb(229, 9, 20)" }} name="checkedB" />
+            }
+            label="Remember Me"
+          />
+          <span>Need help?</span>
         </div>
       </div>
     </div>
