@@ -5,7 +5,7 @@ const ProfileCard = props => {
     return (
         <div className="ProfileCard" onClick={props.onClick}>
             <img src={props.profileImage} alt="profile" />
-            <span>{props.username}</span>
+            <span onMouseOver>{props.username}</span>
         </div>
     )
 }

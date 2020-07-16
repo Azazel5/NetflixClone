@@ -31,7 +31,7 @@ const LandingSection = props => {
         className="landingSection"
         style={{ backgroundImage: `url(${LandingPage})` }}
       >
-        <NavBar />
+        <NavBar loginButton/>
         <div className="landingTexts">
           <h1>Unlimited movies, TV shows, and more.</h1>
           <h3>Watch anywhere. Cancel anytime.</h3>

@@ -1,0 +1,35 @@
+.ProfileDiv {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: 30%;
+    transform: translateY(-50%);
+}
+
+.horizontalComp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.ProfileButton {
+    border: 1px solid transparent;
+    border-color: grey;
+    background-color: transparent;
+    color: grey;
+    text-transform: uppercase;
+    padding: .5em 1.5em;
+    letter-spacing: 2px;
+    cursor: pointer;
+    font-size: .9em;
+    outline: 0;
+}
+
+.ProfileButton:hover {
+    border-color: white;
+    color: white;
+}
+

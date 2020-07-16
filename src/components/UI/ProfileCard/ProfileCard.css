@@ -3,16 +3,33 @@
     height: 20%;
     margin: 15px;
     cursor: pointer;
-
 }
 
 .ProfileCard span {
-    color: grey;
     font-size: 1.3vw;
+    color: grey;
 }
 
 .ProfileCard img {
     width: 100%;
     height: 100%;
     margin-bottom: 10px;
+    border: 3px solid transparent;
 }
+
+.ProfileCard:hover img {
+    border-color: white;
+}
+
+.ProfileCard:hover span {
+    color: white;
+}
+
+@media(min-width: 600px) {
+    .ProfileCard {
+        width: 18%;
+        height: 20%;
+    }
+}
+
+
