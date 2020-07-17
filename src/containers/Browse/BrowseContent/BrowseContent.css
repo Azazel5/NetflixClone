@@ -1,5 +1,26 @@
 .BrowseContent {
     background: #141414;
     min-height: 100vh;
+}
+
+.TextsAndButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
     padding-top: 50px;
+    margin-left: 20px;
+    height: 100%
+}
+
+.verticalItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}
+
+.verticalItem h3 {
+    margin: 0;
 }

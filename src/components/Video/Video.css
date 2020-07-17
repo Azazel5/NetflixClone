@@ -1,0 +1,12 @@
+.VideoComponent {
+    height: 670px;
+    width: 100%;
+
+    background-image: url("https://occ-0-2430-2433.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABcGBbaoicUwOPndva8bUjOqwrUe7nRGMEVNhbRD-QwZrYGYtjqrQNN208fA8cSudpLrNGnmRsVYuuTNrFbDTmhgUpxmH.webp?r=ce9");  
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+    position: relative;
+}
+
