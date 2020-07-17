@@ -10,7 +10,7 @@ const BrowseContent = (props) => {
         setDropdownOpen(true)
     }
 
-    const dropDownCloseHandler = () => {
+    const dropdownCloseHandler = () => {
         setDropdownOpen(false)
     }
 
@@ -20,7 +20,7 @@ const BrowseContent = (props) => {
             <NavBar 
                 navigation location={location} logoutHandler={props.logoutHandler}
                 dropdownOpen={dropdownOpen} dropdownOpenHandler={dropdownOpenHandler}
-                dropDownCloseHandler={dropDownCloseHandler}
+                dropdownCloseHandler={dropdownCloseHandler}
             />
         </div>
     )

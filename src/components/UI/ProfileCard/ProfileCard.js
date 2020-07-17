@@ -3,9 +3,9 @@ import './ProfileCard.css'
 
 const ProfileCard = props => {
     return (
-        <div className="ProfileCard" onClick={props.onClick}>
+        <div className={props.dropdown ? "ProfileCardDropdown": "ProfileCard"} onClick={props.onClick}>
             <img src={props.profileImage} alt="profile" />
-            <span onMouseOver>{props.username}</span>
+            <span>{props.username}</span>
         </div>
     )
 }

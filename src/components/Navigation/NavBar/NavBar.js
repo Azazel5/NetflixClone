@@ -29,10 +29,10 @@ const navBar = props => {
           <FontAwesomeIcon size="lg" icon={faBell} />
           <Dropdown 
             dropdownOpenHandler={props.dropdownOpenHandler}
-            dropDownCloseHandler={props.dropDownCloseHandler}
             dropdownOpen={props.dropdownOpen} 
+            logoutHandler={props.logoutHandler}
+            dropdownCloseHandler={props.dropdownCloseHandler}
           />
-          <button onClick={props.logoutHandler}>Logout</button>
         </div>
       </>
     )
