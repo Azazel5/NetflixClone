@@ -16,12 +16,16 @@ const Dropdown = (props) => {
     return (
         <div className="Dropdown">
             <FontAwesomeIcon
-                onMouseOver={props.dropdownOpenHandler}
                 size="lg"
                 icon={faAngleDown}
+                onMouseOver={props.iconHoveredInHandler}
+                onMouseLeave={props.iconHoveredOutHandler}
             />
 
-            {props.dropdownOpen && <div className="FloatingBox" onMouseLeave={props.dropdownCloseHandler}>
+            {(props.dropdown.iconHovered || props.dropdown.floatingBoxHovered) && <div className="FloatingBox"
+                onMouseOver={props.floatingBoxHoveredInHandler}
+                onMouseLeave={props.floatingBoxHoveredOutHandler}
+            >
                 <ProfileCard
                     profileImage={Profile}
                     username="Pushpa"
@@ -47,7 +51,7 @@ const Dropdown = (props) => {
                     dropdown
                 />
 
-                <span style={{borderBottom: '1px solid grey', marginBottom: '7px'}}>Manage Profiles</span>
+                <span style={{ borderBottom: '1px solid grey', marginBottom: '7px' }}>Manage Profiles</span>
                 <span>Account</span>
                 <span>Help Center</span>
                 <span onClick={props.logoutHandler}>Sign out of Netflix</span>

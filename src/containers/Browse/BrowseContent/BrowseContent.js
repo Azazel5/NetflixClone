@@ -1,26 +1,52 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './BrowseContent.css'
 import NavBar from '../../../components/Navigation/NavBar/NavBar'
 import { useLocation } from 'react-router-dom'
 
 const BrowseContent = (props) => {
-    const [dropdownOpen, setDropdownOpen] = useState(false)
+    const [dropdown, setDropdown] = useState({
+        iconHovered: false, 
+        floatingBoxHovered: false 
+    })
 
-    const dropdownOpenHandler = () => {
-        setDropdownOpen(true)
-    }
+    const handlers = {
+        iconHoveredInHandler:  () => {
+            setDropdown(prevDropdown => ({
+                ...prevDropdown, 
+                iconHovered: true, 
+            }))
+        },
+        
+        iconHoveredOutHandler: () => {
+            setTimeout(() => {
+                setDropdown(prevDropdown => ({
+                    ...prevDropdown, 
+                    iconHovered: false, 
+                }))
+            }, 600)
+        },
 
-    const dropdownCloseHandler = () => {
-        setDropdownOpen(false)
+        floatingBoxHoveredInHandler: () => {
+            setDropdown(prevDropdown => ({
+                ...prevDropdown, 
+                floatingBoxHovered: true, 
+            }))
+        },
+        
+        floatingBoxHoveredOutHandler: () => {
+            setDropdown(prevDropdown => ({
+                ...prevDropdown, 
+                floatingBoxHovered: false, 
+            }))
+        },
     }
 
     const location = useLocation()
     return (
         <div className="BrowseContent">
-            <NavBar 
+            <NavBar
                 navigation location={location} logoutHandler={props.logoutHandler}
-                dropdownOpen={dropdownOpen} dropdownOpenHandler={dropdownOpenHandler}
-                dropdownCloseHandler={dropdownCloseHandler}
+                dropdown={dropdown} handlers={handlers}
             />
         </div>
     )
