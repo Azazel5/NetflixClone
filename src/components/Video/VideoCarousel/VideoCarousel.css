@@ -5,7 +5,11 @@
     padding: 10px;
     font-size: 1.4vw;
     height: 500px;
-    overflow-x: hidden;
+    overflow-x: auto;
+}
+
+.VideoCarousel::-webkit-scrollbar {
+  display: none;
 }
 
 .items {

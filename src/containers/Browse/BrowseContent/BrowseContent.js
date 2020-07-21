@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom'
 import Video from '../../../components/Video/TopTrailerComponent/Video'
 import Button from '../../../components/UI/Button/Button'
 import VideoCarousel from '../../../components/Video/VideoCarousel/VideoCarousel'
-import {faPlay, faInfoCircle} from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 const BrowseContent = (props) => {
     const [dropdown, setDropdown] = useState({
@@ -13,7 +13,12 @@ const BrowseContent = (props) => {
         floatingBoxHovered: false
     })
 
-    const {logoutHandler, trending} = props
+    const { 
+        logoutHandler, highlightedVideo,
+        trending, selectedMovie, carouselItemHoverHandler
+    } = props
+    const destructuredHighlight = highlightedVideo[0] ? highlightedVideo[0]: null 
+    const imageUrl = destructuredHighlight ? `https://image.tmdb.org/t/p/original/${destructuredHighlight.poster_path}`: null 
 
     const handlers = {
         iconHoveredInHandler: () => {
@@ -50,14 +55,14 @@ const BrowseContent = (props) => {
     const location = useLocation()
     return (
         <div className="BrowseContent">
-            <Video>
+            <Video image={imageUrl}>
                 <NavBar
                     navigation location={location} logoutHandler={logoutHandler}
                     dropdown={dropdown} handlers={handlers} />
                 <div className="TextsAndButtons">
                     <div className="verticalItem">
-                        <h3>Watch Season 1 now</h3>
-                        <span>Her powers made her an outcast. A sword will make her a legend. Her people will make her a queen.</span>
+                        <h3>{destructuredHighlight ? destructuredHighlight.name : null}</h3>
+                        <span>{destructuredHighlight ? destructuredHighlight.overview : null}</span>
                         <div className="horizontalButtonsHolder">
                             <Button
                                 backgroundColor="#fff"
@@ -90,8 +95,12 @@ const BrowseContent = (props) => {
                     </div>
                 </div>
             </Video>
-            
-            <VideoCarousel trending={trending}/>
+
+            <VideoCarousel 
+                trending={trending} 
+                carouselItemHoverHandler={carouselItemHoverHandler} 
+                selectedMovie={selectedMovie}
+            />
         </div>
     )
 }

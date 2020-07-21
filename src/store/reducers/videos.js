@@ -1,7 +1,8 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
-    trending: []
+    trending: [], 
+    movie: {}
 }
 
 export default function videoReducer(state=initialState, action) {
@@ -14,6 +15,16 @@ export default function videoReducer(state=initialState, action) {
                     ...action.payload
                 ]
             }
+
+        case actionTypes.GET_VIDEO_DETAILS:
+            return {
+                ...state,
+                movie: {
+                    ...state.movie, 
+                    ...action.payload
+                }
+            }
+
         default:
             return state
     }

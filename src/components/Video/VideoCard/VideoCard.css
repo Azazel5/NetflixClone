@@ -1,4 +1,6 @@
 .VideoCard {
+    display: flex;
+    align-items: center;
     margin-right: 7px;
     cursor: pointer;
 }
@@ -6,4 +8,27 @@
 .VideoCard img {
     height: 100%;
     width: 100%;
+}
+
+.VideoCard:hover .VideoInfo {
+    display: block;
+}
+
+.VideoInfo {
+    display: none;
+    padding: 5px;
+    margin-top: 15px;
+    font-weight: 400;
+}
+
+.VideoInfo h6 {
+    margin: 0;
+}
+
+.VideoInfo span {
+    font-size: 0.5em;
+}
+
+.genres {
+    display: flex;
 }

@@ -4,8 +4,8 @@ import { useHistory } from "react-router-dom";
 import ProfileModal from './ProfileModal/ProfileModal'
 import BrowseContent from './BrowseContent/BrowseContent'
 import { AuthenticationContext } from '../../context/Authentication'
-import {connect} from 'react-redux'
-import {trendingActionCreator} from '../../store/actions/videos'
+import { connect } from 'react-redux'
+import * as actionCreators from '../../store/actions/videos'
 
 /**
  * Remember: the component where you want to use the context is the one which you wrap
@@ -17,7 +17,10 @@ const Browse = props => {
     const authContext = useContext(AuthenticationContext)
     const history = useHistory()
 
-    const {onLoadTrending, trending} = props 
+    const { 
+        onLoadTrending, highlightedVideo,
+        trending, onLoadVideoDetails, selectedMovie
+    } = props
 
     useEffect(() => {
         onLoadTrending()
@@ -34,23 +37,44 @@ const Browse = props => {
         history.push('/')
     }
 
+    const carouselItemHoverHandler = (videoId, mediaType) => {
+        onLoadVideoDetails(videoId, mediaType)
+    }
+
     return (
         <>
             <ProfileModal modalOpen={modal} profileClickHandler={profileClickHandler} />
-            <BrowseContent logoutHandler={logoutHandler} trending={trending}/>
+            <BrowseContent
+                logoutHandler={logoutHandler}
+                highlightedVideo={highlightedVideo}
+                trending={trending}
+                carouselItemHoverHandler={carouselItemHoverHandler}
+                selectedMovie={selectedMovie}
+            />
         </>
     )
 }
 
+/**
+ * Remember the thing which gave you trouble here. Never mutate state directly. Since I didn't create
+ * a copy of the trending state array, I kept splicing each item all over the place, which 
+ * caused unnecessary problems. 
+ */
 const mapStateToProps = state => {
+    const trendingArr = [...state.videos.trending]
+    const highlightedVideo = trendingArr.splice(0, 1)
     return {
-        trending: state.videos.trending 
+        trending: trendingArr,
+        highlightedVideo: highlightedVideo,
+        selectedMovie: state.videos.movie 
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLoadTrending: () => dispatch(trendingActionCreator())
+        onLoadTrending: () => dispatch(actionCreators.trendingActionCreator()),
+        onLoadVideoDetails: (videoId, mediaType) => 
+        (dispatch(actionCreators.getVideoInformation(videoId, mediaType)))
     }
 }
 
