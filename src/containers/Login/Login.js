@@ -154,7 +154,12 @@ const Login = props => {
 
           {passwordSpan}
           
-          <Button height="45px" width="100%">Sign In</Button>
+          <Button 
+            height="45px" width="100%" 
+            backgroundColor="#e50914"
+            textColor="#fff">
+              Sign In
+          </Button>
 
         </form>
 

@@ -42,7 +42,12 @@ const navBar = props => {
       <img src={NetflixLogo} alt="Logo" />
       {navTiles}
       {props.loginButton && <Link to="/login">
-        <Button height="34px" width="75px">
+        <Button 
+          height="34px" 
+          width="75px" 
+          backgroundColor="#e50914"
+          textColor="#fff"
+        >
           Sign In
       </Button>
       </Link>}

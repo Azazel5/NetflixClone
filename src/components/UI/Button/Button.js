@@ -1,40 +1,58 @@
 import React from "react";
+import './Button.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * A custom button component. It has a set color scheme and takes in height, eeight, and image
  * as props. Netflix seems to use a standard button component with different widths.
  */
 const button = props => {
-  let icon = null;
-  if (props.image) {
-    icon = (
+  let iconHolder = null;
+  const {
+    playButton, buttonSize, icon,
+    height, width, backgroundColor, textColor,
+    image
+  } = props
+
+  if (image) {
+    iconHolder = (
       <FontAwesomeIcon
-        style={{ marginLeft: "5px" }}
-        size="xs"
-        icon={faChevronRight}
+        style={playButton ? { marginRight: '15px' } : { marginLeft: "5px" }}
+        size={buttonSize}
+        icon={icon}
       />
     );
   }
-  const ButtonStyle = {
-    height: props.height,
-    width: props.width,
-    backgroundColor: "#e50914",
-    color: "#fff",
-    borderRadius: "3px",
-    border: "none",
-    outline: "none",
-    cursor: "pointer",
-    fontSize: "1rem"
+
+  let orderButton = (
+    <>
+      {props.children}
+      {iconHolder}
+    </>
+  )
+
+  if (playButton) {
+    orderButton = (
+      <>
+        {iconHolder}
+        {props.children}
+      </>
+    )
+  }
+
+  const conditionalStyles = {
+    height: height,
+    width: width,
+    backgroundColor: backgroundColor,
+    color: textColor
   };
 
   return (
-      <button style={ButtonStyle}>
-        {props.children}
-        {icon}
-      </button>
+    <button className="Button" style={conditionalStyles}>
+      {orderButton}
+    </button>
   );
 };
 
 export default button;
+

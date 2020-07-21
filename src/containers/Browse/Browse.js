@@ -1,9 +1,11 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
 
 import ProfileModal from './ProfileModal/ProfileModal'
 import BrowseContent from './BrowseContent/BrowseContent'
 import { AuthenticationContext } from '../../context/Authentication'
+import {connect} from 'react-redux'
+import {trendingActionCreator} from '../../store/actions/videos'
 
 /**
  * Remember: the component where you want to use the context is the one which you wrap
@@ -14,6 +16,12 @@ const Browse = props => {
     const [modal, setModal] = useState(initialState)
     const authContext = useContext(AuthenticationContext)
     const history = useHistory()
+
+    const {onLoadTrending, trending} = props 
+
+    useEffect(() => {
+        onLoadTrending()
+    }, [onLoadTrending])
 
     const profileClickHandler = () => {
         setModal(false)
@@ -29,9 +37,21 @@ const Browse = props => {
     return (
         <>
             <ProfileModal modalOpen={modal} profileClickHandler={profileClickHandler} />
-            <BrowseContent logoutHandler={logoutHandler}/>
+            <BrowseContent logoutHandler={logoutHandler} trending={trending}/>
         </>
     )
 }
 
-export default Browse
+const mapStateToProps = state => {
+    return {
+        trending: state.videos.trending 
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onLoadTrending: () => dispatch(trendingActionCreator())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Browse)

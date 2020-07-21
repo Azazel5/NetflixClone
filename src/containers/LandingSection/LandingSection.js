@@ -8,7 +8,7 @@ import Button from "../../components/UI/Button/Button";
 import DarkComponent from "./DarkComponent/DarkComponent";
 import FAQComponent from "./FAQComponent/FAQComponent";
 import { Link } from "react-router-dom";
-
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * The 'homepage' of this project. Uses an object state to
@@ -46,7 +46,16 @@ const LandingSection = props => {
             variant="filled"
             color="secondary"
           />
-          <Button link="/" height="34px" width="150px" image>
+          <Button 
+            link="/" 
+            height="34px" 
+            width="150px" 
+            image 
+            icon={faChevronRight}
+            backgroundColor="#e50914"
+            textColor="#fff"
+            buttonSize="xs"
+          >
             GET STARTED
           </Button>
         </div>
@@ -134,7 +143,15 @@ const LandingSection = props => {
               color="secondary"
             />
             <Link to="/">
-              <Button height="34px" width="150px" image>
+              <Button 
+                height="34px" 
+                width="150px" 
+                image 
+                icon={faChevronRight}
+                backgroundColor="#e50914"
+                textColor="#fff"
+                buttonSize="xs"
+              >
                 GET STARTED
             </Button>
             </Link>

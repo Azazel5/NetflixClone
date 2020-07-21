@@ -1,0 +1,9 @@
+.VideoCard {
+    margin-right: 7px;
+    cursor: pointer;
+}
+
+.VideoCard img {
+    height: 100%;
+    width: 100%;
+}
