@@ -1,38 +1,54 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
-    trending: [], 
-    movie: {}, 
-    topRated: []
+    videos: {
+        trending: {content: []},
+        topRated: {content: []}
+    },
+
+    movie: {},
 }
 
-export default function videoReducer(state=initialState, action) {
-    switch(action.type) {
+export default function videoReducer(state = initialState, action) {
+    switch (action.type) {
         case actionTypes.TRENDING_API_REQUEST:
             return {
                 ...state,
-                trending: [
-                    ...state.trending, 
-                    ...action.payload
-                ]
+                videos: {
+                    ...state.videos,
+                    trending: {
+                        videoType: action.videoType,
+                        content: [
+                            ...state.videos.trending.content,
+                            ...action.payload,
+                        ]
+                    },
+                }
             }
 
         case actionTypes.GET_VIDEO_DETAILS:
             return {
                 ...state,
                 movie: {
-                    ...state.movie, 
+                    ...state.movie,
                     ...action.payload
                 }
             }
 
         case actionTypes.TOP_RATED_API_REQUEST:
             return {
-                ...state, 
-                topRated: [
-                    ...state.topRated, 
-                    ...action.payload
-                ]
+                ...state,
+                ...state,
+                videos: {
+                    ...state.videos,
+                    topRated: {
+                        videoType: action.videoType,
+                        content: [
+                            ...state.videos.topRated.content,
+                            ...action.payload,
+                        ]
+                    },
+                }
             }
 
         default:

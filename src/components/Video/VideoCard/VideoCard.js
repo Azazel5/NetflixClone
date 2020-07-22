@@ -3,6 +3,11 @@ import './VideoCard.css'
 
 const videoCard = (props) => {
     const { image, normal, selectedMovie } = props
+    if(selectedMovie.runtime) {
+        console.log(selectedMovie.runtime)
+    } else if(selectedMovie.seasons) {
+        console.log(selectedMovie.seasons.length)
+    }
 
     const styles = {
         backgroundImage: `url(${image})`,

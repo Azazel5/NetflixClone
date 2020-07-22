@@ -5,9 +5,9 @@ import VideoCard from '../VideoCard/VideoCard'
 
 const videoCarousel = props => {
     const { carouselVideo, selectedMovie, carouselName } = props
-
     const videoCards = carouselVideo.map(item => {
         const mediaType = item.media_type
+
         return <div className="item" key={item.id}
             onMouseEnter={() => props.carouselItemHoverHandler(item.id, mediaType ? mediaType : null)}>
             <VideoCard

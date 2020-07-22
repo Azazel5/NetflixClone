@@ -18,9 +18,8 @@ const Browse = props => {
     const history = useHistory()
 
     const {
-        onLoadTrending, highlightedVideo,
-        trending, onLoadVideoDetails, selectedMovie,
-        onLoadTopRated, topRated
+        onLoadTrending, onLoadVideoDetails, selectedMovie,
+        onLoadTopRated, videos
     } = props
 
     useEffect(() => {
@@ -48,11 +47,9 @@ const Browse = props => {
             <ProfileModal modalOpen={modal} profileClickHandler={profileClickHandler} />
             <BrowseContent
                 logoutHandler={logoutHandler}
-                highlightedVideo={highlightedVideo}
-                trending={trending}
+                videos={videos}
                 carouselItemHoverHandler={carouselItemHoverHandler}
                 selectedMovie={selectedMovie}
-                topRated={topRated}
             />
         </>
     )
@@ -64,14 +61,9 @@ const Browse = props => {
  * caused unnecessary problems. 
  */
 const mapStateToProps = state => {
-    const trendingArr = [...state.videos.trending]
-    const highlightedVideo = trendingArr.splice(0, 1)
-
     return {
-        trending: trendingArr,
-        highlightedVideo: highlightedVideo,
+        videos: state.videos.videos,
         selectedMovie: state.videos.movie,
-        topRated: state.videos.topRated
     }
 }
 

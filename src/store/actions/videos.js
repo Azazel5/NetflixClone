@@ -7,7 +7,8 @@ export function trendingActionCreator() {
             `trending/all/day?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}`
         ).then(response => dispatch({
             type: actionTypes.TRENDING_API_REQUEST,
-            payload: response.data.results
+            payload: response.data.results, 
+            videoType: 'Trending'
         }))
     }
 }
@@ -18,7 +19,8 @@ export function topRatedActionCreator() {
             `movie/top_rated?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&page=1`
         ).then(response => dispatch({
             type: actionTypes.TOP_RATED_API_REQUEST,
-            payload: response.data.results
+            payload: response.data.results, 
+            videoType: 'Top Rated'
         }))
     }
 }
