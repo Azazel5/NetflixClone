@@ -1,11 +1,10 @@
-/* Remove the explicit height after finshing the animations */
 .VideoCarousel {
-    color: #e5e5e5;
-    margin-left: 20px;
-    padding: 10px;
-    font-size: 1.4vw;
-    height: 500px;
-    overflow-x: auto;
+  color: #e5e5e5;
+  margin-left: 20px;
+  padding: 10px;
+  font-size: 1.4vw;
+  overflow-x: auto;
+  padding-bottom: 30px;
 }
 
 .VideoCarousel::-webkit-scrollbar {

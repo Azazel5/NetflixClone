@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
     trending: [], 
-    movie: {}
+    movie: {}, 
+    topRated: []
 }
 
 export default function videoReducer(state=initialState, action) {
@@ -23,6 +24,15 @@ export default function videoReducer(state=initialState, action) {
                     ...state.movie, 
                     ...action.payload
                 }
+            }
+
+        case actionTypes.TOP_RATED_API_REQUEST:
+            return {
+                ...state, 
+                topRated: [
+                    ...state.topRated, 
+                    ...action.payload
+                ]
             }
 
         default:

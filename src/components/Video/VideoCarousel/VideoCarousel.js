@@ -4,10 +4,12 @@ import './VideoCarousel.css'
 import VideoCard from '../VideoCard/VideoCard'
 
 const videoCarousel = props => {
-    const { trending, selectedMovie } = props
-    const videoCards = trending.map(item => {
+    const { carouselVideo, selectedMovie, carouselName } = props
+
+    const videoCards = carouselVideo.map(item => {
+        const mediaType = item.media_type
         return <div className="item" key={item.id}
-            onMouseEnter={() => props.carouselItemHoverHandler(item.id, item.media_type)}>
+            onMouseEnter={() => props.carouselItemHoverHandler(item.id, mediaType ? mediaType : null)}>
             <VideoCard
                 name={item.name ? item.name : item.title}
                 vote_average={item.vote_average}
@@ -19,12 +21,14 @@ const videoCarousel = props => {
     })
 
     return (
-        <div className="VideoCarousel">
-            <h4>Trending</h4>
-            <div className="items">
-                {videoCards}
-            </div>
-        </div >
+        <>
+            <div className="VideoCarousel">
+                <h4>{carouselName}</h4>
+                <div className="items">
+                    {videoCards}
+                </div>
+            </div >
+        </>
     )
 }
 

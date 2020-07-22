@@ -13,12 +13,13 @@ const BrowseContent = (props) => {
         floatingBoxHovered: false
     })
 
-    const { 
+    const {
         logoutHandler, highlightedVideo,
-        trending, selectedMovie, carouselItemHoverHandler
+        trending, selectedMovie, carouselItemHoverHandler,
+        topRated
     } = props
-    const destructuredHighlight = highlightedVideo[0] ? highlightedVideo[0]: null 
-    const imageUrl = destructuredHighlight ? `https://image.tmdb.org/t/p/original/${destructuredHighlight.poster_path}`: null 
+    const destructuredHighlight = highlightedVideo[0] ? highlightedVideo[0] : null
+    const imageUrl = destructuredHighlight ? `https://image.tmdb.org/t/p/original/${destructuredHighlight.poster_path}` : null
 
     const handlers = {
         iconHoveredInHandler: () => {
@@ -96,9 +97,17 @@ const BrowseContent = (props) => {
                 </div>
             </Video>
 
-            <VideoCarousel 
-                trending={trending} 
-                carouselItemHoverHandler={carouselItemHoverHandler} 
+            <VideoCarousel
+                carouselName="Trending"
+                carouselVideo={trending}
+                carouselItemHoverHandler={carouselItemHoverHandler}
+                selectedMovie={selectedMovie}
+            />
+
+            <VideoCarousel
+                carouselName="Top Rated"
+                carouselVideo={topRated}
+                carouselItemHoverHandler={carouselItemHoverHandler}
                 selectedMovie={selectedMovie}
             />
         </div>

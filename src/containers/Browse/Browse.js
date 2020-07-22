@@ -17,14 +17,16 @@ const Browse = props => {
     const authContext = useContext(AuthenticationContext)
     const history = useHistory()
 
-    const { 
+    const {
         onLoadTrending, highlightedVideo,
-        trending, onLoadVideoDetails, selectedMovie
+        trending, onLoadVideoDetails, selectedMovie,
+        onLoadTopRated, topRated
     } = props
 
     useEffect(() => {
         onLoadTrending()
-    }, [onLoadTrending])
+        onLoadTopRated()
+    }, [onLoadTrending, onLoadTopRated])
 
     const profileClickHandler = () => {
         setModal(false)
@@ -50,6 +52,7 @@ const Browse = props => {
                 trending={trending}
                 carouselItemHoverHandler={carouselItemHoverHandler}
                 selectedMovie={selectedMovie}
+                topRated={topRated}
             />
         </>
     )
@@ -63,18 +66,21 @@ const Browse = props => {
 const mapStateToProps = state => {
     const trendingArr = [...state.videos.trending]
     const highlightedVideo = trendingArr.splice(0, 1)
+
     return {
         trending: trendingArr,
         highlightedVideo: highlightedVideo,
-        selectedMovie: state.videos.movie 
+        selectedMovie: state.videos.movie,
+        topRated: state.videos.topRated
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         onLoadTrending: () => dispatch(actionCreators.trendingActionCreator()),
-        onLoadVideoDetails: (videoId, mediaType) => 
-        (dispatch(actionCreators.getVideoInformation(videoId, mediaType)))
+        onLoadVideoDetails: (videoId, mediaType) =>
+            (dispatch(actionCreators.getVideoInformation(videoId, mediaType))),
+        onLoadTopRated: () => dispatch(actionCreators.topRatedActionCreator())
     }
 }
 

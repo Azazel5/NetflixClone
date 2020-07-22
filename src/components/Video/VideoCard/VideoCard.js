@@ -3,6 +3,7 @@ import './VideoCard.css'
 
 const videoCard = (props) => {
     const { image, normal, selectedMovie } = props
+
     const styles = {
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover'
@@ -13,9 +14,12 @@ const videoCard = (props) => {
         styles['width'] = '230px'
     }
 
-    const genres = selectedMovie && selectedMovie.genres && selectedMovie.genres.map((genre, index) => (
-        <span key={genre.id}>{genre.name} ● &nbsp;</span>
-    ))
+    const genres = selectedMovie && selectedMovie.genres &&
+        selectedMovie.genres.map((genre, index) => (
+            <span key={genre.id}>
+                {genre.name} {index !== selectedMovie.genres.length - 1 ? '●': null} &nbsp;
+            </span>
+        ))
 
     return (
         <div className="VideoCard" style={styles}>
