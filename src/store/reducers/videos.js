@@ -2,11 +2,10 @@ import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
     videos: {
-        trending: {content: []},
-        topRated: {content: []}
+        trending: { content: [] },
+        topRated: { content: [] },
+        movie: {},
     },
-
-    movie: {},
 }
 
 export default function videoReducer(state = initialState, action) {
@@ -29,15 +28,17 @@ export default function videoReducer(state = initialState, action) {
         case actionTypes.GET_VIDEO_DETAILS:
             return {
                 ...state,
-                movie: {
-                    ...state.movie,
-                    ...action.payload
+                videos: {
+                    ...state.videos,
+                    movie: {
+                        ...state.videos.movie,
+                        ...action.payload
+                    }
                 }
             }
 
         case actionTypes.TOP_RATED_API_REQUEST:
             return {
-                ...state,
                 ...state,
                 videos: {
                     ...state.videos,

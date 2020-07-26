@@ -1,11 +1,11 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect} from 'react'
 import { useHistory } from "react-router-dom";
 
-import ProfileModal from './ProfileModal/ProfileModal'
+import ProfileModal from '../../components/Modals/ProfileModal/ProfileModal'
 import BrowseContent from './BrowseContent/BrowseContent'
 import { AuthenticationContext } from '../../context/Authentication'
-import { connect } from 'react-redux'
-import * as actionCreators from '../../store/actions/videos'
+import {useDispatch, useSelector} from 'react-redux'
+import {fetchTrending, selectAllTrendingVideos} from '../../store/reducers/videoSlice'
 
 /**
  * Remember: the component where you want to use the context is the one which you wrap
@@ -13,19 +13,17 @@ import * as actionCreators from '../../store/actions/videos'
  */
 const Browse = props => {
     const initialState = localStorage.getItem('profileSelected') ? false : true
+
     const [modal, setModal] = useState(initialState)
     const authContext = useContext(AuthenticationContext)
     const history = useHistory()
+    const dispatch = useDispatch()
 
-    const {
-        onLoadTrending, onLoadVideoDetails, selectedMovie,
-        onLoadTopRated, videos
-    } = props
+    const videos = useSelector(selectAllTrendingVideos)
 
     useEffect(() => {
-        onLoadTrending()
-        onLoadTopRated()
-    }, [onLoadTrending, onLoadTopRated])
+        dispatch(fetchTrending())
+    }, [dispatch])
 
     const profileClickHandler = () => {
         setModal(false)
@@ -38,18 +36,12 @@ const Browse = props => {
         history.push('/')
     }
 
-    const carouselItemHoverHandler = (videoId, mediaType) => {
-        onLoadVideoDetails(videoId, mediaType)
-    }
-
     return (
         <>
             <ProfileModal modalOpen={modal} profileClickHandler={profileClickHandler} />
             <BrowseContent
-                logoutHandler={logoutHandler}
                 videos={videos}
-                carouselItemHoverHandler={carouselItemHoverHandler}
-                selectedMovie={selectedMovie}
+                logoutHandler={logoutHandler}
             />
         </>
     )
@@ -60,20 +52,5 @@ const Browse = props => {
  * a copy of the trending state array, I kept splicing each item all over the place, which 
  * caused unnecessary problems. 
  */
-const mapStateToProps = state => {
-    return {
-        videos: state.videos.videos,
-        selectedMovie: state.videos.movie,
-    }
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onLoadTrending: () => dispatch(actionCreators.trendingActionCreator()),
-        onLoadVideoDetails: (videoId, mediaType) =>
-            (dispatch(actionCreators.getVideoInformation(videoId, mediaType))),
-        onLoadTopRated: () => dispatch(actionCreators.topRatedActionCreator())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Browse)
+export default Browse

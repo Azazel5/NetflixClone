@@ -25,10 +25,10 @@
     margin: 0;
 }
 
-.VideoInfo span {
-    font-size: 0.5em;
+.horizontalStyle {
+    display: flex;
 }
 
-.genres {
-    display: flex;
+.horizontalStyle span {
+    font-size: 0.5em;
 }

@@ -1,8 +1,10 @@
-import VideoReducer from './videos'
-import {combineReducers} from 'redux'
+import {configureStore} from '@reduxjs/toolkit'
+import videoReducer from './videoSlice'
 
-const rootReducer = combineReducers({
-    videos: VideoReducer
-})
+const store = configureStore({
+    reducer: {
+        videos: videoReducer
+    }
+}) 
 
-export default rootReducer
+export default store 

@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import './BrowseContent.css'
+
 import NavBar from '../../../components/Navigation/NavBar/NavBar'
 import { useLocation } from 'react-router-dom'
 import Video from '../../../components/Video/TopTrailerComponent/Video'
 import Button from '../../../components/UI/Button/Button'
 import VideoCarousel from '../../../components/Video/VideoCarousel/VideoCarousel'
 import { faPlay, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import axios from '../../../baseAxios'
 
 const BrowseContent = (props) => {
     const [dropdown, setDropdown] = useState({
@@ -13,12 +15,12 @@ const BrowseContent = (props) => {
         floatingBoxHovered: false
     })
 
-    const {
-        logoutHandler, selectedMovie, carouselItemHoverHandler,
-        videos
-    } = props
+    const [videoInfo, setVideoInfo] = useState(null)
 
-    const [firstVideo, ...remainingVideos] = videos.trending.content
+    const [videoDetailModal, setVideoDetailModal] = useState(false)
+    const { logoutHandler, videos } = props
+
+    const [firstVideo, ...remainingVideos] = videos
     const imageUrl = firstVideo ? `https://image.tmdb.org/t/p/original/${firstVideo.poster_path}` : null
     const handlers = {
         iconHoveredInHandler: () => {
@@ -52,22 +54,29 @@ const BrowseContent = (props) => {
         },
     }
 
-    const videoCarousels = Object.keys(videos).map(key => {
-        let passedVideos = videos[key].content
-        const videoType = videos[key].videoType
-        if (videoType && videoType === 'Trending') {
-            passedVideos = remainingVideos
+    const videoDetailRequest = async (videoId, mediaType) => {
+        let requestURL;
+        if (mediaType === 'movie' || !mediaType) {
+            requestURL = `movie/${videoId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`
+        } else if (mediaType === 'tv') {
+            requestURL = `tv/${videoId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`
         }
+    
+        const response = await axios.get(requestURL)
+        setVideoInfo(response.data )
+    }
 
-        return videoType &&
-            <VideoCarousel
-                key={videos[key].videoType}
-                carouselName={videos[key].videoType}
-                carouselVideo={passedVideos}
-                carouselItemHoverHandler={carouselItemHoverHandler}
-                selectedMovie={selectedMovie}
-            />
-    })
+    const carouselHoverHandler = (videoId, mediaType) => {
+        videoDetailRequest(videoId, mediaType)
+    }
+
+    const carouselClickHandler = () => {
+        setVideoDetailModal(true)
+    }
+
+    const closeModalHandler = () => {
+        setVideoDetailModal(false)
+    }
 
     const location = useLocation()
     return (
@@ -113,10 +122,22 @@ const BrowseContent = (props) => {
                 </div>
             </Video>
 
-            {videoCarousels}
+            <div className="Carousels">
+                <VideoCarousel
+                    carouselName="Trending"
+                    carouselVideo={remainingVideos}
+                    carouselClickHandler={carouselClickHandler}
+                    carouselHoverHandler={carouselHoverHandler}
+                    videoInfo={videoInfo}
+                    videoDetailModal={videoDetailModal}
+                    closeModalHandler={closeModalHandler}
+                />
+            </div>
 
         </div>
     )
 }
+
+
 
 export default BrowseContent

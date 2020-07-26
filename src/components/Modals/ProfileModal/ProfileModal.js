@@ -1,7 +1,7 @@
 import React from 'react'
 import Modal from 'react-modal'
 import NetflixLogo from '../../../assets/images/netflix.png'
-import ProfileCard from '../../../components/UI/ProfileCard/ProfileCard'
+import ProfileCard from '../../UI/ProfileCard/ProfileCard'
 import './ProfileModal.css'
 
 import {
@@ -28,9 +28,11 @@ const modalStyles = {
 }
 
 const profileModal = props => {
+    const {modalOpen, profileClickHandler} = props 
+    
     return (
         <Modal
-            isOpen={props.modalOpen}
+            isOpen={modalOpen}
             contentLabel="Modal is open"
             style={modalStyles}
             shouldCloseOnEsc={false}
@@ -42,10 +44,10 @@ const profileModal = props => {
             </h1>
 
                 <div className="horizontalComp">
-                    <ProfileCard profileImage={Profile} username="Pushpa" onClick={props.profileClickHandler} />
-                    <ProfileCard profileImage={Weird} username="Shammy" onClick={props.profileClickHandler} />
-                    <ProfileCard profileImage={Smile} username="PQ" onClick={props.profileClickHandler} />
-                    <ProfileCard profileImage={Normal} username="Subhanga" onClick={props.profileClickHandler} />
+                    <ProfileCard profileImage={Profile} username="Pushpa" onClick={profileClickHandler} />
+                    <ProfileCard profileImage={Weird} username="Shammy" onClick={profileClickHandler} />
+                    <ProfileCard profileImage={Smile} username="PQ" onClick={profileClickHandler} />
+                    <ProfileCard profileImage={Normal} username="Subhanga" onClick={profileClickHandler} />
                 </div>
 
                 <button className={"ProfileButton"}>

@@ -5,12 +5,9 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import ScrollToTop from "./hoc/ScrollToTop/ScrollToTop";
 import AuthenticationContextProvider from './context/Authentication'
-import { applyMiddleware, createStore } from 'redux'
-import thunk from 'redux-thunk'
-import rootReducer from './store/reducers'
 import { Provider } from 'react-redux'
+import store from './store/reducers/index'
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const app = (
   <Provider store={store}>

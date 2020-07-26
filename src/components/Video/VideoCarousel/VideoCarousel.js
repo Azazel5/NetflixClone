@@ -2,23 +2,52 @@ import React from 'react'
 import './VideoCarousel.css'
 
 import VideoCard from '../VideoCard/VideoCard'
+import VideoModal from '../../Modals/VideoModal/VideoModal'
 
-const videoCarousel = props => {
-    const { carouselVideo, selectedMovie, carouselName } = props
+const VideoCarousel = props => {
+    const {
+        carouselVideo, carouselName,
+        carouselHoverHandler, videoInfo,
+        carouselClickHandler, videoDetailModal,
+        closeModalHandler
+    } = props
+
     const videoCards = carouselVideo.map(item => {
         const mediaType = item.media_type
 
+        let extraInfo = {}
+        if (videoInfo && videoInfo.id === item.id) {
+            extraInfo['genres'] = videoInfo.genres
+            if (videoInfo.runtime) {
+                extraInfo['runtime'] = videoInfo.runtime
+            } else if (videoInfo.seasons) {
+                extraInfo['seasons'] = videoInfo.seasons
+            }
+        }
+
         return <div className="item" key={item.id}
-            onMouseEnter={() => props.carouselItemHoverHandler(item.id, mediaType ? mediaType : null)}>
+            onClick={carouselClickHandler}
+            onMouseEnter={() => carouselHoverHandler(item.id, mediaType ? mediaType : null)}>
             <VideoCard
                 name={item.name ? item.name : item.title}
                 vote_average={item.vote_average}
                 image={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
-                selectedMovie={selectedMovie}
                 normal
+                {...extraInfo}
             />
         </div>
     })
+
+    let detailModalComponent
+    if (videoDetailModal) {
+        detailModalComponent = (
+            <VideoModal 
+                videoDetailModal={videoDetailModal}
+                closeModalHandler={closeModalHandler}
+                videoInfo={videoInfo}
+             />
+        )
+    }
 
     return (
         <>
@@ -27,9 +56,10 @@ const videoCarousel = props => {
                 <div className="items">
                     {videoCards}
                 </div>
+                {detailModalComponent}
             </div >
         </>
     )
 }
 
-export default videoCarousel
+export default VideoCarousel
