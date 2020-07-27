@@ -3,6 +3,8 @@
     align-items: center;
     margin-right: 7px;
     cursor: pointer;
+    height: 100px;
+    width: 130px
 }
 
 .VideoCard img {
@@ -27,8 +29,18 @@
 
 .horizontalStyle {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .horizontalStyle span {
     font-size: 0.5em;
 }
+
+@media(min-width: 600px) {
+    .VideoCard {
+        height: 140px;
+        width: 230px
+    }
+}
+
+

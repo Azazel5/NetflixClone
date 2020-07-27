@@ -2,7 +2,7 @@
   color: #e5e5e5;
   margin-left: 20px;
   padding: 10px;
-  font-size: 1.4vw;
+  font-size: 2.4vw;
   overflow-x: auto;
 }
 
@@ -33,4 +33,10 @@
 .items .item:focus,
 .items .item:hover {
   transform: scale(1.5);
+}
+
+@media(min-width: 600px) {
+  .VideoCarousel {
+    font-size: 1.4vw;
+  }
 }

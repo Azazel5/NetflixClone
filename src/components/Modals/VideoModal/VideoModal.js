@@ -29,11 +29,19 @@ const modalStyles = {
 
 const VideoModal = props => {
     const { videoDetailModal, closeModalHandler, videoInfo } = props
-    const voteAverage = videoInfo.vote_average * 10
-    const voteStyle = { color: voteAverage > 49 ? '#46d369' : 'red' }
-    const videoTime = getSeasonsOrMovieLength(videoInfo.seasons, videoInfo.runtime)
 
-    const imageUrl = `https://image.tmdb.org/t/p/original/${videoInfo.backdrop_path}`
+    const {
+        vote_average, seasons, runtime,
+        backdrop_path, title, name,
+        release_date, first_air_date,
+        overview
+    } = videoInfo
+
+    const voteAverage = vote_average * 10
+    const voteStyle = { color: voteAverage > 49 ? '#46d369' : 'red' }
+    const videoTime = getSeasonsOrMovieLength(seasons, runtime)
+
+    const imageUrl = `https://image.tmdb.org/t/p/original/${backdrop_path}`
     return (
         <Modal
             isOpen={videoDetailModal}
@@ -48,13 +56,13 @@ const VideoModal = props => {
                     icon={faTimes}
                 />
                 <div className="shadowedSection">
-                    <h1>{videoInfo.title || videoInfo.name}</h1>
+                    <h1>{title || name}</h1>
                     <div className="horizontalStyles">
                         <span style={voteStyle}>{`Rating: ${voteAverage}%`} &nbsp;</span>
-                        <span>{(videoInfo.release_date || videoInfo.first_air_date).substring(0, 4)} &nbsp;</span>
+                        <span>{(release_date || first_air_date).substring(0, 4)} &nbsp;</span>
                         {videoTime}
                     </div>
-                    <div>{videoInfo.overview}</div>
+                    <div>{overview}</div>
                     <div className="horizontalStyles">
                         <Button
                             backgroundColor="#fff"
@@ -66,7 +74,7 @@ const VideoModal = props => {
                             icon={faPlay}
                             hovered>
                             Play
-                             </Button>
+                        </Button>
 
                         <Button
                             backgroundColor="rgba(133, 133, 133, 0.6)"
@@ -78,7 +86,7 @@ const VideoModal = props => {
                             icon={faPlus}
                             hovered>
                             My List
-                             </Button>
+                        </Button>
                     </div>
                 </div>
             </div>

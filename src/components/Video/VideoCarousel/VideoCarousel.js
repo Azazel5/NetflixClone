@@ -3,36 +3,39 @@ import './VideoCarousel.css'
 
 import VideoCard from '../VideoCard/VideoCard'
 import VideoModal from '../../Modals/VideoModal/VideoModal'
+import { isMobile } from 'react-device-detect';
+
 
 const videoCarousel = props => {
     const {
         carouselVideo, carouselName,
         carouselHoverHandler, videoInfo,
         carouselClickHandler, videoDetailModal,
-        closeModalHandler
+        closeModalHandler, mobileCarouselClickHandler
     } = props
 
     const videoCards = carouselVideo.map(item => {
         const mediaType = item.media_type
 
         let extraInfo = {}
-        if (videoInfo && videoInfo.id === item.id) {
-            extraInfo['genres'] = videoInfo.genres
-            if (videoInfo.runtime) {
-                extraInfo['runtime'] = videoInfo.runtime
-            } else if (videoInfo.seasons) {
-                extraInfo['seasons'] = videoInfo.seasons
+        if (!isMobile) {
+            if (videoInfo && videoInfo.id === item.id) {
+                extraInfo['genres'] = videoInfo.genres
+                if (videoInfo.runtime) {
+                    extraInfo['runtime'] = videoInfo.runtime
+                } else if (videoInfo.seasons) {
+                    extraInfo['seasons'] = videoInfo.seasons
+                }
             }
         }
 
         return <div className="item" key={item.id}
-            onClick={carouselClickHandler}
-            onMouseEnter={() => carouselHoverHandler(item.id, mediaType ? mediaType : null)}>
+            onClick={() => isMobile ? mobileCarouselClickHandler(item.id, mediaType && mediaType) : carouselClickHandler()}
+            onMouseEnter={() => !isMobile && carouselHoverHandler(item.id, mediaType && mediaType)}>
             <VideoCard
                 name={item.name || item.title}
                 vote_average={item.vote_average}
                 image={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
-                normal
                 {...extraInfo}
             />
         </div>
@@ -41,11 +44,11 @@ const videoCarousel = props => {
     let detailModalComponent
     if (videoDetailModal) {
         detailModalComponent = (
-            <VideoModal 
+            <VideoModal
                 videoDetailModal={videoDetailModal}
                 closeModalHandler={closeModalHandler}
                 videoInfo={videoInfo}
-             />
+            />
         )
     }
 

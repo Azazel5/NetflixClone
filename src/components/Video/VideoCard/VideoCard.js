@@ -3,19 +3,13 @@ import './VideoCard.css'
 import { getSeasonsOrMovieLength } from '../../../utils/time'
 
 const videoCard = (props) => {
-    const { image, normal, genres, runtime, seasons, vote_average } = props
+    const { image, genres, runtime, seasons, vote_average } = props
     const styles = {
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover'
     }
 
     let timeSpan = getSeasonsOrMovieLength(seasons, runtime)
-
-    if (normal) {
-        styles['height'] = '140px'
-        styles['width'] = '230px'
-    }
-
     const genreList = genres && genres.map((genre, index) => (
         <span key={genre.id}>
             {genre.name} {index !== genres.length - 1 ? '●' : null} &nbsp;

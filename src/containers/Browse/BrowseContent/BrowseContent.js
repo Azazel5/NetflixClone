@@ -57,10 +57,19 @@ const BrowseContent = (props) => {
 
     const carouselHoverHandler = (videoId, mediaType) => {
         videoDetailRequest(videoId, mediaType)
+            .then(data => setVideoInfo(data))
     }
 
     const carouselClickHandler = () => {
         setVideoDetailModal(true)
+    }
+
+    const mobileCarouselClickHandler = (videoId, mediaType) => {
+        videoDetailRequest(videoId, mediaType)
+            .then(data => {
+                setVideoInfo(data)
+                setVideoDetailModal(true)
+            })        
     }
 
     const closeModalHandler = () => {
@@ -76,7 +85,7 @@ const BrowseContent = (props) => {
         }
 
         const response = await axios.get(requestURL)
-        setVideoInfo(response.data)
+        return response.data
     }
 
     const carousels = videoSections.map(videoSection => (
@@ -86,6 +95,7 @@ const BrowseContent = (props) => {
             carouselVideo={videoSection.title === "Trending" ? remainingVideos : videoSection.videos}
             carouselClickHandler={carouselClickHandler}
             carouselHoverHandler={carouselHoverHandler}
+            mobileCarouselClickHandler={mobileCarouselClickHandler}
             videoInfo={videoInfo}
             videoDetailModal={videoDetailModal}
             closeModalHandler={closeModalHandler}
@@ -106,8 +116,6 @@ const BrowseContent = (props) => {
                         <div className="horizontalButtonsHolder">
                             <Button
                                 backgroundColor="#fff"
-                                height="38px"
-                                width="108px"
                                 textColor="rgb(24, 24, 24)"
                                 playButton
                                 image
@@ -118,8 +126,6 @@ const BrowseContent = (props) => {
 
                             <Button
                                 backgroundColor="rgba(133, 133, 133, 0.6)"
-                                height="38px"
-                                width="138px"
                                 textColor="white"
                                 playButton
                                 image

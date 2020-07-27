@@ -16,10 +16,10 @@
   display: flex;
   flex-direction: column;
   width: 400px;
-  height: 500px;
+  height: 600px;
   margin: auto;
   color: #fff;
-  padding: 30px 38px 40px;
+  padding: 40px 38px 40px;
 }
 
 @media (min-width: 600px) {

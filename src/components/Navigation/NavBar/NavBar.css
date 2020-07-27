@@ -7,16 +7,13 @@
   top: 0;
   left: 0;
   padding-top: 5px;
-  font-size: 1vw;
+  font-size: 2vw;
 }
 
-.NavBar > * {
-  margin: 20px;
-}
 
 .NavBar img {
   height: 100%;
-  width: 168px;
+  width: 108px;
 }
 
 .inactive {
@@ -49,5 +46,27 @@
 .OptionsContainer > * {
   color: white;
   cursor: pointer;
-  margin-right: 25px;
+  margin-right: 10px;
+}
+
+@media(min-width: 600px) {
+  .NavBar {
+    font-size: 1vw;
+  }
+
+  .NavBar img {
+    width: 168px;
+  }
+
+  .NavBar > * {
+    margin: 10px;
+  }
+
+  .LinkContainer {
+    margin-right: auto;
+  }
+
+  .OptionsContainer > * {
+    margin-right: 25px;
+  }
 }
