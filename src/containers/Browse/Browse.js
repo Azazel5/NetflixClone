@@ -5,7 +5,8 @@ import ProfileModal from '../../components/Modals/ProfileModal/ProfileModal'
 import BrowseContent from './BrowseContent/BrowseContent'
 import { AuthenticationContext } from '../../context/Authentication'
 import {useDispatch, useSelector} from 'react-redux'
-import {fetchTrending, selectAllTrendingVideos} from '../../store/reducers/videoSlice'
+import {fetchTrending, selectAllTrendingVideos} from '../../store/reducers/slices/trendingSlice'
+import {fetchTopRated, selectAllTopRatedVideos} from '../../store/reducers/slices/topratedSlice'
 
 /**
  * Remember: the component where you want to use the context is the one which you wrap
@@ -19,10 +20,14 @@ const Browse = props => {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    const videos = useSelector(selectAllTrendingVideos)
+    const videoSections = [
+        {title: "Trending", videos: useSelector(selectAllTrendingVideos)},
+        {title: "Top Rated", videos: useSelector(selectAllTopRatedVideos)},
+    ]
 
     useEffect(() => {
         dispatch(fetchTrending())
+        dispatch(fetchTopRated())
     }, [dispatch])
 
     const profileClickHandler = () => {
@@ -40,7 +45,7 @@ const Browse = props => {
         <>
             <ProfileModal modalOpen={modal} profileClickHandler={profileClickHandler} />
             <BrowseContent
-                videos={videos}
+                videoSections={videoSections}
                 logoutHandler={logoutHandler}
             />
         </>

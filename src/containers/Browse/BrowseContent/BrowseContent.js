@@ -18,10 +18,11 @@ const BrowseContent = (props) => {
     const [videoInfo, setVideoInfo] = useState(null)
 
     const [videoDetailModal, setVideoDetailModal] = useState(false)
-    const { logoutHandler, videos } = props
+    const { logoutHandler, videoSections } = props
 
-    const [firstVideo, ...remainingVideos] = videos
+    const [firstVideo, ...remainingVideos] = videoSections[0].videos
     const imageUrl = firstVideo ? `https://image.tmdb.org/t/p/original/${firstVideo.poster_path}` : null
+
     const handlers = {
         iconHoveredInHandler: () => {
             setDropdown(prevDropdown => ({
@@ -54,18 +55,6 @@ const BrowseContent = (props) => {
         },
     }
 
-    const videoDetailRequest = async (videoId, mediaType) => {
-        let requestURL;
-        if (mediaType === 'movie' || !mediaType) {
-            requestURL = `movie/${videoId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`
-        } else if (mediaType === 'tv') {
-            requestURL = `tv/${videoId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`
-        }
-    
-        const response = await axios.get(requestURL)
-        setVideoInfo(response.data )
-    }
-
     const carouselHoverHandler = (videoId, mediaType) => {
         videoDetailRequest(videoId, mediaType)
     }
@@ -77,6 +66,31 @@ const BrowseContent = (props) => {
     const closeModalHandler = () => {
         setVideoDetailModal(false)
     }
+
+    const videoDetailRequest = async (videoId, mediaType) => {
+        let requestURL;
+        if (mediaType === 'movie' || !mediaType) {
+            requestURL = `movie/${videoId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`
+        } else if (mediaType === 'tv') {
+            requestURL = `tv/${videoId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`
+        }
+
+        const response = await axios.get(requestURL)
+        setVideoInfo(response.data)
+    }
+
+    const carousels = videoSections.map(videoSection => (
+        <VideoCarousel
+            key={videoSection.title}
+            carouselName={videoSection.title}
+            carouselVideo={videoSection.title === "Trending" ? remainingVideos : videoSection.videos}
+            carouselClickHandler={carouselClickHandler}
+            carouselHoverHandler={carouselHoverHandler}
+            videoInfo={videoInfo}
+            videoDetailModal={videoDetailModal}
+            closeModalHandler={closeModalHandler}
+        />
+    ))
 
     const location = useLocation()
     return (
@@ -123,15 +137,7 @@ const BrowseContent = (props) => {
             </Video>
 
             <div className="Carousels">
-                <VideoCarousel
-                    carouselName="Trending"
-                    carouselVideo={remainingVideos}
-                    carouselClickHandler={carouselClickHandler}
-                    carouselHoverHandler={carouselHoverHandler}
-                    videoInfo={videoInfo}
-                    videoDetailModal={videoDetailModal}
-                    closeModalHandler={closeModalHandler}
-                />
+                {carousels}
             </div>
 
         </div>

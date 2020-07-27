@@ -1,21 +1,15 @@
 import React from 'react'
 import './VideoCard.css'
-import { convertTimeToHourMinuteFormat } from '../../../utils/time'
+import { getSeasonsOrMovieLength } from '../../../utils/time'
 
 const videoCard = (props) => {
     const { image, normal, genres, runtime, seasons, vote_average } = props
-    const seasonLength = seasons && seasons.length
     const styles = {
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover'
     }
 
-    let timeSpan
-    if (runtime) {
-        timeSpan = <span>{convertTimeToHourMinuteFormat(runtime)}</span>
-    } else if (seasons) {
-        timeSpan = <span>{seasonLength > 1 ? `${seasonLength} Seasons` : `${seasonLength} Season`}</span>
-    }
+    let timeSpan = getSeasonsOrMovieLength(seasons, runtime)
 
     if (normal) {
         styles['height'] = '140px'

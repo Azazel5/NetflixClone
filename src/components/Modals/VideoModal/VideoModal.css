@@ -1,3 +1,30 @@
 .VideoDetailSection {
     height: 100%;
 }
+
+.shadowedSection > * {
+    margin-bottom: 2rem;
+}
+
+.shadowedSection {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.966) 35%, transparent);
+    color: white;
+    padding: 18px 0 12px 4%;
+}
+
+.shadowedSection div {
+    width: 40%;
+    color: #999;
+} 
+
+.horizontalStyles {
+    display: flex;
+}
+
+.horizontalStyles > button {
+    margin-right: 10px;
+}
+

@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import ScrollToTop from "./hoc/ScrollToTop/ScrollToTop";
 import AuthenticationContextProvider from './context/Authentication'
 import { Provider } from 'react-redux'
-import store from './store/reducers/index'
+import store from './store/reducers/store'
 
 
 const app = (

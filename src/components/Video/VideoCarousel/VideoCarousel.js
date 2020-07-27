@@ -4,7 +4,7 @@ import './VideoCarousel.css'
 import VideoCard from '../VideoCard/VideoCard'
 import VideoModal from '../../Modals/VideoModal/VideoModal'
 
-const VideoCarousel = props => {
+const videoCarousel = props => {
     const {
         carouselVideo, carouselName,
         carouselHoverHandler, videoInfo,
@@ -29,7 +29,7 @@ const VideoCarousel = props => {
             onClick={carouselClickHandler}
             onMouseEnter={() => carouselHoverHandler(item.id, mediaType ? mediaType : null)}>
             <VideoCard
-                name={item.name ? item.name : item.title}
+                name={item.name || item.title}
                 vote_average={item.vote_average}
                 image={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
                 normal
@@ -62,4 +62,4 @@ const VideoCarousel = props => {
     )
 }
 
-export default VideoCarousel
+export default videoCarousel
