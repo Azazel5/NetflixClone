@@ -7,12 +7,20 @@
     width: 130px
 }
 
-.VideoCard img {
-    height: 100%;
-    width: 100%;
+.NetflixOriginalCard {
+    display: flex;
+    align-items: center;
+    margin-right: 7px;
+    cursor: pointer;
+    height: 300px;
+    width: 130px
 }
 
 .VideoCard:hover .VideoInfo {
+    display: block;
+}
+
+.NetflixOriginalCard:hover .VideoInfo {
     display: block;
 }
 
@@ -39,6 +47,11 @@
 @media(min-width: 600px) {
     .VideoCard {
         height: 140px;
+        width: 230px
+    }
+
+    .NetflixOriginalCard {
+        height: 420px;
         width: 230px
     }
 }

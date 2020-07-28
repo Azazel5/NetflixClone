@@ -3,10 +3,22 @@ import './VideoCard.css'
 import { getSeasonsOrMovieLength } from '../../../utils/time'
 
 const videoCard = (props) => {
-    const { image, genres, runtime, seasons, vote_average } = props
+    const { image, genres, runtime, seasons, vote_average, netflixOriginalCard } = props
+
+    const classes = []
+
+    // Setting different responsive sizes for netflix orignal card
+    if(!netflixOriginalCard) {
+        classes.push("VideoCard")
+    } else {
+        classes.push("NetflixOriginalCard")
+    }
+    
     const styles = {
         backgroundImage: `url(${image})`,
-        backgroundSize: 'cover'
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center'
     }
 
     let timeSpan = getSeasonsOrMovieLength(seasons, runtime)
@@ -17,7 +29,7 @@ const videoCard = (props) => {
     ))
 
     return (
-        <div className="VideoCard" style={styles}>
+        <div className={classes.join(' ')} style={styles}>
             <div className="VideoInfo">
                 <h6>{props.name}</h6>
                 <div className="horizontalStyle">

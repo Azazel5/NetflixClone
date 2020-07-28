@@ -14,6 +14,16 @@ const videoCarousel = props => {
         closeModalHandler, mobileCarouselClickHandler
     } = props
 
+    const isNetflixOriginalCard = carouselName === "Netflix Originals" ? true: false
+    const classes = []
+
+    // Setting different transition styles for the netflix original card 
+    if(!isNetflixOriginalCard) {
+        classes.push("item")
+    } else {
+        classes.push("netflix-item")
+    }
+
     /**
      * The mediaType property only exists in the trending API call. For the sake of using the same 
      * function 'videoDetailRequest' for multiple individual API calls, I use this mediaType 
@@ -46,13 +56,14 @@ const videoCarousel = props => {
             }
         }
 
-        return <div className="item" key={item.id}
+        return <div className={classes.join(' ')} key={item.id}
             onClick={() => isMobile ? mobileCarouselClickHandler(item.id, mediaType) : carouselClickHandler()}
             onMouseEnter={() => !isMobile && carouselHoverHandler(item.id, mediaType)}>
             <VideoCard
                 name={item.name || item.title}
                 vote_average={item.vote_average}
-                image={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+                image={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
+                netflixOriginalCard={isNetflixOriginalCard}
                 {...extraInfo}
             />
         </div>

@@ -22,17 +22,38 @@
 
 .itemsfocus-within .item,
 .items:hover .item {
-  transform: translateX(-25%);
+  transform: translateX(-20%);
 }
 
 .item:focus ~ .item,
 .item:hover ~ .item {
-  transform: translateX(25%);
+  transform: translateX(20%);
 }
 
 .items .item:focus,
 .items .item:hover {
-  transform: scale(1.5);
+  transform: scale(1.3);
+}
+
+.netflix-item {
+    position: relative;
+    display: block;
+    transition: transform 500ms;
+}
+
+.itemsfocus-within .netflix-item,
+.items:hover .netflix-item {
+  transform: translateX(-10%);
+}
+
+.netflix-item:focus ~ .netflix-item,
+.netflix-item:hover ~ .netflix-item {
+  transform: translateX(10%);
+}
+
+.items .netflix-item:focus,
+.items .netflix-item:hover {
+  transform: scale(1.1);
 }
 
 @media(min-width: 600px) {
