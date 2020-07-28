@@ -78,7 +78,7 @@ const BrowseContent = (props) => {
 
     const videoDetailRequest = async (videoId, mediaType) => {
         let requestURL;
-        if (mediaType === 'movie' || !mediaType) {
+        if (mediaType === 'movie') {
             requestURL = `movie/${videoId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`
         } else if (mediaType === 'tv') {
             requestURL = `tv/${videoId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`

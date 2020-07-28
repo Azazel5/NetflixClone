@@ -14,8 +14,25 @@ const videoCarousel = props => {
         closeModalHandler, mobileCarouselClickHandler
     } = props
 
+    /**
+     * The mediaType property only exists in the trending API call. For the sake of using the same 
+     * function 'videoDetailRequest' for multiple individual API calls, I use this mediaType 
+     * variable to judge whether a video is a TV show or a movie. This fails for API calls, such as
+     * top rated or netflix originals. Thus, I have created a 'hacky' way of determining that by
+     * checking if two properties exist: the first_air_date (only for tv shows) or the release_date
+     * (only for movies).
+     */
     const videoCards = carouselVideo.map(item => {
-        const mediaType = item.media_type
+        let mediaType
+        if(item.media_type) {
+            mediaType = item.media_type
+        } else {
+            if(item.first_air_date) {
+                mediaType = 'tv'
+            } else if(item.release_date) {
+                mediaType = 'movie'
+            }
+        }
 
         let extraInfo = {}
         if (!isMobile) {
@@ -30,8 +47,8 @@ const videoCarousel = props => {
         }
 
         return <div className="item" key={item.id}
-            onClick={() => isMobile ? mobileCarouselClickHandler(item.id, mediaType && mediaType) : carouselClickHandler()}
-            onMouseEnter={() => !isMobile && carouselHoverHandler(item.id, mediaType && mediaType)}>
+            onClick={() => isMobile ? mobileCarouselClickHandler(item.id, mediaType) : carouselClickHandler()}
+            onMouseEnter={() => !isMobile && carouselHoverHandler(item.id, mediaType)}>
             <VideoCard
                 name={item.name || item.title}
                 vote_average={item.vote_average}

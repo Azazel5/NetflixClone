@@ -7,6 +7,7 @@ import { AuthenticationContext } from '../../context/Authentication'
 import {useDispatch, useSelector} from 'react-redux'
 import {fetchTrending, selectAllTrendingVideos} from '../../store/reducers/slices/trendingSlice'
 import {fetchTopRated, selectAllTopRatedVideos} from '../../store/reducers/slices/topratedSlice'
+import {fetchNetflixOriginals, selectAllNetflixOriginals} from '../../store/reducers/slices/netflixOriginalsSlice'
 
 /**
  * Remember: the component where you want to use the context is the one which you wrap
@@ -23,11 +24,13 @@ const Browse = props => {
     const videoSections = [
         {title: "Trending", videos: useSelector(selectAllTrendingVideos)},
         {title: "Top Rated", videos: useSelector(selectAllTopRatedVideos)},
+        {title: "Netflix Originals", videos: useSelector(selectAllNetflixOriginals)}
     ]
 
     useEffect(() => {
         dispatch(fetchTrending())
         dispatch(fetchTopRated())
+        dispatch(fetchNetflixOriginals())
     }, [dispatch])
 
     const profileClickHandler = () => {

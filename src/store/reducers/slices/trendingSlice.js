@@ -3,7 +3,7 @@ import axios from '../../../baseAxios'
 
 export const trendingAdapter = createEntityAdapter()
 
-export const fetchTrending = createAsyncThunk('videoSlice/fetchTrending', async () => {
+export const fetchTrending = createAsyncThunk('trendingSlice/fetchTrending', async () => {
     const response = await axios.get(
         `trending/all/day?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}`
     )

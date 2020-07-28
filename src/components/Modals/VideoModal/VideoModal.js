@@ -16,7 +16,7 @@ const modalStyles = {
         left: 0,
         height: '60%',
         width: '100%',
-        background: '#141414',
+        background: 'rgba(0,0,0,0.966)',
         border: '',
         borderRadius: '',
         padding: 0,
