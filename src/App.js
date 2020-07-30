@@ -11,19 +11,26 @@ import { AuthenticationContext } from './context/Authentication'
 export default function App() {
   const authContext = useContext(AuthenticationContext)
 
+  const checkAuthAndSetBrowseComponent = (propsObject) => {
+    return (authContext.authenticated || localStorage.getItem('profileSelected')) ?
+      <Browse {...propsObject} /> :
+      <h1>Sorry you're not authenticated</h1>
+  }
+
   return (
     <div className="App">
       <Switch>
-        <Route path="/browse">
-          {(authContext.authenticated || localStorage.getItem('profileSelected')) ? <Browse /> : <h1>Sorry you're not authenticated</h1>}
+        <Route exact path="/browse" render={() => checkAuthAndSetBrowseComponent({ route: '/browse' })}>
         </Route>
-        <Route path="/login">
-          <Login />
+        <Route exact path="/browse/tv" render={() => checkAuthAndSetBrowseComponent({ route: '/browse/tv' })}>
         </Route>
-        <Route path="/">
-          <LandingSection />
+        <Route exact path="/browse/movies" render={() => checkAuthAndSetBrowseComponent({ route: '/browse/movies' })}>
+        </Route>
+        <Route exact path="/login" component={Login}>
+        </Route>
+        <Route exact path="/" component={LandingSection}>
         </Route>
       </Switch>
-    </div>
+    </div >
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import './Video.css'
+import './TopTrailerComponent.css'
 
 const video = (props) => {
     const backgroundPicture = {

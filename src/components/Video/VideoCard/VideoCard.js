@@ -3,7 +3,10 @@ import './VideoCard.css'
 import { getSeasonsOrMovieLength } from '../../../utils/time'
 
 const videoCard = (props) => {
-    const { image, genres, runtime, seasons, vote_average, netflixOriginalCard } = props
+    const { 
+        image, genres, runtime, seasons,
+        vote_average, netflixOriginalCard 
+    } = props
 
     const classes = []
 
@@ -17,8 +20,8 @@ const videoCard = (props) => {
     const styles = {
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover',
+        backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center'
     }
 
     let timeSpan = getSeasonsOrMovieLength(seasons, runtime)

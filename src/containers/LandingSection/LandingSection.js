@@ -5,8 +5,8 @@ import NavBar from "../../components/Navigation/NavBar/NavBar";
 import LandingPage from "../../assets/images/landingPage.jpg";
 import { TextField } from "@material-ui/core";
 import Button from "../../components/UI/Button/Button";
-import DarkComponent from "./DarkComponent/DarkComponent";
-import FAQComponent from "./FAQComponent/FAQComponent";
+import DarkComponent from "../../components/UI/DarkComponent/DarkComponent";
+import FAQComponent from "../../components/UI/FAQComponent/FAQComponent";
 import { Link } from "react-router-dom";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 

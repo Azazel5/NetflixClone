@@ -62,7 +62,7 @@ const videoCarousel = props => {
             <VideoCard
                 name={item.name || item.title}
                 vote_average={item.vote_average}
-                image={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
+                image={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
                 netflixOriginalCard={isNetflixOriginalCard}
                 {...extraInfo}
             />

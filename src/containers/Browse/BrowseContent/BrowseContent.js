@@ -3,7 +3,7 @@ import './BrowseContent.css'
 
 import NavBar from '../../../components/Navigation/NavBar/NavBar'
 import { useLocation } from 'react-router-dom'
-import Video from '../../../components/Video/TopTrailerComponent/Video'
+import Video from '../../../components/Video/TopTrailerComponent/TopTrailerComponent'
 import Button from '../../../components/UI/Button/Button'
 import VideoCarousel from '../../../components/Video/VideoCarousel/VideoCarousel'
 import { faPlay, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
