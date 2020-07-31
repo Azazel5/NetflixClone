@@ -5,10 +5,12 @@ import ProfileModal from '../../components/Modals/ProfileModal/ProfileModal'
 import BrowseContent from './BrowseContent/BrowseContent'
 import { AuthenticationContext } from '../../context/Authentication'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { fetchTrending, selectAllTrendingVideos } from '../../store/reducers/slices/trendingSlice'
 import { fetchTopRated, selectAllTopRatedVideos } from '../../store/reducers/slices/topratedSlice'
 import { fetchNetflixOriginals, selectAllNetflixOriginals } from '../../store/reducers/slices/netflixOriginalsSlice'
 import { fetchMoviesByGenre, selectMoviesByGenre, selectMovieByGenreStatus } from '../../store/reducers/slices/moviesByGenreSlice'
+import { fetchTvShowsByGenres, selectTvByGenre, selectTvByGenreStatus } from '../../store/reducers/slices/tvByGenreSlice'
 
 
 /**
@@ -32,6 +34,9 @@ const Browse = props => {
     const moviesByGenre = useSelector(selectMoviesByGenre)
     const movieByGenreStatus = useSelector(selectMovieByGenreStatus)
 
+    const tvByGenre = useSelector(selectTvByGenre)
+    const tvByGenreStatus = useSelector(selectTvByGenreStatus)
+
     useEffect(() => {
         if (route === '/browse') {
             dispatch(fetchTrending())
@@ -43,8 +48,13 @@ const Browse = props => {
             if (movieByGenreStatus === 'idle') {
                 dispatch(fetchMoviesByGenre())
             }
+        } else if (route === '/browse/tv') {
+            if (tvByGenreStatus === 'idle') {
+                dispatch(fetchTvShowsByGenres())
+            }
         }
-    }, [dispatch, route, movieByGenreStatus])
+
+    }, [dispatch, route, movieByGenreStatus, tvByGenreStatus])
 
     const profileClickHandler = () => {
         setModal(false)
@@ -78,7 +88,16 @@ const Browse = props => {
                     logoutHandler={logoutHandler}
                 />
             )
-        } 
+        }
+    } else if (route === '/browse/tv') {
+        if (tvByGenreStatus === 'success') {
+            browseContent = (
+                <BrowseContent
+                    videoSections={tvByGenre}
+                    logoutHandler={logoutHandler}
+                />
+            )
+        }
     }
 
     return (
