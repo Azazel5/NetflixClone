@@ -14,11 +14,11 @@ const videoCarousel = props => {
         closeModalHandler, mobileCarouselClickHandler
     } = props
 
-    const isNetflixOriginalCard = carouselName === "Netflix Originals" ? true: false
+    const isNetflixOriginalCard = carouselName === "Netflix Originals" ? true : false
     const classes = []
 
     // Setting different transition styles for the netflix original card 
-    if(!isNetflixOriginalCard) {
+    if (!isNetflixOriginalCard) {
         classes.push("item")
     } else {
         classes.push("netflix-item")
@@ -34,12 +34,12 @@ const videoCarousel = props => {
      */
     const videoCards = carouselVideo.map(item => {
         let mediaType
-        if(item.media_type) {
+        if (item.media_type) {
             mediaType = item.media_type
         } else {
-            if(item.first_air_date) {
+            if (item.first_air_date) {
                 mediaType = 'tv'
-            } else if(item.release_date) {
+            } else if (item.release_date) {
                 mediaType = 'movie'
             }
         }
@@ -56,17 +56,19 @@ const videoCarousel = props => {
             }
         }
 
-        return <div className={classes.join(' ')} key={item.id}
-            onClick={() => isMobile ? mobileCarouselClickHandler(item.id, mediaType) : carouselClickHandler()}
-            onMouseEnter={() => !isMobile && carouselHoverHandler(item.id, mediaType)}>
-            <VideoCard
-                name={item.name || item.title}
-                vote_average={item.vote_average}
-                image={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-                netflixOriginalCard={isNetflixOriginalCard}
-                {...extraInfo}
-            />
-        </div>
+        return (
+            <div className={classes.join(' ')} key={item.id}
+                onClick={() => isMobile ? mobileCarouselClickHandler(item.id, mediaType) : carouselClickHandler()}
+                onMouseEnter={() => !isMobile && carouselHoverHandler(item.id, mediaType)}>
+                {item.poster_path && <VideoCard
+                    name={item.name || item.title}
+                    vote_average={item.vote_average}
+                    image={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                    netflixOriginalCard={isNetflixOriginalCard}
+                    {...extraInfo}
+                />}
+            </div>
+        )
     })
 
     let detailModalComponent

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchTrending, selectAllTrendingVideos } from '../../store/reducers/slices/trendingSlice'
 import { fetchTopRated, selectAllTopRatedVideos } from '../../store/reducers/slices/topratedSlice'
 import { fetchNetflixOriginals, selectAllNetflixOriginals } from '../../store/reducers/slices/netflixOriginalsSlice'
-import { fetchMoviesByGenre, selectAction, selectAdventure } from '../../store/reducers/slices/moviesByGenreSlice'
+import { fetchMoviesByGenre, selectMoviesByGenre, selectMovieByGenreStatus } from '../../store/reducers/slices/moviesByGenreSlice'
 
 
 /**
@@ -29,23 +29,8 @@ const Browse = props => {
     const topRatedVideos = useSelector(selectAllTopRatedVideos)
     const netflixOriginals = useSelector(selectAllNetflixOriginals)
 
-    const actionMovies = useSelector(selectAction)
-    const adventureMovies = useSelector(selectAdventure)
-
-
-    let videoSections
-    if (route === '/browse') {
-        videoSections = [
-            { title: "Trending", videos: trendingVideos },
-            { title: "Top Rated", videos: topRatedVideos },
-            { title: "Netflix Originals", videos: netflixOriginals }
-        ]
-    } else if(route === '/browse/movies') {
-        videoSections = [
-            {title: 'Action', videos: actionMovies},
-            {title: 'Adventure', videos: adventureMovies}
-        ]
-    }
+    const moviesByGenre = useSelector(selectMoviesByGenre)
+    const movieByGenreStatus = useSelector(selectMovieByGenreStatus)
 
     useEffect(() => {
         if (route === '/browse') {
@@ -55,9 +40,11 @@ const Browse = props => {
         }
 
         else if (route === '/browse/movies') {
-            dispatch(fetchMoviesByGenre())
+            if (movieByGenreStatus === 'idle') {
+                dispatch(fetchMoviesByGenre())
+            }
         }
-    }, [dispatch, route])
+    }, [dispatch, route, movieByGenreStatus])
 
     const profileClickHandler = () => {
         setModal(false)
@@ -70,13 +57,34 @@ const Browse = props => {
         history.push('/')
     }
 
-    return (
-        <>
-            <ProfileModal modalOpen={modal} profileClickHandler={profileClickHandler} />
+    let videoSections = []
+    let browseContent
+    if (route === '/browse') {
+        videoSections.push({ title: "Trending", videos: trendingVideos })
+        videoSections.push({ title: "Top Rated", videos: topRatedVideos })
+        videoSections.push({ title: "Netflix Originals", videos: netflixOriginals })
+        browseContent = (
             <BrowseContent
                 videoSections={videoSections}
                 logoutHandler={logoutHandler}
             />
+        )
+
+    } else if (route === '/browse/movies') {
+        if (movieByGenreStatus === 'success') {
+            browseContent = (
+                <BrowseContent
+                    videoSections={moviesByGenre}
+                    logoutHandler={logoutHandler}
+                />
+            )
+        } 
+    }
+
+    return (
+        <>
+            <ProfileModal modalOpen={modal} profileClickHandler={profileClickHandler} />
+            {browseContent}
         </>
     )
 }
