@@ -11,6 +11,7 @@ import { fetchTopRated, selectAllTopRatedVideos } from '../../store/reducers/sli
 import { fetchNetflixOriginals, selectAllNetflixOriginals } from '../../store/reducers/slices/netflixOriginalsSlice'
 import { fetchMoviesByGenre, selectMoviesByGenre, selectMovieByGenreStatus } from '../../store/reducers/slices/moviesByGenreSlice'
 import { fetchTvShowsByGenres, selectTvByGenre, selectTvByGenreStatus } from '../../store/reducers/slices/tvByGenreSlice'
+import LoadingScreen from '../../components/LoadingScreen/LoadingScreen'
 
 
 /**
@@ -88,6 +89,8 @@ const Browse = props => {
                     logoutHandler={logoutHandler}
                 />
             )
+        } else if(movieByGenreStatus === 'idle' || movieByGenreStatus === 'loading') {
+            browseContent = <LoadingScreen />
         }
     } else if (route === '/browse/tv') {
         if (tvByGenreStatus === 'success') {
@@ -97,6 +100,8 @@ const Browse = props => {
                     logoutHandler={logoutHandler}
                 />
             )
+        } else if(tvByGenreStatus === 'idle' || tvByGenreStatus === 'loading') {
+            browseContent = <LoadingScreen />
         }
     }
 
