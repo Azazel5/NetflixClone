@@ -75,32 +75,24 @@ const Browse = props => {
         videoSections.push({ title: "Top Rated", videos: topRatedVideos })
         videoSections.push({ title: "Netflix Originals", videos: netflixOriginals })
         browseContent = (
-            <BrowseContent
-                videoSections={videoSections}
-                logoutHandler={logoutHandler}
-            />
+            <BrowseContent videoSections={videoSections} logoutHandler={logoutHandler} />
         )
 
     } else if (route === '/browse/movies') {
         if (movieByGenreStatus === 'success') {
             browseContent = (
-                <BrowseContent
-                    videoSections={moviesByGenre}
-                    logoutHandler={logoutHandler}
-                />
+                <BrowseContent videoSections={moviesByGenre} logoutHandler={logoutHandler} />
             )
-        } else if(movieByGenreStatus === 'idle' || movieByGenreStatus === 'loading') {
+
+        } else if (movieByGenreStatus === 'idle' || movieByGenreStatus === 'loading') {
             browseContent = <LoadingScreen />
         }
     } else if (route === '/browse/tv') {
         if (tvByGenreStatus === 'success') {
             browseContent = (
-                <BrowseContent
-                    videoSections={tvByGenre}
-                    logoutHandler={logoutHandler}
-                />
+                <BrowseContent videoSections={tvByGenre} logoutHandler={logoutHandler} />
             )
-        } else if(tvByGenreStatus === 'idle' || tvByGenreStatus === 'loading') {
+        } else if (tvByGenreStatus === 'idle' || tvByGenreStatus === 'loading') {
             browseContent = <LoadingScreen />
         }
     }

@@ -13,6 +13,7 @@ const videoCarousel = props => {
         carouselClickHandler, videoDetailModal,
         closeModalHandler, mobileCarouselClickHandler
     } = props
+    console.log("VIDEO INFO: ", videoInfo)
 
     const isNetflixOriginalCard = carouselName === "Netflix Originals" ? true : false
     const classes = []
@@ -63,7 +64,7 @@ const videoCarousel = props => {
                 {item.poster_path && <VideoCard
                     name={item.name || item.title}
                     vote_average={item.vote_average}
-                    image={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                    poster_path={item.poster_path}
                     netflixOriginalCard={isNetflixOriginalCard}
                     {...extraInfo}
                 />}
@@ -95,4 +96,4 @@ const videoCarousel = props => {
     )
 }
 
-export default videoCarousel
+export default React.memo(videoCarousel)

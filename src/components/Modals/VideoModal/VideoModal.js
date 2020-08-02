@@ -8,7 +8,10 @@ import { getSeasonsOrMovieLength } from '../../../utils/time'
 import { faPlay, faPlus } from '@fortawesome/free-solid-svg-icons'
 import Button from '../../UI/Button/Button'
 
-Modal.setAppElement('#root');
+
+if (process.env.NODE_ENV !== 'test') {
+    Modal.setAppElement('#root');
+}
 
 const modalStyles = {
     content: {
@@ -28,11 +31,12 @@ const modalStyles = {
 }
 
 const VideoModal = props => {
+    console.log("Why so many renders?")
     const { videoDetailModal, closeModalHandler, videoInfo } = props
 
     const {
         vote_average, seasons, runtime,
-        backdrop_path, title, name,
+        backdrop_path, poster_path, title, name,
         release_date, first_air_date,
         overview
     } = videoInfo
@@ -41,7 +45,11 @@ const VideoModal = props => {
     const voteStyle = { color: voteAverage > 49 ? '#46d369' : 'red' }
     const videoTime = getSeasonsOrMovieLength(seasons, runtime)
 
-    const imageUrl = `https://image.tmdb.org/t/p/original/${backdrop_path}`
+    const styles = {
+        backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path || poster_path}`,
+        backgroundSize: 'cover'
+    }
+
     return (
         <Modal
             isOpen={videoDetailModal}
@@ -50,7 +58,7 @@ const VideoModal = props => {
             shouldCloseOnOverlayClick
             onRequestClose={closeModalHandler}
         >
-            <div className="VideoDetailSection" style={{ backgroundImage: `url(${imageUrl})`, backgroundSize: 'cover' }}>
+            <div className="VideoDetailSection" style={styles}>
                 <FontAwesomeIcon onClick={closeModalHandler} style={{ color: 'white', float: 'right', padding: '14px', cursor: 'pointer' }}
                     size="2x"
                     icon={faTimes}
@@ -94,4 +102,4 @@ const VideoModal = props => {
     )
 }
 
-export default VideoModal
+export default React.memo(VideoModal)

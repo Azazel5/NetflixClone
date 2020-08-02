@@ -88,11 +88,11 @@ const BrowseContent = (props) => {
         return response.data
     }
 
-    const carousels = videoSections.map(videoSection => (
+    const carousels = videoSections.map((videoSection, index) => (
         <VideoCarousel
             key={videoSection.title}
             carouselName={videoSection.title}
-            carouselVideo={videoSection.title === "Trending" ? remainingVideos : videoSection.videos}
+            carouselVideo={index === 0 ? remainingVideos : videoSection.videos}
             carouselClickHandler={carouselClickHandler}
             carouselHoverHandler={carouselHoverHandler}
             mobileCarouselClickHandler={mobileCarouselClickHandler}

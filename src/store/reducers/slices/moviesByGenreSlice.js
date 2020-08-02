@@ -13,7 +13,7 @@ const fetchMovieGenres = async () => {
 export const fetchMoviesByGenre = createAsyncThunk('moviesByGenreSlice/fetchMoviesByGenre',
     async () => {
         const genres = await fetchMovieGenres()
-        return genreTopVideoTransformation(genres, 'movie')
+        return await genreTopVideoTransformation(genres, 'movie')
     }
 )
 

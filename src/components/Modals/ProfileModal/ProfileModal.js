@@ -12,7 +12,9 @@ import {
 } from '../../../assets/images/index'
 
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') {
+    Modal.setAppElement('#root');
+}
 
 const modalStyles = {
     content: {
@@ -28,8 +30,8 @@ const modalStyles = {
 }
 
 const profileModal = props => {
-    const {modalOpen, profileClickHandler} = props 
-    
+    const { modalOpen, profileClickHandler } = props
+
     return (
         <Modal
             isOpen={modalOpen}
@@ -51,7 +53,7 @@ const profileModal = props => {
                 </div>
 
                 <button className={"ProfileButton"}>
-                    MANAGE PROFILES 
+                    MANAGE PROFILES
                 </button>
             </div>
         </Modal>
