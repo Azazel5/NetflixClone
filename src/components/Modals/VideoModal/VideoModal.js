@@ -31,7 +31,6 @@ const modalStyles = {
 }
 
 const VideoModal = props => {
-    console.log("Why so many renders?")
     const { videoDetailModal, closeModalHandler, videoInfo } = props
 
     const {

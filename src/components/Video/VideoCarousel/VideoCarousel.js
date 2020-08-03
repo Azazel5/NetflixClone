@@ -2,7 +2,6 @@ import React from 'react'
 import './VideoCarousel.css'
 
 import VideoCard from '../VideoCard/VideoCard'
-import VideoModal from '../../Modals/VideoModal/VideoModal'
 import { isMobile } from 'react-device-detect';
 
 
@@ -10,10 +9,8 @@ const videoCarousel = props => {
     const {
         carouselVideo, carouselName,
         carouselHoverHandler, videoInfo,
-        carouselClickHandler, videoDetailModal,
-        closeModalHandler, mobileCarouselClickHandler
+        carouselClickHandler, mobileCarouselClickHandler
     } = props
-    console.log("VIDEO INFO: ", videoInfo)
 
     const isNetflixOriginalCard = carouselName === "Netflix Originals" ? true : false
     const classes = []
@@ -72,17 +69,6 @@ const videoCarousel = props => {
         )
     })
 
-    let detailModalComponent
-    if (videoDetailModal) {
-        detailModalComponent = (
-            <VideoModal
-                videoDetailModal={videoDetailModal}
-                closeModalHandler={closeModalHandler}
-                videoInfo={videoInfo}
-            />
-        )
-    }
-
     return (
         <>
             <div className="VideoCarousel">
@@ -90,7 +76,6 @@ const videoCarousel = props => {
                 <div className="items">
                     {videoCards}
                 </div>
-                {detailModalComponent}
             </div >
         </>
     )

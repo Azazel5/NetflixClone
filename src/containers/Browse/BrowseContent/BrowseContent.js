@@ -8,6 +8,8 @@ import Button from '../../../components/UI/Button/Button'
 import VideoCarousel from '../../../components/Video/VideoCarousel/VideoCarousel'
 import { faPlay, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import axios from '../../../baseAxios'
+import VideoModal from '../../../components/Modals/VideoModal/VideoModal'
+
 
 const BrowseContent = (props) => {
     const [dropdown, setDropdown] = useState({
@@ -69,7 +71,7 @@ const BrowseContent = (props) => {
             .then(data => {
                 setVideoInfo(data)
                 setVideoDetailModal(true)
-            })        
+            })
     }
 
     const closeModalHandler = () => {
@@ -86,6 +88,17 @@ const BrowseContent = (props) => {
 
         const response = await axios.get(requestURL)
         return response.data
+    }
+
+    let detailModalComponent
+    if (videoDetailModal) {
+        detailModalComponent = (
+            <VideoModal
+                videoDetailModal={videoDetailModal}
+                closeModalHandler={closeModalHandler}
+                videoInfo={videoInfo}
+            />
+        )
     }
 
     const carousels = videoSections.map((videoSection, index) => (
@@ -145,6 +158,8 @@ const BrowseContent = (props) => {
             <div className="Carousels">
                 {carousels}
             </div>
+
+            {detailModalComponent}
 
         </div>
     )
