@@ -31,7 +31,7 @@ const videoCard = (props) => {
 
     return (
         <div className={classes.join(' ')} style={styles}>
-            <div className="VideoInfo">
+            {genreList ? <div className="VideoInfo">
                 <h6>{name}</h6>
                 <div className="horizontalStyle">
                     <span>{vote_average} &nbsp;</span>
@@ -40,7 +40,7 @@ const videoCard = (props) => {
                 <div className="horizontalStyle">
                     {genreList}
                 </div>
-            </div>
+            </div>: null}
         </div>
     )
 }

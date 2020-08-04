@@ -5,8 +5,9 @@ import NetflixLogo from "../../../assets/images/netflix.png";
 import Button from "../../UI/Button/Button";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faGift, faBell } from "@fortawesome/free-solid-svg-icons";
+import { faGift, faBell } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from '../Dropdown/Dropdown'
+import Search from '../../../containers/Search/Search'
 
 const navBar = props => {
   let navTiles = null
@@ -23,7 +24,7 @@ const navBar = props => {
         </div>
 
         <div className="OptionsContainer">
-          <FontAwesomeIcon size="lg" icon={faSearch} />
+          <Search />
           <span style={{fontWeight: '350'}}>KIDS</span>
           <FontAwesomeIcon size="lg" icon={faGift} />
           <FontAwesomeIcon size="lg" icon={faBell} />

@@ -1,0 +1,93 @@
+.SearchBox {
+    display: inline-block;
+}
+
+.Holder {
+    display: flex;
+    align-items: center;
+    border: solid 1px rgba(255,255,255,.85);
+    height: 100%;
+    width: 100%;
+    background-color: black;
+}
+
+.Holder svg {
+    padding: 15px 5px
+}
+
+.Holder input {
+    border: none;
+    outline: none;
+    color: white;
+    width: 100%;
+    background-color: transparent;
+}
+
+.scale-up-hor-right {
+	-webkit-animation: scale-up-hor-right 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	animation: scale-up-hor-right 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.scale-down-hor-right {
+	-webkit-animation: scale-down-hor-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: scale-down-hor-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes scale-up-hor-right {
+0% {
+    -webkit-transform: scaleX(0.4);
+            transform: scaleX(0.4);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+}
+100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+}
+}
+@keyframes scale-up-hor-right {
+0% {
+    -webkit-transform: scaleX(0.4);
+            transform: scaleX(0.4);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+}
+100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+}
+}
+
+@-webkit-keyframes scale-down-hor-right {
+0% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+}
+100% {
+    -webkit-transform: scaleX(0.3);
+            transform: scaleX(0.3);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+}
+}
+@keyframes scale-down-hor-right {
+0% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+}
+100% {
+    -webkit-transform: scaleX(0.3);
+            transform: scaleX(0.3);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+}
+}
+
