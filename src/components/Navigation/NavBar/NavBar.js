@@ -10,9 +10,15 @@ import Dropdown from '../Dropdown/Dropdown'
 import Search from '../../../containers/Search/Search'
 
 const navBar = props => {
+  const {
+    navigation, dropdown, logoutHandler,
+    handlers, loginButton
+  } = props
+
   let navTiles = null
   let flexStyle = { justifyContent: 'space-between' }
-  if (props.navigation) {
+
+  if (navigation) {
     navTiles = (
       <>
         <div className="LinkContainer">
@@ -25,13 +31,13 @@ const navBar = props => {
 
         <div className="OptionsContainer">
           <Search />
-          <span style={{fontWeight: '350'}}>KIDS</span>
+          <span style={{ fontWeight: '350' }}>KIDS</span>
           <FontAwesomeIcon size="lg" icon={faGift} />
           <FontAwesomeIcon size="lg" icon={faBell} />
-          <Dropdown 
-            dropdown={props.dropdown} 
-            logoutHandler={props.logoutHandler}
-            {...props.handlers}
+          <Dropdown
+            dropdown={dropdown}
+            logoutHandler={logoutHandler}
+            {...handlers}
           />
         </div>
       </>
@@ -42,10 +48,10 @@ const navBar = props => {
     <div className="NavBar" style={flexStyle}>
       <img src={NetflixLogo} alt="Logo" />
       {navTiles}
-      {props.loginButton && <Link to="/login">
-        <Button 
-          height="34px" 
-          width="75px" 
+      {loginButton && <Link to="/login">
+        <Button
+          height="34px"
+          width="75px"
           backgroundColor="#e50914"
           textColor="#fff"
         >

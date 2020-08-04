@@ -1,6 +1,7 @@
 .Dropdown {
     position: relative;
     display: inline-block;
+    z-index: 100;
 }
 
 .FloatingBox {

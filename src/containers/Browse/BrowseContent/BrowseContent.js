@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import './BrowseContent.css'
 
-import NavBar from '../../../components/Navigation/NavBar/NavBar'
-import { useLocation } from 'react-router-dom'
 import Video from '../../../components/Video/TopTrailerComponent/TopTrailerComponent'
 import Button from '../../../components/UI/Button/Button'
 import VideoCarousel from '../../../components/Video/VideoCarousel/VideoCarousel'
@@ -10,52 +8,14 @@ import { faPlay, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import axios from '../../../baseAxios'
 import VideoModal from '../../../components/Modals/VideoModal/VideoModal'
 
-
 const BrowseContent = (props) => {
-    const [dropdown, setDropdown] = useState({
-        iconHovered: false,
-        floatingBoxHovered: false
-    })
 
     const [videoInfo, setVideoInfo] = useState(null)
-
     const [videoDetailModal, setVideoDetailModal] = useState(false)
-    const { logoutHandler, videoSections } = props
 
+    const { videoSections } = props
     const [firstVideo, ...remainingVideos] = videoSections[0].videos
     const imageUrl = firstVideo ? `https://image.tmdb.org/t/p/original/${firstVideo.poster_path}` : null
-
-    const handlers = {
-        iconHoveredInHandler: () => {
-            setDropdown(prevDropdown => ({
-                ...prevDropdown,
-                iconHovered: true,
-            }))
-        },
-
-        iconHoveredOutHandler: () => {
-            setTimeout(() => {
-                setDropdown(prevDropdown => ({
-                    ...prevDropdown,
-                    iconHovered: false,
-                }))
-            }, 600)
-        },
-
-        floatingBoxHoveredInHandler: () => {
-            setDropdown(prevDropdown => ({
-                ...prevDropdown,
-                floatingBoxHovered: true,
-            }))
-        },
-
-        floatingBoxHoveredOutHandler: () => {
-            setDropdown(prevDropdown => ({
-                ...prevDropdown,
-                floatingBoxHovered: false,
-            }))
-        },
-    }
 
     const carouselHoverHandler = (videoId, mediaType) => {
         videoDetailRequest(videoId, mediaType)
@@ -115,13 +75,9 @@ const BrowseContent = (props) => {
         />
     ))
 
-    const location = useLocation()
     return (
         <div className="BrowseContent">
             <Video image={imageUrl}>
-                <NavBar
-                    navigation location={location} logoutHandler={logoutHandler}
-                    dropdown={dropdown} handlers={handlers} />
                 <div className="TextsAndButtons">
                     <div className="verticalItem">
                         <h3>{firstVideo ? (firstVideo.name || firstVideo.title) : null}</h3>

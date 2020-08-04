@@ -1,9 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
 
 import ProfileModal from '../../components/Modals/ProfileModal/ProfileModal'
 import BrowseContent from './BrowseContent/BrowseContent'
-import { AuthenticationContext } from '../../context/Authentication'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { fetchTrending, selectAllTrendingVideos } from '../../store/reducers/slices/trendingSlice'
@@ -12,6 +10,8 @@ import { fetchNetflixOriginals, selectAllNetflixOriginals } from '../../store/re
 import { fetchMoviesByGenre, selectMoviesByGenre, selectMovieByGenreStatus } from '../../store/reducers/slices/moviesByGenreSlice'
 import { fetchTvShowsByGenres, selectTvByGenre, selectTvByGenreStatus } from '../../store/reducers/slices/tvByGenreSlice'
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen'
+import Layout from '../../hoc/Layout'
+import SearchContent from './SearchContent/SearchContent'
 
 
 /**
@@ -21,11 +21,8 @@ import LoadingScreen from '../../components/LoadingScreen/LoadingScreen'
 const Browse = props => {
     // Render different videoSections based on this route prop
     const { route } = props
-
     const initialState = localStorage.getItem('profileSelected') ? false : true
     const [modal, setModal] = useState(initialState)
-    const authContext = useContext(AuthenticationContext)
-    const history = useHistory()
     const dispatch = useDispatch()
 
     const trendingVideos = useSelector(selectAllTrendingVideos)
@@ -62,12 +59,6 @@ const Browse = props => {
         localStorage.setItem('profileSelected', true)
     }
 
-    const logoutHandler = () => {
-        localStorage.removeItem('profileSelected')
-        authContext.logout()
-        history.push('/')
-    }
-
     let videoSections = []
     let browseContent
     if (route === '/browse') {
@@ -75,13 +66,13 @@ const Browse = props => {
         videoSections.push({ title: "Top Rated", videos: topRatedVideos })
         videoSections.push({ title: "Netflix Originals", videos: netflixOriginals })
         browseContent = (
-            <BrowseContent videoSections={videoSections} logoutHandler={logoutHandler} />
+            <BrowseContent videoSections={videoSections} />
         )
 
     } else if (route === '/browse/movies') {
         if (movieByGenreStatus === 'success') {
             browseContent = (
-                <BrowseContent videoSections={moviesByGenre} logoutHandler={logoutHandler} />
+                <BrowseContent videoSections={moviesByGenre} />
             )
 
         } else if (movieByGenreStatus === 'idle' || movieByGenreStatus === 'loading') {
@@ -90,17 +81,21 @@ const Browse = props => {
     } else if (route === '/browse/tv') {
         if (tvByGenreStatus === 'success') {
             browseContent = (
-                <BrowseContent videoSections={tvByGenre} logoutHandler={logoutHandler} />
+                <BrowseContent videoSections={tvByGenre} />
             )
         } else if (tvByGenreStatus === 'idle' || tvByGenreStatus === 'loading') {
             browseContent = <LoadingScreen />
         }
+    } else if (route === '/search') {
+        browseContent = <SearchContent />
     }
 
     return (
         <>
             <ProfileModal modalOpen={modal} profileClickHandler={profileClickHandler} />
-            {browseContent}
+            {!modal && <Layout>
+                {browseContent}
+            </Layout>}
         </>
     )
 }

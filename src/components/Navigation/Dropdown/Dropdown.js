@@ -16,9 +16,9 @@ const Dropdown = (props) => {
     const {
         iconHoveredInHandler, iconHoveredOutHandler, dropdown, floatingBoxHoveredInHandler,
         floatingBoxHoveredOutHandler, profileClickHandler, logoutHandler
-    } = props 
+    } = props
 
-    const {iconHovered, floatingBoxHovered} = dropdown 
+    const { iconHovered, floatingBoxHovered } = dropdown
 
     return (
         <div className="Dropdown">
