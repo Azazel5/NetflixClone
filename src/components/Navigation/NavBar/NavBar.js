@@ -22,7 +22,7 @@ const navBar = props => {
     navTiles = (
       <>
         <div className="LinkContainer">
-          <NavLink className="inactive" activeClassName="active" exact to="/browse">Home</NavLink>
+          <NavLink className="inactive" activeClassName="active" to="/browse" exact>Home</NavLink>
           <NavLink className="inactive" activeClassName="active" to="/browse/tv" exact>TV Shows</NavLink>
           <NavLink className="inactive" activeClassName="active" to="/browse/movies" exact>Movies</NavLink>
           <NavLink className="inactive" activeClassName="active" to="/browse/latest" exact>Latest</NavLink>

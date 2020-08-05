@@ -3,7 +3,8 @@ import useNavbar from '../hooks/useNavbar'
 
 
 const Layout = props => {
-    const navBar = useNavbar()
+    const {statics} = props 
+    const navBar = useNavbar(statics)
     const style = {
         background: '#141414',
         minHeight: '100vh'

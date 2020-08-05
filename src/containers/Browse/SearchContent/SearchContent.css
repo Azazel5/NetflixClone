@@ -1,0 +1,22 @@
+.SearchContent {
+    padding: 95px 10px;
+    color: white;
+    height: 100%;
+}
+
+.SearchGrid {
+    display: grid;
+    grid-template-columns: repeat(6, 230px);
+    grid-template-rows: repeat(auto-fill, 140px);
+    grid-gap: 10px;
+}
+
+.GridItem > * {
+    margin: 0;
+}
+
+@media(min-width: 600px) {
+    .SearchContent {
+        margin: 0 10px;
+    }
+}

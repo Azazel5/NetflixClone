@@ -9,7 +9,6 @@ import axios from '../../../baseAxios'
 import VideoModal from '../../../components/Modals/VideoModal/VideoModal'
 
 const BrowseContent = (props) => {
-
     const [videoInfo, setVideoInfo] = useState(null)
     const [videoDetailModal, setVideoDetailModal] = useState(false)
 

@@ -8,7 +8,7 @@ import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 const Search = props => {
     const [searchBox, setSearchBox] = useState(false)
     const [searchText, setSearchText] = useState('')
-    const [originalHistory, setOriginalHistory] = useState()
+    const [searchChanged, setSearchChanged] = useState(false)
     const searchBoxRef = useRef()
     const history = useHistory()
 
@@ -19,9 +19,20 @@ const Search = props => {
         }
     }, [])
 
+    useEffect(() => {
+        if (searchText.length > 0) {
+            history.push({
+                pathname: '/search',
+                search: `?q=${searchText}`
+            })
+
+        } else if (searchChanged && searchText.length === 0) {
+            history.replace({ pathname: '/browse' })
+        }
+    }, [history, searchText, searchChanged])
+
     const searchClickHandler = () => {
         setSearchBox(true)
-        setOriginalHistory(history.location.pathname)
     }
 
     const outsideSearchClickListener = event => {
@@ -33,16 +44,7 @@ const Search = props => {
     const searchTextChangeHandler = event => {
         const textValue = event.target.value
         setSearchText(textValue)
-        if (textValue.length > 0) {
-            history.push({
-                pathname: '/search',
-                search: `?q=${textValue}`
-            })
-        } else {
-            history.push({
-                pathname: originalHistory
-            })
-        }
+        setSearchChanged(true)
     }
 
     const clickCrossHandler = () => {

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import ProfileModal from '../../components/Modals/ProfileModal/ProfileModal'
 import BrowseContent from './BrowseContent/BrowseContent'
 import { useDispatch, useSelector } from 'react-redux'
+import {useHistory} from 'react-router-dom'
 
 import { fetchTrending, selectAllTrendingVideos } from '../../store/reducers/slices/trendingSlice'
 import { fetchTopRated, selectAllTopRatedVideos } from '../../store/reducers/slices/topratedSlice'
@@ -54,6 +55,8 @@ const Browse = props => {
 
     }, [dispatch, route, movieByGenreStatus, tvByGenreStatus])
 
+    const history = useHistory()
+
     const profileClickHandler = () => {
         setModal(false)
         localStorage.setItem('profileSelected', true)
@@ -87,7 +90,7 @@ const Browse = props => {
             browseContent = <LoadingScreen />
         }
     } else if (route === '/search') {
-        browseContent = <SearchContent />
+        browseContent = <SearchContent searchParam={history.location.search.substring(3)} />
     }
 
     return (
