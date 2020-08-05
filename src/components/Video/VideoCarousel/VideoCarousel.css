@@ -11,16 +11,27 @@
 }
 
 .items {
-    display: flex;
+  display: inline-flex;
+  height: 80px;
+  overflow: x;
+}
+
+.netflix-items {
+  display: inline-flex;
+  height: 300px;
+  overflow: x;
 }
 
 .item {
-    position: relative;
-    display: block;
-    transition: transform 500ms;
+  position: relative;
+  display: block;
+  transition: transform 500ms;
+  width: 100px;
+  height: 100%;
+  margin-right: 7px;
 }
 
-.itemsfocus-within .item,
+.items:focus-within .item,
 .items:hover .item {
   transform: translateX(-20%);
 }
@@ -36,13 +47,16 @@
 }
 
 .netflix-item {
-    position: relative;
-    display: block;
-    transition: transform 500ms;
+  position: relative;
+  display: block;
+  transition: transform 500ms;
+  width: 130px;
+  height: 100%;
+  margin-right: 7px;
 }
 
-.itemsfocus-within .netflix-item,
-.items:hover .netflix-item {
+.netflix-items:focus-within .netflix-item,
+.netflix-items:hover .netflix-item {
   transform: translateX(-10%);
 }
 
@@ -51,13 +65,33 @@
   transform: translateX(10%);
 }
 
-.items .netflix-item:focus,
-.items .netflix-item:hover {
+.netflix-items .netflix-item:focus,
+.netflix-items .netflix-item:hover {
   transform: scale(1.1);
 }
 
 @media(min-width: 600px) {
   .VideoCarousel {
     font-size: 1.4vw;
+  }
+
+  .items {
+    height: 140px;
+  }
+
+  .item {
+    width: 230px;
+    height: 100%;
+    margin-right: 7px;
+  }
+
+  .netflix-items {
+    height: 420px;
+  }
+
+  .netflix-item {
+    width: 230px;
+    height: 100%;
+    margin-right: 7px;
   }
 }

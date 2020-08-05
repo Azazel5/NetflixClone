@@ -5,18 +5,11 @@ import { getSeasonsOrMovieLength } from '../../../utils/time'
 const videoCard = (props) => {
     const { 
         name, poster_path, genres, runtime, seasons,
-        vote_average, netflixOriginalCard 
+        vote_average 
     } = props
 
-    const classes = []
     const image = `url(https://image.tmdb.org/t/p/w500/${poster_path})`
-    // Setting different responsive sizes for netflix orignal card
-    if(!netflixOriginalCard) {
-        classes.push("VideoCard")
-    } else {
-        classes.push("NetflixOriginalCard")
-    }
-    
+
     const styles = {
         backgroundImage: image,
         backgroundSize: 'cover',
@@ -30,7 +23,7 @@ const videoCard = (props) => {
     ))
 
     return (
-        <div className={classes.join(' ')} style={styles}>
+        <div className="VideoCard" style={styles}>
             {genreList ? <div className="VideoInfo">
                 <h6>{name}</h6>
                 <div className="horizontalStyle">

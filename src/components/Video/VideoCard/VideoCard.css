@@ -1,19 +1,9 @@
 .VideoCard {
     display: flex;
     align-items: center;
-    margin-right: 7px;
     cursor: pointer;
-    height: 80px;
-    width: 100px;
-}
-
-.NetflixOriginalCard {
-    display: flex;
-    align-items: center;
-    margin-right: 7px;
-    cursor: pointer;
-    height: 300px;
-    width: 130px
+    height: 100%;
+    width: 100%;
 }
 
 .VideoCard:hover .VideoInfo {
@@ -42,18 +32,6 @@
 
 .horizontalStyle span {
     font-size: 0.5em;
-}
-
-@media(min-width: 600px) {
-    .VideoCard {
-        height: 140px;
-        width: 230px
-    }
-
-    .NetflixOriginalCard {
-        height: 420px;
-        width: 230px
-    }
 }
 
 

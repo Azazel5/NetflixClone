@@ -1,14 +1,14 @@
 .SearchContent {
     padding: 95px 10px;
     color: white;
-    height: 100%;
+    height: 100vh;
 }
 
 .SearchGrid {
     display: grid;
-    grid-template-columns: repeat(6, 230px);
-    grid-template-rows: repeat(auto-fill, 140px);
+    grid-template-columns: repeat(3, 31.5%);
     grid-gap: 10px;
+    height: 100%;
 }
 
 .GridItem > * {
@@ -18,5 +18,9 @@
 @media(min-width: 600px) {
     .SearchContent {
         margin: 0 10px;
+    }   
+
+    .SearchGrid {
+        grid-template-columns: repeat(6, 16%);
     }
 }

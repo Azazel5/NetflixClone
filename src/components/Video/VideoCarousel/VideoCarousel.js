@@ -13,13 +13,15 @@ const videoCarousel = props => {
     } = props
 
     const isNetflixOriginalCard = carouselName === "Netflix Originals" ? true : false
-    const classes = []
-
+    const itemClass = []
+    const itemsClass = []
     // Setting different transition styles for the netflix original card 
     if (!isNetflixOriginalCard) {
-        classes.push("item")
+        itemClass.push("item")
+        itemsClass.push("items")
     } else {
-        classes.push("netflix-item")
+        itemClass.push("netflix-item")
+        itemsClass.push("netflix-items")
     }
 
     /**
@@ -55,16 +57,16 @@ const videoCarousel = props => {
         }
 
         return (
-            <div className={classes.join(' ')} key={item.id}
+            item.poster_path && <div className={itemClass.join(' ')} key={item.id}
                 onClick={() => isMobile ? mobileCarouselClickHandler(item.id, mediaType) : carouselClickHandler()}
                 onMouseEnter={() => !isMobile && carouselHoverHandler(item.id, mediaType)}>
-                {item.poster_path && <VideoCard
+                <VideoCard
                     name={item.name || item.title}
                     vote_average={item.vote_average}
                     poster_path={item.poster_path}
                     netflixOriginalCard={isNetflixOriginalCard}
                     {...extraInfo}
-                />}
+                />
             </div>
         )
     })
@@ -73,7 +75,7 @@ const videoCarousel = props => {
         <>
             <div className="VideoCarousel">
                 <h4>{carouselName}</h4>
-                <div className="items">
+                <div className={itemsClass.join(" ")}>
                     {videoCards}
                 </div>
             </div >

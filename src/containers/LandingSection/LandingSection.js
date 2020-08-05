@@ -40,6 +40,7 @@ const LandingSection = props => {
 
   const faqComponents = texualMaterial.faqComponent.map(faqcomp => (
     <FAQComponent
+      key={faqcomp.id}
       text={faqcomp.text}
       boxOpen={faqBoxOpen[`box${faqcomp.id}`]}
       faqOpenHandler={() => faqOpenHandler(`box${faqcomp.id}`)}

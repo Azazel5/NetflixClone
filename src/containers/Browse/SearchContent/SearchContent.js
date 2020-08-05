@@ -46,7 +46,6 @@ const SearchContent = props => {
                     name={video.name || video.title}
                     vote_average={video.vote_average}
                     poster_path={video.poster_path}
-                    netflixOriginalCard={false}
                 />
             </div>
         ))
