@@ -1,76 +1,34 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './BrowseContent.css'
 
 import Video from '../../../components/Video/TopTrailerComponent/TopTrailerComponent'
 import Button from '../../../components/UI/Button/Button'
 import VideoCarousel from '../../../components/Video/VideoCarousel/VideoCarousel'
 import { faPlay, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import axios from '../../../baseAxios'
-import VideoModal from '../../../components/Modals/VideoModal/VideoModal'
+import { buildVideoModal } from '../../../utils/transformations'
+import useVideoInfoHandlers from '../../../hooks/useVideoInfoHandlers'
 
 const BrowseContent = (props) => {
-    const [videoInfo, setVideoInfo] = useState(null)
-    const [videoDetailModal, setVideoDetailModal] = useState(false)
+    const [
+        videoInfo, detailModal, cardClickHandler,
+        cardHoverHandler, closeModalHandler
+    ] = useVideoInfoHandlers()
 
     const { videoSections } = props
     const [firstVideo, ...remainingVideos] = videoSections[0].videos
     const imageUrl = firstVideo ? `https://image.tmdb.org/t/p/original/${firstVideo.poster_path}` : null
 
-    const carouselHoverHandler = (videoId, mediaType) => {
-        videoDetailRequest(videoId, mediaType)
-            .then(data => setVideoInfo(data))
-    }
-
-    const carouselClickHandler = () => {
-        setVideoDetailModal(true)
-    }
-
-    const mobileCarouselClickHandler = (videoId, mediaType) => {
-        videoDetailRequest(videoId, mediaType)
-            .then(data => {
-                setVideoInfo(data)
-                setVideoDetailModal(true)
-            })
-    }
-
-    const closeModalHandler = () => {
-        setVideoDetailModal(false)
-    }
-
-    const videoDetailRequest = async (videoId, mediaType) => {
-        let requestURL;
-        if (mediaType === 'movie') {
-            requestURL = `movie/${videoId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`
-        } else if (mediaType === 'tv') {
-            requestURL = `tv/${videoId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`
-        }
-
-        const response = await axios.get(requestURL)
-        return response.data
-    }
-
-    let detailModalComponent
-    if (videoDetailModal) {
-        detailModalComponent = (
-            <VideoModal
-                videoDetailModal={videoDetailModal}
-                closeModalHandler={closeModalHandler}
-                videoInfo={videoInfo}
-            />
-        )
-    }
+    const detailModalComponent = buildVideoModal(detailModal, videoInfo, { closeModalHandler })
 
     const carousels = videoSections.map((videoSection, index) => (
         <VideoCarousel
             key={videoSection.title}
             carouselName={videoSection.title}
             carouselVideo={index === 0 ? remainingVideos : videoSection.videos}
-            carouselClickHandler={carouselClickHandler}
-            carouselHoverHandler={carouselHoverHandler}
-            mobileCarouselClickHandler={mobileCarouselClickHandler}
+            carouselClickHandler={cardClickHandler}
+            carouselHoverHandler={cardHoverHandler}
             videoInfo={videoInfo}
-            videoDetailModal={videoDetailModal}
-            closeModalHandler={closeModalHandler}
+            videoDetailModal={detailModal}
         />
     ))
 

@@ -4,11 +4,18 @@ import './SearchContent.css'
 import axios from '../../../baseAxios'
 import VideoCard from '../../../components/Video/VideoCard/VideoCard'
 import { debounce } from 'lodash'
+import { buildVideoMetadata, buildVideoModal } from '../../../utils/transformations'
+import { sortVideosByPopularity } from '../../../utils/sorting'
+import useVideoInfoHandlers from '../../../hooks/useVideoInfoHandlers'
 
 const SearchContent = props => {
     const [searchedVideoList, setSearchedVideoList] = useState([])
     const [loading, setLoading] = useState(true)
     const { searchParam } = props
+    const [
+        videoInfo, detailModal, cardClickHandler,
+        cardHoverHandler, closeModalHandler
+    ] = useVideoInfoHandlers()
 
     const getSearchMovies = async (searchItem) => {
         const movieUrl = `search/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&query=${searchItem}&page=1&include_adult=false`
@@ -34,29 +41,30 @@ const SearchContent = props => {
         }
     }, [delayedAPICall, searchParam])
 
-    const compare = (a, b) => {
-        if (a.popularity > b.popularity) {
-            return -1;
-        }
-        if (a.popularity < b.popularity) {
-            return 1;
-        }
-        return 0;
-    }
+    const detailModalComponent = buildVideoModal(detailModal, videoInfo, { closeModalHandler })
 
     let movieCards
     if (!loading) {
-        searchedVideoList.sort(compare)
-        movieCards = searchedVideoList.map(video => (
-            video.poster_path && <div className="GridItem" key={video.id}>
-                <VideoCard
-                    name={video.name || video.title}
-                    vote_average={video.vote_average}
-                    poster_path={video.poster_path}
-                    netflixOriginalCard={false}
-                />
-            </div>
-        ))
+        searchedVideoList.sort(sortVideosByPopularity)
+        movieCards = searchedVideoList.map(video => {
+            const { mediaType, extraInfo } = buildVideoMetadata(video, videoInfo)
+
+            return video.poster_path && (
+                <div
+                    className="GridItem" key={video.id}
+                    onClick={() => cardClickHandler(video.id, mediaType)}
+                    onMouseEnter={() => cardHoverHandler(video.id, mediaType)}
+                >
+                    <VideoCard
+                        name={video.name || video.title}
+                        vote_average={video.vote_average}
+                        poster_path={video.poster_path}
+                        netflixOriginalCard={false}
+                        {...extraInfo}
+                    />
+                </div>
+            )
+        })
     }
 
     return (
@@ -64,6 +72,7 @@ const SearchContent = props => {
             <div className="SearchGrid">
                 {movieCards}
             </div>
+            {detailModalComponent}
         </div>
     )
 }

@@ -2,14 +2,14 @@ import React from 'react'
 import './VideoCarousel.css'
 
 import VideoCard from '../VideoCard/VideoCard'
-import { isMobile } from 'react-device-detect';
+import { buildVideoMetadata } from '../../../utils/transformations'
 
 
 const videoCarousel = props => {
     const {
         carouselVideo, carouselName,
         carouselHoverHandler, videoInfo,
-        carouselClickHandler, mobileCarouselClickHandler
+        carouselClickHandler
     } = props
 
     const isNetflixOriginalCard = carouselName === "Netflix Originals" ? true : false
@@ -33,33 +33,11 @@ const videoCarousel = props => {
      * (only for movies).
      */
     const videoCards = carouselVideo.map(item => {
-        let mediaType
-        if (item.media_type) {
-            mediaType = item.media_type
-        } else {
-            if (item.first_air_date) {
-                mediaType = 'tv'
-            } else if (item.release_date) {
-                mediaType = 'movie'
-            }
-        }
-
-        let extraInfo = {}
-        if (!isMobile) {
-            if (videoInfo && videoInfo.id === item.id) {
-                extraInfo['genres'] = videoInfo.genres
-                if (videoInfo.runtime) {
-                    extraInfo['runtime'] = videoInfo.runtime
-                } else if (videoInfo.seasons) {
-                    extraInfo['seasons'] = videoInfo.seasons
-                }
-            }
-        }
-
+        const { mediaType, extraInfo } = buildVideoMetadata(item, videoInfo)
         return (
             item.poster_path && <div className={itemClass.join(' ')} key={item.id}
-                onClick={() => isMobile ? mobileCarouselClickHandler(item.id, mediaType) : carouselClickHandler()}
-                onMouseEnter={() => !isMobile && carouselHoverHandler(item.id, mediaType)}>
+                onClick={() => carouselClickHandler(item.id, mediaType)}
+                onMouseEnter={() => carouselHoverHandler(item.id, mediaType)}>
                 <VideoCard
                     name={item.name || item.title}
                     vote_average={item.vote_average}
