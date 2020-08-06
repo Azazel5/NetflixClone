@@ -3,9 +3,9 @@ import './VideoCard.css'
 import { getSeasonsOrMovieLength } from '../../../utils/time'
 
 const videoCard = (props) => {
-    const { 
+    const {
         name, poster_path, genres, runtime, seasons,
-        vote_average 
+        vote_average
     } = props
 
     const image = `url(https://image.tmdb.org/t/p/w500/${poster_path})`
@@ -33,7 +33,7 @@ const videoCard = (props) => {
                 <div className="horizontalStyle">
                     {genreList}
                 </div>
-            </div>: null}
+            </div> : null}
         </div>
     )
 }
