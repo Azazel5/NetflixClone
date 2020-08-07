@@ -40,6 +40,13 @@
   margin-right: auto;
 }
 
+.DropdownNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .OptionsContainer {
   color: white;
 }

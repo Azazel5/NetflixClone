@@ -6,14 +6,11 @@ import Button from "../../UI/Button/Button";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGift, faBell } from "@fortawesome/free-solid-svg-icons";
-import Dropdown from '../Dropdown/Dropdown'
 import Search from '../../../containers/Search/Search'
 
+
 const navBar = props => {
-  const {
-    navigation, dropdown, logoutHandler,
-    handlers, loginButton
-  } = props
+  const { navigation, profileDropdown, navDropdown, loginButton } = props
 
   let navTiles = null
   let flexStyle = { justifyContent: 'space-between' }
@@ -27,6 +24,7 @@ const navBar = props => {
           <NavLink className="inactive" activeClassName="active" to="/browse/movies" exact>Movies</NavLink>
           <NavLink className="inactive" activeClassName="active" to="/browse/latest" exact>Latest</NavLink>
           <NavLink className="inactive" activeClassName="active" to="/browse/list" exact>My List</NavLink>
+          {navDropdown}
         </div>
 
         <div className="OptionsContainer">
@@ -34,11 +32,7 @@ const navBar = props => {
           <span style={{ fontWeight: '350' }}>KIDS</span>
           <FontAwesomeIcon size="lg" icon={faGift} />
           <FontAwesomeIcon size="lg" icon={faBell} />
-          <Dropdown
-            dropdown={dropdown}
-            logoutHandler={logoutHandler}
-            {...handlers}
-          />
+          {profileDropdown}
         </div>
       </>
     )

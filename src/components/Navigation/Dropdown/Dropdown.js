@@ -1,21 +1,15 @@
 import React from 'react'
 import './Dropdown.css'
 
-import ProfileCard from '../../UI/ProfileCard/ProfileCard'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
-import {
-    Weird,
-    Profile,
-    Smile,
-    Normal
-} from '../../../assets/images/index'
+
 
 const Dropdown = (props) => {
     const {
         iconHoveredInHandler, iconHoveredOutHandler, dropdown, floatingBoxHoveredInHandler,
-        floatingBoxHoveredOutHandler, profileClickHandler, logoutHandler
+        floatingBoxHoveredOutHandler, content
     } = props
 
     const { iconHovered, floatingBoxHovered } = dropdown
@@ -33,35 +27,7 @@ const Dropdown = (props) => {
                 onMouseOver={floatingBoxHoveredInHandler}
                 onMouseLeave={floatingBoxHoveredOutHandler}
             >
-                <ProfileCard
-                    profileImage={Profile}
-                    username="Pushpa"
-                    onClick={profileClickHandler}
-                    dropdown
-                />
-                <ProfileCard
-                    profileImage={Weird}
-                    username="Shammy"
-                    onClick={profileClickHandler}
-                    dropdown
-                />
-                <ProfileCard
-                    profileImage={Smile}
-                    username="PQ"
-                    onClick={profileClickHandler}
-                    dropdown
-                />
-                <ProfileCard
-                    profileImage={Normal}
-                    username="Subhanga"
-                    onClick={profileClickHandler}
-                    dropdown
-                />
-
-                <span style={{ borderBottom: '1px solid grey', marginBottom: '7px' }}>Manage Profiles</span>
-                <span>Account</span>
-                <span>Help Center</span>
-                <span onClick={logoutHandler}>Sign out of Netflix</span>
+                {content}
             </div>}
         </div>
     )
