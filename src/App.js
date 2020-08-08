@@ -26,6 +26,8 @@ export default function App() {
         </Route>
         <Route exact path="/browse/movies" render={() => checkAuthAndSetBrowseComponent(Browse, { route: '/browse/movies' })}>
         </Route>
+        <Route exact path="/browse/latest" render={() => checkAuthAndSetBrowseComponent(Browse, { route: '/browse/latest' })}>
+        </Route>
         <Route exact path="/search" render={() => checkAuthAndSetBrowseComponent(Browse, { route: '/search' })}>
         </Route>
         <Route exact path="/login" component={Login}>
