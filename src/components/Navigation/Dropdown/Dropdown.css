@@ -6,11 +6,6 @@
 
 .FloatingBox {
     position: absolute;
-    right: 0;
-    top: 42px;
-    right: 0;
-    width: 181px;
-    height: 370px;
     margin-left: 0;
     padding: 0;
     border: solid 1px rgba(255,255,255,.15);

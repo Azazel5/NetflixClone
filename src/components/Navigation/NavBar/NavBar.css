@@ -40,6 +40,18 @@
   margin-right: auto;
 }
 
+.Horizontal {
+  display: none;
+}
+
+.Vertical {
+  display: block;
+}
+
+.ExtraOptions {
+  display: none;
+}
+
 .DropdownNav {
   display: flex;
   flex-direction: column;
@@ -48,6 +60,8 @@
 }
 
 .OptionsContainer {
+  display: inline-flex;
+  align-items: center;
   color: white;
 }
 
@@ -78,6 +92,13 @@
     height: 80%;
   }
   
+  .Horizontal {
+    display: block;
+  }
+
+  .Vertical {
+    display: none;
+  }
 
   .LinkContainer {
     margin-right: auto;
@@ -85,5 +106,9 @@
 
   .OptionsContainer > * {
     margin-right: 25px;
+  }
+
+  .ExtraOptions {
+    display: block;
   }
 }

@@ -19,19 +19,23 @@ const navBar = props => {
     navTiles = (
       <>
         <div className="LinkContainer">
-          <NavLink className="inactive" activeClassName="active" to="/browse" exact>Home</NavLink>
-          <NavLink className="inactive" activeClassName="active" to="/browse/tv" exact>TV Shows</NavLink>
-          <NavLink className="inactive" activeClassName="active" to="/browse/movies" exact>Movies</NavLink>
-          <NavLink className="inactive" activeClassName="active" to="/browse/latest" exact>Latest</NavLink>
-          <NavLink className="inactive" activeClassName="active" to="/browse/list" exact>My List</NavLink>
-          {navDropdown}
+          <div className="Horizontal">
+            <NavLink className="inactive" activeClassName="active" to="/browse" exact>Home</NavLink>
+            <NavLink className="inactive" activeClassName="active" to="/browse/tv" exact>TV Shows</NavLink>
+            <NavLink className="inactive" activeClassName="active" to="/browse/movies" exact>Movies</NavLink>
+            <NavLink className="inactive" activeClassName="active" to="/browse/latest" exact>Latest</NavLink>
+            <NavLink className="inactive" activeClassName="active" to="/browse/list" exact>My List</NavLink>
+          </div>
+          <div className="Vertical">
+            {navDropdown}
+          </div>
         </div>
 
         <div className="OptionsContainer">
           <Search />
-          <span style={{ fontWeight: '350' }}>KIDS</span>
-          <FontAwesomeIcon size="lg" icon={faGift} />
-          <FontAwesomeIcon size="lg" icon={faBell} />
+          <span className="ExtraOptions" style={{ fontWeight: '350' }}>KIDS</span>
+          <FontAwesomeIcon className="ExtraOptions" size="lg" icon={faGift} />
+          <FontAwesomeIcon className="ExtraOptions" size="lg" icon={faBell} />
           {profileDropdown}
         </div>
       </>

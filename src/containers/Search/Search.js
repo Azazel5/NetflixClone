@@ -5,7 +5,7 @@ import './Search.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const Search = props => {
+const Search = () => {
     const [searchBox, setSearchBox] = useState(false)
     const [searchText, setSearchText] = useState('')
     const [searchChanged, setSearchChanged] = useState(false)
@@ -66,7 +66,6 @@ const Search = props => {
                 }
             </div>
         )
-        boxHeight = { height: '80%', width: '250px' }
     }
 
     return (

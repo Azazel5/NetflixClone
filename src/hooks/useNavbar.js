@@ -53,22 +53,28 @@ const UseNavbar = () => {
     )
 
     const navLinks = (
-        <div className="DropdownNav">
+        <>
             <NavLink className="inactive" activeClassName="active" to="/browse" exact>Home</NavLink>
             <NavLink className="inactive" activeClassName="active" to="/browse/tv" exact>TV Shows</NavLink>
             <NavLink className="inactive" activeClassName="active" to="/browse/movies" exact>Movies</NavLink>
             <NavLink className="inactive" activeClassName="active" to="/browse/latest" exact>Latest</NavLink>
             <NavLink className="inactive" activeClassName="active" to="/browse/list" exact>My List</NavLink>
-        </div>
+        </>
     )
 
-    const profileDropdown = useDropdown(profileDropdownContent)
-    const navDropdown = useDropdown(navLinks)
+    const profileDropdown = useDropdown(profileDropdownContent,
+        { top: '42px', right: '0px', width: '181px', height: '370px' })
+
+    const navDropdown = useDropdown(navLinks,
+        { top: '15px', width: '100px' })
 
     const authContext = useContext(AuthenticationContext)
     const history = useHistory()
 
-    return <NavBar navigation profileDropdown={profileDropdown} navDropdown={navDropdown} />
+    return (
+        <NavBar navigation profileDropdown={profileDropdown}
+            navDropdown={navDropdown} />
+    )
 }
 
 export default UseNavbar
