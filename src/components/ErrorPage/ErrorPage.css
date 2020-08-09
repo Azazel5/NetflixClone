@@ -1,0 +1,10 @@
+.ErrorPage {
+    height: 100vh;
+    background: #141414;
+    color: white;
+    padding: 95px;
+}
+
+.ErrorPage-Items {
+    text-align: center;
+}

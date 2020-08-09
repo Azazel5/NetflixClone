@@ -2,20 +2,29 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from '../../../baseAxios'
 
 export const fetchLatestVideos = createAsyncThunk('latestVideoSlice/fetchLatestVideos',
-    async () => {
-        const response = await Promise.all([
-            axios.get(`discover/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&sort_by=primary_release_date.desc&include_adult=false&include_video=false&page=1&vote_average.gte=6`)
-                .then(response => ({ title: "Latest Movies", videos: response.data.results })),
-            axios.get(`discover/tv?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&sort_by=first_air_date.desc&page=1&timezone=America%2FNew_York&vote_average.gte=6&include_null_first_air_dates=false`)
-                .then(response => ({ title: "Latest TV Shows", videos: response.data.results }))
-        ])
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await Promise.all([
+                axios.get(`discover/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&sort_by=primary_release_date.desc&include_adult=false&include_video=false&page=1&vote_average.gte=6`)
+                    .then(response => ({ title: "Latest Movies", videos: response.data.results })),
+                axios.get(`discover/tv?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&sort_by=first_air_date.desc&page=1&timezone=America%2FNew_York&vote_average.gte=6&include_null_first_air_dates=false`)
+                    .then(response => ({ title: "Latest TV Shows", videos: response.data.results }))
+            ])
 
-        return response
+            return response
+        } catch (error) {
+            if (!error.response) {
+                throw error
+            }
+
+            return rejectWithValue(error.response.data)
+        }
     })
 
 const initialState = {
     latestVideos: [],
-    status: 'idle'
+    status: 'idle',
+    error: null
 }
 
 const latestVideoSlice = createSlice({
@@ -32,11 +41,19 @@ const latestVideoSlice = createSlice({
             })
 
             state.status = 'success'
+        },
+
+        [fetchLatestVideos.rejected]: (state, action) => {
+            state.status = 'error'
+            if (action.payload) {
+                state.error = action.payload.status_message
+            } else {
+                state.error = action.error
+            }
         }
     }
 })
 
-export const selectLatestVideos = state => state.latestVideos.latestVideos
-export const selectLatestVideoStatus = state => state.latestVideos.status
+export const selectLatestVideos = state => state.latestVideos
 
 export default latestVideoSlice.reducer

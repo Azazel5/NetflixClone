@@ -1,26 +1,28 @@
 import React, { useEffect } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchLatestVideos, selectLatestVideos, selectLatestVideoStatus } from '../../../store/reducers/slices/latestVideoSlice'
+import { fetchLatestVideos, selectLatestVideos } from '../../../store/reducers/slices/latestVideoSlice'
 import BrowseContent from '../BrowseContent/BrowseContent'
 import LoadingScreen from '../../../components/LoadingScreen/LoadingScreen'
+import ErrorPage from '../../../components/ErrorPage/ErrorPage'
 
 const LatestVideo = () => {
-    const latestVideos = useSelector(selectLatestVideos)
-    const latestVideoStatus = useSelector(selectLatestVideoStatus)
+    const { latestVideos, status, error } = useSelector(selectLatestVideos)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (latestVideoStatus === 'idle') {
+        if (status === 'idle') {
             dispatch(fetchLatestVideos())
         }
-    }, [dispatch, latestVideoStatus])
+    }, [dispatch, status])
 
     let browseContent
-    if (latestVideoStatus === 'success') {
+    if (status === 'success') {
         browseContent = <BrowseContent videoSections={latestVideos} />
-    } else if (latestVideoStatus === 'idle' || latestVideoStatus === 'loading') {
+    } else if (status === 'idle' || status === 'loading') {
         browseContent = <LoadingScreen />
+    } else if (status === 'error') {
+        browseContent = <ErrorPage errors={error} />
     }
 
     return browseContent

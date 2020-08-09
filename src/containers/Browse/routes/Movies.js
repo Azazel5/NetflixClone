@@ -1,27 +1,28 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { fetchMoviesByGenre, selectMoviesByGenre, selectMovieByGenreStatus } from '../../../store/reducers/slices/moviesByGenreSlice'
+import { fetchMoviesByGenre, selectMoviesByGenre } from '../../../store/reducers/slices/moviesByGenreSlice'
 import BrowseContent from '../BrowseContent/BrowseContent'
 import LoadingScreen from '../../../components/LoadingScreen/LoadingScreen'
+import ErrorPage from '../../../components/ErrorPage/ErrorPage'
 
 const Movies = () => {
-    const moviesByGenre = useSelector(selectMoviesByGenre)
-    const movieByGenreStatus = useSelector(selectMovieByGenreStatus)
+    const {genres, status, error} = useSelector(selectMoviesByGenre)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (movieByGenreStatus === 'idle') {
+        if (status === 'idle') {
             dispatch(fetchMoviesByGenre())
         }
-    }, [dispatch, movieByGenreStatus])
+    }, [dispatch, status])
 
     let browseContent
-    if (movieByGenreStatus === 'success') {
-        browseContent = <BrowseContent videoSections={moviesByGenre} />
-
-    } else if (movieByGenreStatus === 'idle' || movieByGenreStatus === 'loading') {
+    if (status === 'success') {
+        browseContent = <BrowseContent videoSections={genres} />
+    } else if (status === 'idle' || status === 'loading') {
         browseContent = <LoadingScreen />
+    } else if(status === 'error') {
+        browseContent = <ErrorPage errors={error}/>
     }
 
     return browseContent

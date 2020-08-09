@@ -33,7 +33,11 @@ export const genreTopVideoTransformation = async (genres, apiCallType) => {
             ({ title: genre.name, videos: response.data.results })))
     })
 
-    return await Promise.all(genreRequestArray)
+    try {
+        return await Promise.all(genreRequestArray)
+    } catch (error) {
+        throw new Error(error)
+    }
 }
 
 export const mediaTypeToVideoDetailTransformation = async (videoId, mediaType) => {
