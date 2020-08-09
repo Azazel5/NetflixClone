@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { fetchMoviesByGenre, selectMoviesByGenre } from '../../../store/reducers/slices/moviesByGenreSlice'
 import BrowseContent from '../BrowseContent/BrowseContent'
-import LoadingScreen from '../../../components/LoadingScreen/LoadingScreen'
-import ErrorPage from '../../../components/ErrorPage/ErrorPage'
+import LoadingScreen from '../../../components/StaticPages/LoadingScreen/LoadingScreen'
+import ErrorPage from '../../../components/StaticPages/ErrorPage/ErrorPage'
 
 const Movies = () => {
     const {genres, status, error} = useSelector(selectMoviesByGenre)

@@ -48,8 +48,12 @@ export const mediaTypeToVideoDetailTransformation = async (videoId, mediaType) =
         requestURL = `tv/${videoId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`
     }
 
-    const response = await axios.get(requestURL)
-    return response.data
+    try {
+        const response = await axios.get(requestURL)
+        return response.data
+    } catch (error) {
+        throw new Error(error)
+    }
 }
 
 export const buildVideoMetadata = (videoItem, selectedVideoInfo) => {

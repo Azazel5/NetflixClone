@@ -7,13 +7,15 @@ import { debounce } from 'lodash'
 import { buildVideoMetadata, buildVideoModal } from '../../../utils/transformations'
 import { sortVideosByPopularity } from '../../../utils/sorting'
 import useVideoInfoHandlers from '../../../hooks/useVideoInfoHandlers'
+import ErrorPage from '../../../components/StaticPages/ErrorPage/ErrorPage'
 
 const SearchContent = props => {
     const [searchedVideoList, setSearchedVideoList] = useState([])
+    const [searchedError, setSearchedError] = useState(null)
     const [loading, setLoading] = useState(true)
     const { searchParam } = props
     const [
-        videoInfo, detailModal, cardClickHandler,
+        videoInfo, videoInfoError, detailModal, cardClickHandler,
         cardHoverHandler, closeModalHandler
     ] = useVideoInfoHandlers()
 
@@ -21,15 +23,20 @@ const SearchContent = props => {
         const movieUrl = `search/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&query=${searchItem}&page=1&include_adult=false`
         const tvUrl = `search/tv?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&page=1&query=${searchItem}&include_adult=false`
 
-        const responses = await Promise.all(
-            [
-                axios.get(movieUrl).then(response => response.data.results),
-                axios.get(tvUrl).then(response => response.data.results)
-            ]
-        )
+        try {
+            const responses = await Promise.all(
+                [
+                    axios.get(movieUrl).then(response => response.data.results),
+                    axios.get(tvUrl).then(response => response.data.results)
+                ]
+            )
 
-        setSearchedVideoList([...responses[0], ...responses[1]])
-        setLoading(false)
+            setSearchedVideoList([...responses[0], ...responses[1]])
+            setLoading(false)
+        } catch (error) {
+            setSearchedError(error)
+            setLoading(false)
+        }
     }
 
     const delayedAPICall = useCallback(debounce(getSearchMovies, 1000), [])
@@ -68,12 +75,12 @@ const SearchContent = props => {
     }
 
     return (
-        <div className="SearchContent">
+        (!videoInfoError && !searchedError) ? <div className="SearchContent">
             <div className="SearchGrid">
                 {movieCards}
             </div>
             {detailModalComponent}
-        </div>
+        </div> : <ErrorPage errors={videoInfoError || searchedError} />
     )
 }
 

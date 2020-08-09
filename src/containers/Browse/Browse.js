@@ -4,7 +4,7 @@ import ProfileModal from '../../components/Modals/ProfileModal/ProfileModal'
 import { useHistory } from 'react-router-dom'
 import Layout from '../../hoc/Layout'
 import SearchContent from './SearchContent/SearchContent'
-import { Home, Movies, Tv, LatestVideo } from './routes'
+import { Home, Movies, Tv, LatestVideo, List } from './routes'
 
 /**
  * Remember: the component where you want to use the context is the one which you wrap
@@ -31,6 +31,8 @@ const Browse = props => {
         browseContent = <Tv />
     } else if (route === '/browse/latest') {
         browseContent = <LatestVideo />
+    } else if(route === '/browse/list') {
+        browseContent = <List />
     }
     else if (route === '/search') {
         browseContent = <SearchContent searchParam={history.location.search.substring(3)} />

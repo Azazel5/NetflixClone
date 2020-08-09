@@ -7,10 +7,11 @@ import VideoCarousel from '../../../components/Video/VideoCarousel/VideoCarousel
 import { faPlay, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { buildVideoModal } from '../../../utils/transformations'
 import useVideoInfoHandlers from '../../../hooks/useVideoInfoHandlers'
+import ErrorPage from '../../../components/StaticPages/ErrorPage/ErrorPage'
 
 const BrowseContent = (props) => {
     const [
-        videoInfo, detailModal, cardClickHandler,
+        videoInfo, videoInfoError, detailModal, cardClickHandler,
         cardHoverHandler, closeModalHandler
     ] = useVideoInfoHandlers()
 
@@ -33,7 +34,7 @@ const BrowseContent = (props) => {
     ))
 
     return (
-        <div className="BrowseContent">
+        !videoInfoError ? <div className="BrowseContent">
             <Video image={imageUrl}>
                 <div className="TextsAndButtons">
                     <div className="verticalItem">
@@ -74,7 +75,7 @@ const BrowseContent = (props) => {
 
             {detailModalComponent}
 
-        </div>
+        </div> : <ErrorPage errors={videoInfoError} />
     )
 }
 

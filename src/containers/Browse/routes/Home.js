@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 import BrowseContent from '../BrowseContent/BrowseContent'
-import ErrorPage from '../../../components/ErrorPage/ErrorPage'
+import ErrorPage from '../../../components/StaticPages/ErrorPage/ErrorPage'
 import { fetchTrending, selectAllTrendingVideos, selectTrendingError } from '../../../store/reducers/slices/trendingSlice'
 import { fetchTopRated, selectAllTopRatedVideos, selectTopRatedError } from '../../../store/reducers/slices/topratedSlice'
 import { fetchNetflixOriginals, selectAllNetflixOriginals, selectNetflixError } from '../../../store/reducers/slices/netflixOriginalsSlice'
