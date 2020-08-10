@@ -5,19 +5,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const faqComponent = props => {
+  const {faqOpenHandler, text, boxOpen, boxText} = props 
   return (
     <>
       <div
         className="faqComponent"
-        style={{ marginTop: "10px" }}
-        onClick={props.faqOpenHandler}
+        onClick={faqOpenHandler}
       >
-        <div>{props.text}</div>
+        <div>{text}</div>
         <FontAwesomeIcon icon={faPlus} />
       </div>
-      {props.boxOpen && (
+      {boxOpen && (
         <div className="faqComponent" style={{ marginTop: "1.5px" }}>
-          {props.boxText}
+          {boxText}
         </div>
       )}
     </>
