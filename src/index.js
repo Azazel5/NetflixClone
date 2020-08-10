@@ -23,5 +23,9 @@ const app = (
   </Provider>
 );
 
+if(window.Cypress) {
+  window.store = store 
+}
+
 const rootElement = document.getElementById("root");
 ReactDOM.render(app, rootElement);
