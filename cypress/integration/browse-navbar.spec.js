@@ -41,4 +41,32 @@ describe('<Search /> and <Dropdown />', () => {
                 })
         })
     })
+
+    context('<Search />', () => {
+        beforeEach(() => {
+            cy.get('.SearchBox')
+                .click()
+        })
+        it('opens search box on click and closes on background click', () => {
+            cy.get('.Holder')
+                .should('exist')
+
+            cy.get('.NavBar')
+                .click('center')
+                .find('.Holder')
+                .should('not.exist')
+        })
+
+        it.only('cross becomes visible after typing and invisible when input length is 0', () => {
+            cy.get('.Holder')
+                .children('input')
+                .type('Some movie title')
+
+            cy.get('.Holder')
+                .children('svg')
+                .last()
+                .click()
+                .should('not.exist')
+        })
+    })
 })
