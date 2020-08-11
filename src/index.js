@@ -11,7 +11,7 @@ import store from './store/reducers/store'
 
 const app = (
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <React.StrictMode>
         <ScrollToTop>
           <AuthenticationContextProvider>
