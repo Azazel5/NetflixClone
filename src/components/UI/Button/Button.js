@@ -11,7 +11,7 @@ const button = props => {
   const {
     playButton, buttonSize, icon,
     height, width, backgroundColor, textColor,
-    image
+    image, onButtonHover, hoverStatus
   } = props
 
   if (image) {
@@ -44,11 +44,15 @@ const button = props => {
     height: height,
     width: width,
     backgroundColor: backgroundColor,
-    color: textColor
+    color: textColor,
+    opacity: !hoverStatus && '80%'
   };
 
   return (
-    <button className="Button" style={conditionalStyles}>
+    <button
+      className="Button" style={conditionalStyles}
+      onMouseEnter={onButtonHover}
+      onMouseLeave={onButtonHover}>
       {orderButton}
     </button>
   );

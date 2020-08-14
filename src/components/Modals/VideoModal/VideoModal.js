@@ -7,24 +7,15 @@ import Modal from 'react-modal'
 import { getSeasonsOrMovieLength } from '../../../utils/time'
 import { faPlay, faPlus } from '@fortawesome/free-solid-svg-icons'
 import Button from '../../UI/Button/Button'
+import useHoverStyleButton from '../../../hooks/useHoverStyleButton'
 
 
 if (process.env.NODE_ENV !== 'test') {
     Modal.setAppElement('#root');
 }
 
-const modalStyles = {
-    content: {
-        top: 0,
-        left: 0,
-        height: '60%',
-        width: '100%',
-        background: 'rgba(0,0,0,0.966)',
-        border: '',
-        borderRadius: '',
-        padding: 0,
-        margin: 'auto'
-    },
+// Don't move this to css; it has to be here for the shouldCloseOnOverlay prop to work 
+const overlayStyle = {
     overlay: {
         backgroundColor: 'rgba(17,17,17,0.7)'
     }
@@ -32,6 +23,10 @@ const modalStyles = {
 
 const VideoModal = props => {
     const { videoDetailModal, closeModalHandler, videoInfo } = props
+    const [buttonHovered, onButtonHoverHandler] = useHoverStyleButton({
+        'playButton': true,
+        'plusButton': true
+    })
 
     const {
         vote_average, seasons, runtime,
@@ -51,9 +46,10 @@ const VideoModal = props => {
 
     return (
         <Modal
+            className="ModalStyles"
+            style={overlayStyle}
             isOpen={videoDetailModal}
             contentLabel="Modal is open"
-            style={modalStyles}
             shouldCloseOnOverlayClick
             onRequestClose={closeModalHandler}
         >
@@ -69,29 +65,31 @@ const VideoModal = props => {
                         <span>{(release_date || first_air_date).substring(0, 4)} &nbsp;</span>
                         {videoTime}
                     </div>
-                    <div>{overview}</div>
+                    <div className="Overview">{overview}</div>
                     <div className="horizontalStyles">
                         <Button
                             backgroundColor="#fff"
-                            height="38px"
-                            width="108px"
                             textColor="rgb(24, 24, 24)"
                             playButton
+                            height="38px"
+                            width="138px"
                             image
                             icon={faPlay}
-                            hovered>
+                            onButtonHover={() => onButtonHoverHandler('playButton')}
+                            hoverStatus={buttonHovered['playButton']}>
                             Play
                         </Button>
 
                         <Button
                             backgroundColor="rgba(133, 133, 133, 0.6)"
+                            textColor="white"
                             height="38px"
                             width="138px"
-                            textColor="white"
                             playButton
                             image
                             icon={faPlus}
-                            hovered>
+                            onButtonHover={() => onButtonHoverHandler('plusButton')}
+                            hoverStatus={buttonHovered['plusButton']}>
                             My List
                         </Button>
                     </div>

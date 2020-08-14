@@ -8,12 +8,18 @@ import { faPlay, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { buildVideoModal } from '../../../utils/transformations'
 import useVideoInfoHandlers from '../../../hooks/useVideoInfoHandlers'
 import ErrorPage from '../../../components/StaticPages/ErrorPage/ErrorPage'
+import useHoverStyleButton from '../../../hooks/useHoverStyleButton'
 
 const BrowseContent = (props) => {
     const [
         videoInfo, videoInfoError, detailModal, cardClickHandler,
         cardHoverHandler, closeModalHandler
     ] = useVideoInfoHandlers()
+
+    const [buttonHovered, onButtonHoverHandler] = useHoverStyleButton({
+        'playButton': true,
+        'infoButton': true
+    })
 
     const { videoSections } = props
     const [firstVideo, ...remainingVideos] = videoSections[0].videos
@@ -47,7 +53,8 @@ const BrowseContent = (props) => {
                                 playButton
                                 image
                                 icon={faPlay}
-                                hovered>
+                                onButtonHover={() => onButtonHoverHandler('playButton')}
+                                hoverStatus={buttonHovered['playButton']}>
                                 Play
                              </Button>
 
@@ -57,7 +64,8 @@ const BrowseContent = (props) => {
                                 playButton
                                 image
                                 icon={faInfoCircle}
-                                hovered>
+                                onButtonHover={() => onButtonHoverHandler('infoButton')}
+                                hoverStatus={buttonHovered['infoButton']}>
                                 More Info
                              </Button>
                         </div>

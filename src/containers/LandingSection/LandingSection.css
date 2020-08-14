@@ -6,7 +6,7 @@
 
 .landingTexts {
   display: flex;
-  width: 70%;
+  width: 80%;
   margin: auto;
   flex-direction: column;
   align-items: center;
@@ -88,6 +88,7 @@
   }
 
   .landingTexts {
+    width: 70%;
     top: calc(40% - 45px);
   }
 

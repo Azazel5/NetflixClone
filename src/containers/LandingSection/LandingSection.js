@@ -69,18 +69,20 @@ const LandingSection = props => {
             variant="filled"
             color="secondary"
           />
-          <Button
-            link="/"
-            height="34px"
-            width="150px"
-            image
-            icon={faChevronRight}
-            backgroundColor="#e50914"
-            textColor="#fff"
-            buttonSize="xs"
-          >
-            GET STARTED
+
+          <Link to="/login">
+            <Button
+              height="34px"
+              width="150px"
+              image
+              icon={faChevronRight}
+              backgroundColor="#e50914"
+              textColor="#fff"
+              buttonSize="xs"
+            >
+              GET STARTED
           </Button>
+          </Link>
         </div>
       </div>
 
@@ -94,7 +96,7 @@ const LandingSection = props => {
           />
 
           {faqComponents}
-          
+
           <div className="GetStartedComponent">
             <h3>
               Ready to watch? Enter your email to create or restart your
@@ -107,7 +109,7 @@ const LandingSection = props => {
               variant="filled"
               color="secondary"
             />
-            <Link to="/">
+            <Link to="/login">
               <Button
                 height="34px"
                 width="150px"

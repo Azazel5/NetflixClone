@@ -12,11 +12,10 @@
 .verticalItem {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: flex-end;
     margin-bottom: 80px;
     height: 200px;
-    max-width: 40%;
+    max-width: 50%;
 }
 
 .verticalItem h3 {

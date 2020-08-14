@@ -1,6 +1,6 @@
 .Login {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .Login img {
@@ -15,9 +15,8 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 400px;
-  height: 600px;
-  margin: auto;
+  width: 100%;
+  height: calc(100% - 75px);
   color: #fff;
   padding: 40px 38px 40px;
 }
@@ -27,6 +26,7 @@
     width: 450px;
     height: 680px;
     padding: 60px 68px 40px;
+    margin: auto;
   }
 }
 

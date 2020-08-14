@@ -3,3 +3,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}

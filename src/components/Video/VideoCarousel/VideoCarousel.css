@@ -31,9 +31,17 @@
   margin-right: 7px;
 }
 
-.items:focus-within .item,
-.items:hover .item {
-  transform: translateX(-20%);
+/* Different animation styles for the first and last items */
+.items .item:first-child:focus,
+.items .item:first-child:hover,
+.items .item:last-child:focus,
+.items .item:last-child:hover {
+  transform: scale(1.1);
+}
+
+.item:first-child:focus ~ .item,
+.item:first-child:hover ~ .item {
+  transform: translateX(10%);
 }
 
 .item:focus ~ .item,
@@ -41,8 +49,8 @@
   transform: translateX(20%);
 }
 
-.items .item:focus,
-.items .item:hover {
+.items .item:not(:first-child):not(:last-child):focus,
+.items .item:not(:first-child):not(:last-child):hover {
   transform: scale(1.3);
 }
 
@@ -53,11 +61,6 @@
   width: 130px;
   height: 100%;
   margin-right: 7px;
-}
-
-.netflix-items:focus-within .netflix-item,
-.netflix-items:hover .netflix-item {
-  transform: translateX(-10%);
 }
 
 .netflix-item:focus ~ .netflix-item,
