@@ -46,17 +46,17 @@
   color: #fff;
 }
 
-.tv-inner {
+.tv-inner, .responsive-tv-inner {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 80%;
   margin: auto;
 }
 
 .tv-section img {
-  width: 80%;
+  width: 70%;
 }
 
 .faq-section {
@@ -93,10 +93,17 @@
   }
 
   .tv-section {
-    height: 470px;
+    height: 450px;
   }
 
   .tv-section img {
     width: 45%;
+  }
+}
+
+@media(min-width: 1199px) {
+  .responsive-tv-inner {
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

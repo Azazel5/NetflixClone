@@ -28,7 +28,7 @@ const LandingSection = props => {
 
   const darkComponents = texualMaterial.darkComponent.map(darkcomp => (
     <div className="tv-section" key={darkcomp.id}>
-      <div className="tv-inner">
+      <div className="responsive-tv-inner">
         <DarkComponent
           topText={darkcomp.topText}
           bottomText={darkcomp.bottomText}

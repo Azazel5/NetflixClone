@@ -13,7 +13,7 @@
 
 .SearchGrid .GridItem:focus,
 .SearchGrid .GridItem:hover {
-  transform: scale(1.3);
+  transform: scale(1.1);
 }
 
 .GridItem {

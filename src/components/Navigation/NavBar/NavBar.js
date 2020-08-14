@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./NavBar.css";
 
 import NetflixLogo from "../../../assets/images/netflix.png";
@@ -9,11 +9,26 @@ import { faGift, faBell } from "@fortawesome/free-solid-svg-icons";
 import Search from '../../../containers/Search/Search'
 
 
-const navBar = props => {
+const NavBar = props => {
   const { navigation, profileDropdown, navDropdown, loginButton } = props
+  const [isNavbarAtTop, setIsNavbarAtTop] = useState(true)
+
+  const scrollNavbarStateHandler = useCallback(() => {
+    const navbarAtTop = window.scrollY < 45
+    if (navbarAtTop !== isNavbarAtTop) {
+      setIsNavbarAtTop(navbarAtTop)
+    }
+  }, [isNavbarAtTop])
+
+  useEffect(() => {
+    document.addEventListener('scroll', scrollNavbarStateHandler)
+    return () => {
+      document.removeEventListener('scroll', scrollNavbarStateHandler)
+    }
+  }, [scrollNavbarStateHandler])
 
   let navTiles = null
-  let flexStyle = { justifyContent: 'space-between' }
+  let flexStyle = { justifyContent: 'space-between', backgroundColor: !isNavbarAtTop && 'black' }
 
   if (navigation) {
     navTiles = (
@@ -43,7 +58,7 @@ const navBar = props => {
   }
 
   return (
-    <div className="NavBar" style={flexStyle}>
+    <div className="NavBar Sticky" style={flexStyle}>
       <img src={NetflixLogo} alt="Logo" />
       {navTiles}
       {loginButton && <Link to="/login">
@@ -60,4 +75,4 @@ const navBar = props => {
   );
 };
 
-export default navBar;
+export default NavBar;

@@ -9,8 +9,13 @@
   padding-top: 5px;
   font-size: 2vw;
   z-index: 100;
+  box-sizing: border-box;
 }
 
+.Sticky {
+  position: fixed;
+  top: 0;
+}
 
 .NavBar img {
   height: 100%;
