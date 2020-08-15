@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./LandingSection.css";
 
-import NavBar from "../../components/Navigation/NavBar/NavBar";
+import NavBar from "../NavBar/NavBar";
 import LandingPage from "../../assets/images/landingPage.jpg";
 import { TextField } from "@material-ui/core";
 import Button from "../../components/UI/Button/Button";
@@ -64,7 +64,6 @@ const LandingSection = props => {
           </h3>
           <TextField
             className="TextField"
-            id="filled-basic"
             label="Email Address"
             variant="filled"
             color="secondary"
@@ -104,7 +103,6 @@ const LandingSection = props => {
             </h3>
             <TextField
               className="TextField"
-              id="filled-basic"
               label="Email Address"
               variant="filled"
               color="secondary"

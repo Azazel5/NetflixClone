@@ -1,3 +1,22 @@
+.ProfileModal {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #141414;
+    border: none;
+    border-radius: none;
+    padding: 0;
+    outline: none;
+}
+
+.ProfileModal > img {
+    height: 45px;
+    width: 140px;
+    margin-left: 20px;
+    padding: 8px
+}
+
 .ProfileDiv {
     width: 60%;
     margin: 0 auto;
@@ -5,6 +24,12 @@
     position: relative;
     top: 30%;
     transform: translateY(-50%);
+}
+
+.ProfileDiv > h1 {
+    color: rgb(255, 255, 255);
+    font-weight: lighter;
+    font-size: 6.5vw;
 }
 
 .horizontalComp {
@@ -33,3 +58,8 @@
     color: white;
 }
 
+@media(min-width: 600px) {
+    .ProfileDiv > h1 {
+        font-size: 3.5vw;
+    }
+}

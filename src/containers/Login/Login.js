@@ -9,6 +9,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { useHistory } from "react-router-dom";
 import { AuthenticationContext } from '../../context/Authentication'
+import { validEmailAndPhoneNumber } from '../../utils/validation'
 
 
 /**
@@ -43,7 +44,7 @@ const Login = props => {
         ...prevForm,
         email: {
           ...prevForm.email,
-          value: value, touched: true, valid: value.length > 0
+          value: value, touched: true, valid: value.length > 0 && validEmailAndPhoneNumber(value)
         }
       }))
 
@@ -121,7 +122,7 @@ const Login = props => {
             className="textField"
             label="Email or phone number"
             variant="filled"
-            type="email"
+            type="text"
             style={{ backgroundColor: "#333" }}
             color="secondary"
             value={form.email.value}
@@ -153,12 +154,12 @@ const Login = props => {
           />
 
           {passwordSpan}
-          
-          <Button 
-            height="45px" width="100%" 
+
+          <Button
+            height="45px" width="100%"
             backgroundColor="#e50914"
             textColor="#fff">
-              Sign In
+            Sign In
           </Button>
 
         </form>

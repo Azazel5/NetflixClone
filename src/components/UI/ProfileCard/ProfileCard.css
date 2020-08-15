@@ -1,5 +1,5 @@
 .ProfileCard {
-    width: 18%;
+    width: 25%;
     margin: 15px;
     cursor: pointer;
 }
@@ -24,7 +24,7 @@
 }
 
 .ProfileCard span {
-    font-size: 1.3vw;
+    font-size: 3vw;
     color: grey;
 }
 
@@ -47,6 +47,10 @@
     .ProfileCard {
         width: 18%;
         height: 20%;
+    }
+
+    .ProfileCard span {
+        font-size: 1.3vw;
     }
 }
 

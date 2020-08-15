@@ -20,11 +20,11 @@
 
 .verticalItem h3 {
     margin: 0;
-    font-size: 2.6vw;
+    font-size: 3.6vw;
 }
 
 .verticalItem span {
-    font-size: 2.4vw;
+    font-size: 3.4vw;
 }
 
 .verticalItem > * {
@@ -39,14 +39,14 @@
 }
 
 .horizontalButtonsHolder > * {
-    margin-right: 10px;
+    margin-right: 4px;
     font-weight: bold;
 }
 
 .horizontalButtonsHolder button {
     height: 37px;
     width: 108px;
-    font-size: 2.4vw;
+    font-size: 2.7vw;
 }
 
 .Carousels {
@@ -54,6 +54,11 @@
 }
 
 @media(min-width: 600px) {
+    .horizontalButtonsHolder > * {
+        margin-right: 10px;
+        font-weight: bold;
+    }
+
     .horizontalButtonsHolder button {
         height:38px;
         width: 138px;

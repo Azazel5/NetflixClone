@@ -1,100 +1,90 @@
 .VideoCarousel {
-  color: #e5e5e5;
-  margin-left: 20px;
-  padding: 10px;
-  font-size: 2.4vw;
-  overflow-x: auto;
+    color: #e5e5e5;
+    margin-left: 20px;
+    padding: 10px;
+    font-size: 2.4vw;
+    overflow-x: auto;
 }
 
 .VideoCarousel::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .items {
-  display: inline-flex;
-  height: 80px;
-  overflow: x;
+    display: inline-flex;
+    height: 80px;
+    overflow: x;
 }
 
 .netflix-items {
-  display: inline-flex;
-  height: 300px;
-  overflow: x;
+    display: inline-flex;
+    height: 300px;
+    overflow: x;
 }
 
 .item {
-  position: relative;
-  display: block;
-  transition: transform 500ms;
-  width: 100px;
-  height: 100%;
-  margin-right: 7px;
-}
-
-/* Different animation styles for the first and last items */
-.items .item:first-child:focus,
-.items .item:first-child:hover,
-.items .item:last-child:focus,
-.items .item:last-child:hover {
-  transform: scale(1.1);
-}
-
-.item:first-child:focus ~ .item,
-.item:first-child:hover ~ .item {
-  transform: translateX(10%);
-}
-
-.item:focus ~ .item,
-.item:hover ~ .item {
-  transform: translateX(20%);
-}
-
-.items .item:not(:first-child):not(:last-child):focus,
-.items .item:not(:first-child):not(:last-child):hover {
-  transform: scale(1.3);
+    position: relative;
+    display: block;
+    transition: transform 500ms;
+    width: 100px;
+    height: 100%;
+    margin-right: 7px;
 }
 
 .netflix-item {
-  position: relative;
-  display: block;
-  transition: transform 500ms;
-  width: 130px;
-  height: 100%;
-  margin-right: 7px;
-}
-
-.netflix-item:focus ~ .netflix-item,
-.netflix-item:hover ~ .netflix-item {
-  transform: translateX(10%);
-}
-
-.netflix-items .netflix-item:focus,
-.netflix-items .netflix-item:hover {
-  transform: scale(1.1);
+    position: relative;
+    display: block;
+    transition: transform 500ms;
+    width: 130px;
+    height: 100%;
+    margin-right: 7px;
 }
 
 @media(min-width: 600px) {
-  .VideoCarousel {
-    font-size: 1.4vw;
-  }
-
-  .items {
-    height: 140px;
-  }
-
-  .item {
-    width: 230px;
-    height: 100%;
-    margin-right: 7px;
-  }
-
-  .netflix-items {
-    height: 420px;
-  }
-
-  .netflix-item {
-    width: 230px;
-    height: 100%;
-    margin-right: 7px;
-  }
+    .VideoCarousel {
+        font-size: 1.4vw;
+    }
+    .items {
+        height: 140px;
+    }
+    .item {
+        width: 230px;
+        height: 100%;
+        margin-right: 7px;
+    }
+    .netflix-items {
+        height: 420px;
+    }
+    .netflix-item {
+        width: 230px;
+        height: 100%;
+        margin-right: 7px;
+    }
+    /* Different animation styles for the first and last items */
+    .items .item:first-child:focus,
+    .items .item:first-child:hover,
+    .items .item:last-child:focus,
+    .items .item:last-child:hover {
+        transform: scale(1.1);
+    }
+    .item:first-child:focus~.item,
+    .item:first-child:hover~.item {
+        transform: translateX(10%);
+    }
+    .item:focus~.item,
+    .item:hover~.item {
+        transform: translateX(20%);
+    }
+    .items .item:not(:first-child):not(:last-child):focus,
+    .items .item:not(:first-child):not(:last-child):hover {
+        transform: scale(1.3);
+    }
+    .netflix-item:focus~.netflix-item,
+    .netflix-item:hover~.netflix-item {
+        transform: translateX(10%);
+    }
+    .netflix-items .netflix-item:focus,
+    .netflix-items .netflix-item:hover {
+        transform: scale(1.1);
+    }
 }

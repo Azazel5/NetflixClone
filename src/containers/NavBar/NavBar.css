@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   padding-top: 5px;
-  font-size: 2vw;
+  font-size: 3vw;
   z-index: 100;
   box-sizing: border-box;
 }
@@ -73,7 +73,11 @@
 .OptionsContainer > * {
   color: white;
   cursor: pointer;
-  margin-right: 10px;
+  margin-right: 15px;
+}
+
+.NavBar > * {
+  padding: 5px;
 }
 
 @media(min-width: 600px) {

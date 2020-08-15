@@ -57,30 +57,30 @@ const SearchContent = props => {
             const { mediaType, extraInfo } = buildVideoMetadata(video, videoInfo)
 
             return video.poster_path && (
-                <div
-                    className="GridItem" key={video.id}
-                    onClick={() => cardClickHandler(video.id, mediaType)}
-                    onMouseEnter={() => cardHoverHandler(video.id, mediaType)}
-                >
-                    <VideoCard
-                        name={video.name || video.title}
+                <div className="GridItem"
+                    key={video.id}
+                    onClick={
+                        () => cardClickHandler(video.id, mediaType)}
+                    onMouseEnter={
+                        () => cardHoverHandler(video.id, mediaType)} >
+                    <VideoCard name={video.name || video.title}
                         vote_average={video.vote_average}
                         poster_path={video.poster_path}
-                        netflixOriginalCard={false}
-                        {...extraInfo}
-                    />
-                </div>
+                        netflixOriginalCard={false} {...extraInfo} /> 
+                    </div>
             )
         })
     }
 
     return (
-        (!videoInfoError && !searchedError) ? <div className="SearchContent">
-            <div className="SearchGrid">
-                {movieCards}
-            </div>
-            {detailModalComponent}
-        </div> : <ErrorPage errors={videoInfoError || searchedError} />
+        (!videoInfoError && !searchedError) ? (
+            <div className="SearchContent">
+                <div className="SearchGrid">
+                    {movieCards}
+                </div>
+                {detailModalComponent}
+            </div>) :
+            <ErrorPage errors={videoInfoError || searchedError} />
     )
 }
 

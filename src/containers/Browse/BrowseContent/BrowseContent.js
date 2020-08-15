@@ -27,66 +27,54 @@ const BrowseContent = (props) => {
 
     const detailModalComponent = buildVideoModal(detailModal, videoInfo, { closeModalHandler })
 
-    const carousels = videoSections.map((videoSection, index) => (
-        <VideoCarousel
-            key={videoSection.title}
-            carouselName={videoSection.title}
-            carouselVideo={index === 0 ? remainingVideos : videoSection.videos}
-            carouselClickHandler={cardClickHandler}
-            carouselHoverHandler={cardHoverHandler}
-            videoInfo={videoInfo}
-            videoDetailModal={detailModal}
-        />
+    const carousels = videoSections.map((videoSection, index) => (<
+        VideoCarousel key={videoSection.title}
+        carouselName={videoSection.title}
+        carouselVideo={index === 0 ? remainingVideos : videoSection.videos}
+        carouselClickHandler={cardClickHandler}
+        carouselHoverHandler={cardHoverHandler}
+        videoInfo={videoInfo}
+        videoDetailModal={detailModal}
+    />
     ))
 
-    return (
-        !videoInfoError ? <div className="BrowseContent">
-            <Video image={imageUrl}>
+    return (!videoInfoError ? (
+        <div className="BrowseContent">
+            <Video image={imageUrl} >
                 <div className="TextsAndButtons">
-                    <div className="verticalItem">
-                        <h3>{firstVideo ? (firstVideo.name || firstVideo.title) : null}</h3>
-                        <span>{firstVideo ? firstVideo.overview : null}</span>
+                    <div className="verticalItem" >
+                        <h3 > {firstVideo ? (firstVideo.name || firstVideo.title) : null} </h3>
+                        <span > {firstVideo ? firstVideo.overview : null} </span>
                         <div className="horizontalButtonsHolder">
-                            <Button
-                                backgroundColor="#fff"
+                            <Button backgroundColor="#fff"
                                 textColor="rgb(24, 24, 24)"
-                                playButton
-                                image
-                                icon={faPlay}
-                                onButtonHover={() => onButtonHoverHandler('playButton')}
-                                hoverStatus={buttonHovered['playButton']}>
+                                playButton image icon={faPlay}
+                                onButtonHover={
+                                    () => onButtonHoverHandler('playButton')}
+                                hoverStatus={buttonHovered['playButton']} >
                                 Play
-                             </Button>
+                            </Button>
 
-                            <Button
-                                backgroundColor="rgba(133, 133, 133, 0.6)"
+                            <Button backgroundColor="rgba(133, 133, 133, 0.6)"
                                 textColor="white"
-                                playButton
-                                image
-                                icon={faInfoCircle}
-                                onButtonHover={() => onButtonHoverHandler('infoButton')}
-                                hoverStatus={buttonHovered['infoButton']}>
-                                More Info
-                             </Button>
+                                playButton image icon={faInfoCircle}
+                                onButtonHover={
+                                    () => onButtonHoverHandler('infoButton')}
+                                hoverStatus={buttonHovered['infoButton']} >
+                                More Info </Button>
                         </div>
                     </div>
-
-                    <div className="verticalItem">
+                    <div className="verticalItem" >
                         Trailer sound button
                     </div>
                 </div>
             </Video>
-
-            <div className="Carousels">
-                {carousels}
-            </div>
-
+            <div className="Carousels" > {carousels} </div>
             {detailModalComponent}
 
-        </div> : <ErrorPage errors={videoInfoError} />
+        </div>) :
+        <ErrorPage errors={videoInfoError} />
     )
 }
-
-
 
 export default BrowseContent

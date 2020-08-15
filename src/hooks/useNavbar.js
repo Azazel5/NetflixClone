@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 
-import NavBar from '../components/Navigation/NavBar/NavBar'
+import NavBar from '../containers/NavBar/NavBar'
 import { useHistory } from "react-router-dom";
 import { AuthenticationContext } from '../context/Authentication'
 import useDropdown from './useDropdown'

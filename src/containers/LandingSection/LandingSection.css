@@ -11,7 +11,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  top: calc(30% - 45px);
+  top: calc(30% - 90px);
   text-align: center;
   color: #fff;
 }
