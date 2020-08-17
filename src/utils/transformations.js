@@ -1,8 +1,8 @@
 import React from 'react'
 
-import axios from '../baseAxios'
+import axios from 'baseAxios'
 import { isMobile } from 'react-device-detect'
-import VideoModal from '../components/Modals/VideoModal/VideoModal'
+import VideoModal from 'components/Modals/VideoModal/VideoModal'
 
 /**
  * 

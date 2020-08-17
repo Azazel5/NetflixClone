@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./NavBar.css";
 
-import NetflixLogo from "../../assets/images/netflix.png";
-import Button from "../../components/UI/Button/Button";
+import { NetflixLogo } from "assets/images/";
+import Button from "components/UI/Button/Button";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGift, faBell } from "@fortawesome/free-solid-svg-icons";

@@ -1,7 +1,7 @@
 import React from 'react'
 import Modal from 'react-modal'
-import NetflixLogo from '../../../assets/images/netflix.png'
-import ProfileCard from '../../UI/ProfileCard/ProfileCard'
+import { NetflixLogo } from 'assets/images/'
+import ProfileCard from 'components/UI/ProfileCard/ProfileCard'
 import './ProfileModal.css'
 
 import {
@@ -9,7 +9,7 @@ import {
     Profile,
     Smile,
     Normal
-} from '../../../assets/images/index'
+} from 'assets/images/'
 
 
 if (process.env.NODE_ENV !== 'test') {

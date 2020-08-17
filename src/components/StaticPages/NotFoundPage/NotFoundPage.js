@@ -11,7 +11,7 @@ const notFoundPage = () => {
 				</div>
 				<h2>Page not found</h2>
 				<p>The page you are looking for might have been removed, had its name changed, or doesn't exist.</p>
-				<a href="/login">Back to login</a>
+				<a href="/NetflixClone/login">Back to login</a>
 			</div>
 		</div>
 	)

@@ -1,6 +1,6 @@
 import React from 'react'
 import './VideoCard.css'
-import { getSeasonsOrMovieLength } from '../../../utils/time'
+import { getSeasonsOrMovieLength } from 'utils/time'
 
 const videoCard = (props) => {
     const {

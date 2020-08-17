@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import Dropdown from '../components/Navigation/Dropdown/Dropdown'
+import Dropdown from 'components/Navigation/Dropdown/Dropdown'
 
 const UseDropDown = (content, boxSizing) => {
     const [dropdown, setDropdown] = useState({

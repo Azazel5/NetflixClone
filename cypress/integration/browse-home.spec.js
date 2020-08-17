@@ -28,7 +28,7 @@ describe('<Home /> -> <BrowseContent />', () => {
             .should('have.length', 20)
     })
 
-    it.only('Ensure that the first video of trending section is placed on the <Video /> topTrailer', () => {
+    it('Ensure that the first video of trending section is placed on the <Video /> topTrailer', () => {
         cy.get('@reduxState')
             .its('trending')
             .its('ids')

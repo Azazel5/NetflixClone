@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit'
-import axios from '../../../baseAxios'
+import axios from 'baseAxios'
 
 export const topratedAdapter = createEntityAdapter()
 

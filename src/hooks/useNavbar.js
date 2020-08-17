@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 
-import NavBar from '../containers/NavBar/NavBar'
+import NavBar from 'containers/NavBar/NavBar'
 import { useHistory } from "react-router-dom";
-import { AuthenticationContext } from '../context/Authentication'
+import { AuthenticationContext } from 'context/Authentication'
 import useDropdown from './useDropdown'
 
-import ProfileCard from '../components/UI/ProfileCard/ProfileCard'
+import ProfileCard from 'components/UI/ProfileCard/ProfileCard'
 import { NavLink } from 'react-router-dom'
 
 import {

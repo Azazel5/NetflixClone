@@ -31,6 +31,11 @@
     margin-right: 7px;
 }
 
+.items .item:focus,
+.items .item:hover {
+  transform: scale(1.1);
+}
+
 .netflix-item {
     position: relative;
     display: block;
@@ -38,6 +43,11 @@
     width: 130px;
     height: 100%;
     margin-right: 7px;
+}
+
+.netflix-items .netflix-item:focus,
+.netflix-items .netflix-item:hover {
+    transform: scale(1.1);
 }
 
 @media(min-width: 600px) {
@@ -82,9 +92,5 @@
     .netflix-item:focus~.netflix-item,
     .netflix-item:hover~.netflix-item {
         transform: translateX(10%);
-    }
-    .netflix-items .netflix-item:focus,
-    .netflix-items .netflix-item:hover {
-        transform: scale(1.1);
     }
 }

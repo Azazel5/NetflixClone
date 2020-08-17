@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from '../../../baseAxios'
-import { genreTopVideoTransformation } from '../../../utils/transformations'
+import axios from 'baseAxios'
+import { genreTopVideoTransformation } from 'utils/transformations'
 
 
 const fetchTvGenres = async () => {

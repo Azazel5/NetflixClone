@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from '../../../baseAxios'
+import axios from 'baseAxios'
 
 export const fetchLatestVideos = createAsyncThunk('latestVideoSlice/fetchLatestVideos',
     async (_, { rejectWithValue }) => {

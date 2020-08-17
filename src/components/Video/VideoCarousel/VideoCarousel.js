@@ -2,7 +2,7 @@ import React from 'react'
 import './VideoCarousel.css'
 
 import VideoCard from '../VideoCard/VideoCard'
-import { buildVideoMetadata } from '../../../utils/transformations'
+import { buildVideoMetadata } from 'utils/transformations'
 
 
 const videoCarousel = props => {

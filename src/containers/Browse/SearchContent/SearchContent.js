@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import './SearchContent.css'
 
-import axios from '../../../baseAxios'
-import VideoCard from '../../../components/Video/VideoCard/VideoCard'
+import axios from 'baseAxios'
+import VideoCard from 'components/Video/VideoCard/VideoCard'
 import { debounce } from 'lodash'
-import { buildVideoMetadata, buildVideoModal } from '../../../utils/transformations'
-import { sortVideosByPopularity } from '../../../utils/sorting'
-import useVideoInfoHandlers from '../../../hooks/useVideoInfoHandlers'
-import ErrorPage from '../../../components/StaticPages/ErrorPage/ErrorPage'
+import { buildVideoMetadata, buildVideoModal } from 'utils/transformations'
+import { sortVideosByPopularity } from 'utils/sorting'
+import useVideoInfoHandlers from 'hooks/useVideoInfoHandlers'
+import ErrorPage from 'components/StaticPages/ErrorPage/ErrorPage'
 
 const SearchContent = props => {
     const [searchedVideoList, setSearchedVideoList] = useState([])

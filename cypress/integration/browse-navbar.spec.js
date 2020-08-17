@@ -57,7 +57,7 @@ describe('<Search /> and <Dropdown />', () => {
                 .should('not.exist')
         })
 
-        it.only('cross becomes visible after typing and invisible when input length is 0', () => {
+        it('cross becomes visible after typing and invisible when input length is 0', () => {
             cy.get('.Holder')
                 .children('input')
                 .type('Some movie title')

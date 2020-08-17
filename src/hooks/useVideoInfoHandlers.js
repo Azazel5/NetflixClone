@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 
-import { mediaTypeToVideoDetailTransformation } from '../utils/transformations'
+import { mediaTypeToVideoDetailTransformation } from 'utils/transformations'
 import { isMobile } from 'react-device-detect'
 
 // A custom hook which sets all VideoCard/Carousel click/hover behavior 

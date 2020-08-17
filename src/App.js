@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./styles.css";
 
-import LandingSection from "./containers/LandingSection/LandingSection";
-import Login from "./containers/Login/Login";
-import Browse from './containers/Browse/Browse'
+import LandingSection from "containers/LandingSection/LandingSection";
+import Login from "containers/Login/Login";
+import Browse from 'containers/Browse/Browse'
 import { Switch, Route, Redirect } from "react-router-dom";
-import { useContext } from 'react'
-import { AuthenticationContext } from './context/Authentication'
-import NotFoundPage from './components/StaticPages/NotFoundPage/NotFoundPage'
+import { AuthenticationContext } from 'context/Authentication'
+import NotFoundPage from 'components/StaticPages/NotFoundPage/NotFoundPage'
 
 export default function App() {
   const authContext = useContext(AuthenticationContext)

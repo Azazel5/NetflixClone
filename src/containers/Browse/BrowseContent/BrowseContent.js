@@ -1,14 +1,14 @@
 import React from 'react'
 import './BrowseContent.css'
 
-import Video from '../../../components/Video/TopTrailerComponent/TopTrailerComponent'
-import Button from '../../../components/UI/Button/Button'
-import VideoCarousel from '../../../components/Video/VideoCarousel/VideoCarousel'
+import TopTrailerComponent from 'components/Video/TopTrailerComponent/TopTrailerComponent'
+import Button from 'components/UI/Button/Button'
+import VideoCarousel from 'components/Video/VideoCarousel/VideoCarousel'
 import { faPlay, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import { buildVideoModal } from '../../../utils/transformations'
-import useVideoInfoHandlers from '../../../hooks/useVideoInfoHandlers'
-import ErrorPage from '../../../components/StaticPages/ErrorPage/ErrorPage'
-import useHoverStyleButton from '../../../hooks/useHoverStyleButton'
+import { buildVideoModal } from 'utils/transformations'
+import useVideoInfoHandlers from 'hooks/useVideoInfoHandlers'
+import ErrorPage from 'components/StaticPages/ErrorPage/ErrorPage'
+import useHoverStyleButton from 'hooks/useHoverStyleButton'
 
 const BrowseContent = (props) => {
     const [
@@ -40,7 +40,7 @@ const BrowseContent = (props) => {
 
     return (!videoInfoError ? (
         <div className="BrowseContent">
-            <Video image={imageUrl} >
+            <TopTrailerComponent image={imageUrl} >
                 <div className="TextsAndButtons">
                     <div className="verticalItem" >
                         <h3 > {firstVideo ? (firstVideo.name || firstVideo.title) : null} </h3>
@@ -68,7 +68,7 @@ const BrowseContent = (props) => {
                         Trailer sound button
                     </div>
                 </div>
-            </Video>
+            </TopTrailerComponent>
             <div className="Carousels" > {carousels} </div>
             {detailModalComponent}
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import useNavbar from '../hooks/useNavbar'
+import useNavbar from 'hooks/useNavbar'
 
 
 const Layout = props => {

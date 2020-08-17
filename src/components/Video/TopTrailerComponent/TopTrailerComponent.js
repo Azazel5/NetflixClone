@@ -1,7 +1,7 @@
 import React from 'react'
 import './TopTrailerComponent.css'
 
-const video = (props) => {
+const TopTrailerComponent = (props) => {
     const backgroundPicture = {
         backgroundImage: `url(${props.image})`
     }
@@ -12,4 +12,4 @@ const video = (props) => {
     )
 }
 
-export default video
+export default TopTrailerComponent

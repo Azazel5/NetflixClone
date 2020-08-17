@@ -4,10 +4,10 @@ import './VideoModal.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import Modal from 'react-modal'
-import { getSeasonsOrMovieLength } from '../../../utils/time'
+import { getSeasonsOrMovieLength } from 'utils/time'
 import { faPlay, faPlus } from '@fortawesome/free-solid-svg-icons'
-import Button from '../../UI/Button/Button'
-import useHoverStyleButton from '../../../hooks/useHoverStyleButton'
+import Button from 'components/UI/Button/Button'
+import useHoverStyleButton from 'hooks/useHoverStyleButton'
 
 
 if (process.env.NODE_ENV !== 'test') {

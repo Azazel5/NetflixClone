@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
-import ProfileModal from '../../components/Modals/ProfileModal/ProfileModal'
+import ProfileModal from 'components/Modals/ProfileModal/ProfileModal'
 import { useHistory } from 'react-router-dom'
-import Layout from '../../hoc/Layout'
+import Layout from 'hoc/Layout'
 import SearchContent from './SearchContent/SearchContent'
 import { Home, Movies, Tv, LatestVideo, List } from './routes'
 

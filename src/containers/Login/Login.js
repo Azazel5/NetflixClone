@@ -1,15 +1,14 @@
 import React, { useState, useContext } from "react";
 import "./Login.css";
 
-import LoginBackground from "../../assets/images/landingPage.jpg";
-import NetflixLogo from "../../assets/images/netflix.png";
+import { NetflixLogo, LoginBackground } from "assets/images/";
 import { TextField } from "@material-ui/core";
-import Button from "../../components/UI/Button/Button";
+import Button from "components/UI/Button/Button";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { useHistory } from "react-router-dom";
-import { AuthenticationContext } from '../../context/Authentication'
-import { validEmailAndPhoneNumber } from '../../utils/validation'
+import { AuthenticationContext } from 'context/Authentication'
+import { validEmailAndPhoneNumber } from 'utils/validation'
 
 
 /**
