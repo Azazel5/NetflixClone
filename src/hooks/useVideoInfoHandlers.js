@@ -26,7 +26,9 @@ const UseVideoInfoHandlers = () => {
 
     const cardHoverHandler = useCallback((videoId, mediaType) => {
         mediaTypeToVideoDetailTransformation(videoId, mediaType)
-            .then(data => setVideoInfo(data))
+            .then(data => {
+                setVideoInfo(data)
+            })
             .catch(error => {
                 setVideoInfoError(error)
             })

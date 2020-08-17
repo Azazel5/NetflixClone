@@ -50,13 +50,16 @@ const SearchContent = props => {
 
     const detailModalComponent = buildVideoModal(detailModal, videoInfo, { closeModalHandler })
 
+    // we check if the video has a poster or a mediaType because these properties are missing in 
+    // some tiles, and, generally, a missing mediaType means there is no video overview or 
+    // information. It's an easy fix to skip these little known movies, as the API itself 
+    // doesn't provide information. 
     let movieCards
     if (!loading) {
         searchedVideoList.sort(sortVideosByPopularity)
         movieCards = searchedVideoList.map(video => {
             const { mediaType, extraInfo } = buildVideoMetadata(video, videoInfo)
-
-            return video.poster_path && (
+            return video.poster_path && mediaType && (
                 <div className="GridItem"
                     key={video.id}
                     onClick={
@@ -66,8 +69,8 @@ const SearchContent = props => {
                     <VideoCard name={video.name || video.title}
                         vote_average={video.vote_average}
                         poster_path={video.poster_path}
-                        netflixOriginalCard={false} {...extraInfo} /> 
-                    </div>
+                        netflixOriginalCard={false} {...extraInfo} />
+                </div>
             )
         })
     }

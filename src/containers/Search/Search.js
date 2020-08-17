@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { useHistory } from 'react-router-dom'
 import './Search.css'
+import { useHistory } from 'react-router-dom'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { CSSTransition } from 'react-transition-group'
 
 const Search = () => {
     const [searchBox, setSearchBox] = useState(false)
+    const [searchIcon, setSearchIcon] = useState(true)
+
     const [searchText, setSearchText] = useState('')
     const [searchChanged, setSearchChanged] = useState(false)
     const searchBoxRef = useRef()
@@ -51,25 +54,25 @@ const Search = () => {
         setSearchText('')
     }
 
-    let searchBar
-    let boxHeight
-    if (!searchBox) {
-        searchBar = <FontAwesomeIcon size="lg" icon={faSearch} />
-    } else {
-        searchBar = (
-            <div className="Holder scale-up-hor-right">
+    const searchBar = (
+        <CSSTransition in={searchBox} classNames="search-animation" timeout={500} unmountOnExit
+            onEnter={() => setSearchIcon(false)}
+            onExiting={() => setSearchBox(false)}
+            onExited={() => setSearchIcon(true)}>
+            <div className="Holder">
                 <FontAwesomeIcon className="Icon" size="lg" icon={faSearch} />
-                <input autoFocus placeholder="Titles, peopls, genres"
+                <input autoFocus placeholder="Titles, people, genres"
                     onChange={searchTextChangeHandler} value={searchText} />
                 {searchText.length > 0 ?
                     <FontAwesomeIcon onClick={clickCrossHandler} size="lg" icon={faTimes} /> : null
                 }
             </div>
-        )
-    }
+        </CSSTransition>
+    )
 
     return (
-        <div className="SearchBox" style={boxHeight} onClick={searchClickHandler} ref={searchBoxRef}>
+        <div className="SearchBox" onClick={searchClickHandler} ref={searchBoxRef}>
+            {searchIcon && <FontAwesomeIcon size="lg" icon={faSearch} />}
             {searchBar}
         </div>
     )
