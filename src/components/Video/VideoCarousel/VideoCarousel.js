@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import './VideoCarousel.css'
 
 import VideoCard from '../VideoCard/VideoCard'
 import { buildVideoMetadata } from 'utils/transformations'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { scrollTo } from 'utils/animations'
 
 
-const videoCarousel = props => {
+const VideoCarousel = props => {
     const {
         carouselVideo, carouselName,
         carouselHoverHandler, videoInfo,
         carouselClickHandler
     } = props
+
+    const carouselRef = useRef()
+    const [disableScrolling, setDisableScrolling] = useState(false)
 
     const isNetflixOriginalCard = carouselName === "Netflix Originals" ? true : false
     const itemClass = []
@@ -24,6 +28,13 @@ const videoCarousel = props => {
     } else {
         itemClass.push("netflix-item")
         itemsClass.push("netflix-items")
+    }
+
+    const scrollOnAbsoluteButtonClick = scrollOffset => {
+        setDisableScrolling(true)
+        scrollTo(carouselRef.current, carouselRef.current.scrollLeft + scrollOffset, 1250, () => {
+            setDisableScrolling(false)
+        })
     }
 
     /**
@@ -53,21 +64,27 @@ const videoCarousel = props => {
 
     return (
         <div className="CarouselParent">
-            <div className="VideoCarousel">
+            <div className="VideoCarousel" ref={carouselRef}>
                 <h4>{carouselName}</h4>
                 <div className={itemsClass.join(" ")}>
                     {videoCards}
                 </div>
             </div >
 
-            <button className="Left NavItem">
-                <FontAwesomeIcon icon={faChevronLeft} size="2x"/>
+            <button
+                className="Left NavItem"
+                disabled={disableScrolling}
+                onClick={() => scrollOnAbsoluteButtonClick(-1250)}>
+                <FontAwesomeIcon icon={faChevronLeft} size="2x" />
             </button>
-            <button className="Right NavItem">
+            <button
+                className="Right NavItem"
+                disabled={disableScrolling}
+                onClick={() => scrollOnAbsoluteButtonClick(1250)}>
                 <FontAwesomeIcon icon={faChevronRight} size="2x" />
             </button>
         </div>
     )
 }
 
-export default React.memo(videoCarousel)
+export default React.memo(VideoCarousel)
