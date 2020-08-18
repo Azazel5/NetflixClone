@@ -3,6 +3,8 @@ import './VideoCarousel.css'
 
 import VideoCard from '../VideoCard/VideoCard'
 import { buildVideoMetadata } from 'utils/transformations'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 
 const videoCarousel = props => {
@@ -50,14 +52,21 @@ const videoCarousel = props => {
     })
 
     return (
-        <>
+        <div className="CarouselParent">
             <div className="VideoCarousel">
                 <h4>{carouselName}</h4>
                 <div className={itemsClass.join(" ")}>
                     {videoCards}
                 </div>
             </div >
-        </>
+
+            <button className="Left NavItem">
+                <FontAwesomeIcon icon={faChevronLeft} size="2x"/>
+            </button>
+            <button className="Right NavItem">
+                <FontAwesomeIcon icon={faChevronRight} size="2x" />
+            </button>
+        </div>
     )
 }
 

@@ -1,9 +1,14 @@
+.CarouselParent {
+    position: relative;
+    margin-bottom: 30px;
+}
+
 .VideoCarousel {
     color: #e5e5e5;
-    margin-left: 20px;
-    padding: 10px;
     font-size: 2.4vw;
     overflow-x: auto;
+    margin-left: 4%;
+    margin-right: 4%;
 }
 
 .VideoCarousel::-webkit-scrollbar {
@@ -13,7 +18,6 @@
 .items {
     display: inline-flex;
     height: 80px;
-    overflow: x;
 }
 
 .netflix-items {
@@ -48,6 +52,14 @@
 .netflix-items .netflix-item:focus,
 .netflix-items .netflix-item:hover {
     transform: scale(1.1);
+}
+
+.CarouselParent:hover > .NavItem {
+    display: none;
+}
+
+.NavItem {
+    display: none;
 }
 
 @media(min-width: 600px) {
@@ -92,5 +104,33 @@
     .netflix-item:focus~.netflix-item,
     .netflix-item:hover~.netflix-item {
         transform: translateX(10%);
+    }
+
+    .CarouselParent:hover > .NavItem {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 4%;
+        color: white;
+        background-color: transparent;
+        outline: thin;
+        border: none;
+    }
+
+    .CarouselParent:hover >  .NavItem:hover {
+        background-color: black;
+    }
+    
+    .NavItem {
+        display: none;
+    }
+    
+    .Left {
+        left: 0;
+    }
+    
+    .Right {
+        right: 0;
     }
 }

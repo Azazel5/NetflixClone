@@ -1,0 +1,10 @@
+.RoundButton {
+    display: inline-block;
+    border: 1px solid white;
+    border-radius: 50%;
+    background: transparent;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    outline: none;
+}

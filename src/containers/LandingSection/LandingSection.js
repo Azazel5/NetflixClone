@@ -18,113 +18,120 @@ import { texualMaterial } from './LandingSectionTexts'
  * passes the relevent props whenever needed.
  */
 const LandingSection = props => {
-  const [faqBoxOpen, setFaqBoxOpen] = useState({});
+    const [faqBoxOpen, setFaqBoxOpen] = useState({});
 
-  const faqOpenHandler = boxNumber => {
-    setFaqBoxOpen(prevBoxState => ({
-      [boxNumber]: !prevBoxState[boxNumber]
-    }));
-  };
+    const faqOpenHandler = boxNumber => {
+        setFaqBoxOpen(prevBoxState => ({
+            [boxNumber]: !prevBoxState[boxNumber]
+        }));
+    };
 
-  const darkComponents = texualMaterial.darkComponent.map(darkcomp => (
-    <div className="tv-section" key={darkcomp.id}>
-      <div className="responsive-tv-inner">
-        <DarkComponent
-          topText={darkcomp.topText}
-          bottomText={darkcomp.bottomText}
-          image={darkcomp.image}
+    const darkComponents = texualMaterial.darkComponent.map(darkcomp => (
+        <div className="tv-section" key={darkcomp.id}>
+            <div className="responsive-tv-inner">
+                <DarkComponent
+                    topText={darkcomp.topText}
+                    bottomText={darkcomp.bottomText}
+                    image={darkcomp.image}
+                />
+            </div>
+        </div>
+    ))
+
+    const faqComponents = texualMaterial.faqComponent.map(faqcomp => (
+        <FAQComponent
+            key={faqcomp.id}
+            text={faqcomp.text}
+            boxOpen={faqBoxOpen[`box${faqcomp.id}`]}
+            faqOpenHandler={() => faqOpenHandler(`box${faqcomp.id}`)}
+            boxText={faqcomp.boxText}
         />
-      </div>
-    </div>
-  ))
+    ))
 
-  const faqComponents = texualMaterial.faqComponent.map(faqcomp => (
-    <FAQComponent
-      key={faqcomp.id}
-      text={faqcomp.text}
-      boxOpen={faqBoxOpen[`box${faqcomp.id}`]}
-      faqOpenHandler={() => faqOpenHandler(`box${faqcomp.id}`)}
-      boxText={faqcomp.boxText}
-    />
-  ))
-
-  return (
-    <>
-      <div
-        className="landingSection"
-        style={{ backgroundImage: `url(${LandingPage})` }}
-      >
-        <NavBar loginButton />
-        <div className="landingTexts">
-          <h1>Unlimited movies, TV shows, and more.</h1>
-          <h3>Watch anywhere. Cancel anytime.</h3>
-          <h3>
-            Ready to watch? Enter your email to create or restart your
-            membership.
-          </h3>
-          <TextField
-            className="TextField"
-            label="Email Address"
-            variant="filled"
-            color="secondary"
-          />
-
-          <Link to="/login">
-            <Button
-              height="34px"
-              width="150px"
-              image
-              icon={faChevronRight}
-              backgroundColor="#e50914"
-              textColor="#fff"
-              buttonSize="xs"
+    return (
+        <>
+            <div
+                className="landingSection"
+                style={{ backgroundImage: `url(${LandingPage})` }}
             >
-              GET STARTED
-          </Button>
-          </Link>
-        </div>
-      </div>
+                <NavBar loginButton />
+                <div className="landingTexts">
+                    <h1>Unlimited movies, TV shows, and more.</h1>
+                    <h3>Watch anywhere. Cancel anytime.</h3>
+                    <h3>
+                        Ready to watch? Enter your email to create or restart your
+                        membership.
+                     </h3>
 
-      {darkComponents}
+                    <div className="ButtonSticker">
+                        <TextField
+                            className="TextField"
+                            label="Email Address"
+                            variant="filled"
+                            color="secondary"
+                        />
 
-      <div className="faq-section">
-        <div className="tv-inner">
-          <DarkComponent
-            fontSize="2.5rem"
-            topText="Frequently Asked Questions"
-          />
+                        <Link to="/login">
+                            <Button
+                                height="56px"
+                                width="150px"
+                                image
+                                icon={faChevronRight}
+                                backgroundColor="#e50914"
+                                textColor="#fff"
+                                buttonSize="xs"
+                            >
+                                GET STARTED
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
 
-          {faqComponents}
+            {darkComponents}
 
-          <div className="GetStartedComponent">
-            <h3>
-              Ready to watch? Enter your email to create or restart your
-              membership.
-            </h3>
-            <TextField
-              className="TextField"
-              label="Email Address"
-              variant="filled"
-              color="secondary"
-            />
-            <Link to="/login">
-              <Button
-                height="34px"
-                width="150px"
-                image
-                icon={faChevronRight}
-                backgroundColor="#e50914"
-                textColor="#fff"
-                buttonSize="xs"
-              >
-                GET STARTED
-            </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+            <div className="faq-section">
+                <div className="tv-inner">
+                    <DarkComponent
+                        fontSize="2.5rem"
+                        topText="Frequently Asked Questions"
+                    />
+
+                    {faqComponents}
+
+                    <div className="GetStartedComponent">
+                        <h3>
+                            Ready to watch? Enter your email to create or restart your
+                            membership.
+                        </h3>
+
+                        <div className="ButtonSticker">
+                            <TextField
+                                className="TextField"
+                                label="Email Address"
+                                variant="filled"
+                                color="secondary"
+                            />
+
+                            <Link to="/login">
+                                <Button
+                                    height="56px"
+                                    width="150px"
+                                    image
+                                    icon={faChevronRight}
+                                    backgroundColor="#e50914"
+                                    textColor="#fff"
+                                    buttonSize="xs"
+                                >
+                                    GET STARTED
+                             </Button>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default LandingSection;

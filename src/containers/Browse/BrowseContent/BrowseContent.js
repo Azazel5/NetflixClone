@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './BrowseContent.css'
 
 import TopTrailerComponent from 'components/Video/TopTrailerComponent/TopTrailerComponent'
@@ -9,8 +9,9 @@ import { buildVideoModal } from 'utils/transformations'
 import useVideoInfoHandlers from 'hooks/useVideoInfoHandlers'
 import ErrorPage from 'components/StaticPages/ErrorPage/ErrorPage'
 import useHoverStyleButton from 'hooks/useHoverStyleButton'
+import CircularSoundButton from 'components/UI/CircularSoundButton/CircularSoundButton'
 
-const BrowseContent = (props) => {
+const BrowseContent = props => {
     const [
         videoInfo, videoInfoError, detailModal, cardClickHandler,
         cardHoverHandler, closeModalHandler
@@ -21,22 +22,26 @@ const BrowseContent = (props) => {
         'infoButton': true
     })
 
+    const [topTrailerSoundOn, setTopTrailerSoundOn] = useState(true)
+
     const { videoSections } = props
     const [firstVideo, ...remainingVideos] = videoSections[0].videos
     const imageUrl = firstVideo ? `https://image.tmdb.org/t/p/original/${firstVideo.poster_path}` : null
 
     const detailModalComponent = buildVideoModal(detailModal, videoInfo, { closeModalHandler })
 
-    const carousels = videoSections.map((videoSection, index) => (<
-        VideoCarousel key={videoSection.title}
-        carouselName={videoSection.title}
-        carouselVideo={index === 0 ? remainingVideos : videoSection.videos}
-        carouselClickHandler={cardClickHandler}
-        carouselHoverHandler={cardHoverHandler}
-        videoInfo={videoInfo}
-        videoDetailModal={detailModal}
-    />
+    const carousels = videoSections.map((videoSection, index) => (
+        <VideoCarousel key={videoSection.title}
+            carouselName={videoSection.title}
+            carouselVideo={index === 0 ? remainingVideos : videoSection.videos}
+            carouselClickHandler={cardClickHandler}
+            carouselHoverHandler={cardHoverHandler}
+            videoInfo={videoInfo}
+            videoDetailModal={detailModal}
+        />
     ))
+
+    const topTrailerSoundButtonClickHandler = () => setTopTrailerSoundOn(prevState => !prevState)
 
     return (!videoInfoError ? (
         <div className="BrowseContent">
@@ -65,11 +70,15 @@ const BrowseContent = (props) => {
                         </div>
                     </div>
                     <div className="verticalItem" >
-                        Trailer sound button
+                        <CircularSoundButton
+                            topTrailerSoundButtonClickHandler={topTrailerSoundButtonClickHandler}
+                            topTrailerSoundOn={topTrailerSoundOn} />
                     </div>
                 </div>
             </TopTrailerComponent>
-            <div className="Carousels" > {carousels} </div>
+            <div className="Carousels">
+                {carousels}
+            </div>
             {detailModalComponent}
 
         </div>) :

@@ -29,9 +29,18 @@
   font-weight: 400;
 }
 
+.ButtonSticker {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 .TextField {
   background-color: #fff;
-  width: calc(100% + 50px);
+  width: 80%;
+  max-width: 500px;
 }
 
 .TextField:active {
@@ -68,18 +77,18 @@
 .GetStartedComponent {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   margin-top: 30px;
-  width: 85%;
-  padding: 10px;
+  width: 100%;
 }
 
 .GetStartedComponent > * {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
-.GetStartedComponent button {
-  margin-top: 20px;
+.ButtonSticker button {
+    margin-top: 15px;
 }
 
 @media (min-width: 600px) {
@@ -92,6 +101,10 @@
     top: calc(40% - 45px);
   }
 
+  .GetStartedComponent {
+    width: 100%;
+  }
+
   .tv-section {
     height: 450px;
   }
@@ -99,6 +112,19 @@
   .tv-section img {
     width: 45%;
   }
+}
+
+@media(min-width: 950px) {
+    .ButtonSticker {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ButtonSticker button {
+        margin-top: 0;
+    }
 }
 
 @media(min-width: 1199px) {
