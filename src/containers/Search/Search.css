@@ -113,3 +113,18 @@
         width: 250px
     }
 }
+
+@media(min-width: 1650px) {
+    .Holder {
+        height: 50px;
+        width: 400px;
+    }
+
+    .Holder svg {
+        padding: 35px 15px;
+    }
+
+    .Holder input {
+        font-size: 1.1vw;
+    }
+}

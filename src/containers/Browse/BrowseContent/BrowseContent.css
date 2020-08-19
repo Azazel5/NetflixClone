@@ -3,9 +3,7 @@
     align-items: flex-end;
     justify-content: space-between;
     color: white;
-    padding-top: 50px;
-    margin-left: 20px;
-    padding: 10px;
+    margin: 0 4% 0 4%;
     height: 100%;
 }
 
@@ -45,8 +43,8 @@
 
 .horizontalButtonsHolder button {
     height: 37px;
-    width: 108px;
-    font-size: 2.7vw;
+    width: 118px;
+    font-size: 0.8rem;
 }
 
 .Carousels {
@@ -62,7 +60,7 @@
     .horizontalButtonsHolder button {
         height:38px;
         width: 138px;
-        font-size: 1.4vw;
+        font-size: 1rem;
     }
 
     .verticalItem span {
@@ -72,4 +70,8 @@
     .verticalItem h3 {
         font-size: 1.6vw;
     }
+}
+
+@media(min-width: 1650px) {
+
 }

@@ -100,14 +100,6 @@
     margin: 0;
     height: 80%;
   }
-  
-  .Horizontal {
-    display: block;
-  }
-
-  .Vertical {
-    display: none;
-  }
 
   .LinkContainer {
     margin-right: auto;
@@ -120,4 +112,21 @@
   .ExtraOptions {
     display: block;
   }
+}
+
+@media(min-width: 860px) {
+    .Horizontal {
+        display: block;
+    }
+    
+    .Vertical {
+        display: none;
+    }    
+}
+
+@media(min-width: 1650px) {
+    .NavBar {
+        height: 90px;
+        font-size: 1.2vw;
+    }
 }

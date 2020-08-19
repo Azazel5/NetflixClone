@@ -1,11 +1,14 @@
 .VideoComponent {
     height: 580px;
     width: 100%;
-
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-  
     position: relative;
 }
 
+@media(min-width: 1650px) {
+    .VideoComponent {
+        height: 800px;
+    }
+}

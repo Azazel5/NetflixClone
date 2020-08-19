@@ -63,7 +63,7 @@ const UseNavbar = () => {
     )
 
     const profileDropdown = useDropdown(profileDropdownContent,
-        { top: '42px', right: '0px', width: '181px', height: '370px' })
+        { top: '42px', right: '0px', width: '20vh', height: '42vh' })
 
     const navDropdown = useDropdown(navLinks,
         { top: '15px', width: '100px' })

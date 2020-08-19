@@ -7,8 +7,7 @@
     color: #e5e5e5;
     font-size: 2.4vw;
     overflow-x: auto;
-    margin-left: 4%;
-    margin-right: 4%;
+    margin: 0 4% 0 4%;
 }
 
 .VideoCarousel::-webkit-scrollbar {
@@ -132,5 +131,24 @@
     
     .Right {
         right: 0;
+    }
+}
+
+@media(min-width: 1650px) {
+    .items {
+        height: 240px;
+    }
+    .item {
+        width: 330px;
+        height: 100%;
+        margin-right: 7px;
+    }
+    .netflix-items {
+        height: 520px;
+    }
+    .netflix-item {
+        width: 330px;
+        height: 100%;
+        margin-right: 7px;
     }
 }
