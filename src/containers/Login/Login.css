@@ -21,17 +21,13 @@
   padding: 40px 38px 40px;
 }
 
-@media (min-width: 600px) {
-  .LoginCard {
-    width: 450px;
-    height: 680px;
-    padding: 60px 68px 40px;
-    margin: auto;
-  }
-}
-
 .LoginCard form > * {
   margin-top: 25px;
+}
+
+.LoginCard form span {
+    color: red;
+    font-size: 13px;
 }
 
 .LoginCard button {
@@ -52,4 +48,26 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+@media (min-width: 600px) {
+    .LoginCard {
+      width: 450px;
+      height: 680px;
+      padding: 60px 68px 40px;
+      margin: auto;
+    }
+}
+
+@media(min-width: 1650px) {
+    .LoginCard {
+        width: 550px;
+        height: 880px;
+        padding: 60px 68px 40px;
+        margin: auto;
+    }
+
+    .LoginCard form span {
+        font-size: 20px;
+    }
 }

@@ -65,3 +65,9 @@
     }
     
 }
+
+@media(min-width: 1650px) {
+    .ModalStyles {
+        font-size: 1.6rem;
+    }
+}

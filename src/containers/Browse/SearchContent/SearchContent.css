@@ -34,3 +34,9 @@
         grid-auto-rows: 140px;
     }
 }
+
+@media(min-width: 1650px) {
+    .SearchContent {
+        font-size: 1.6vw;
+    }
+}

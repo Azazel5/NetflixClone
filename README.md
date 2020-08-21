@@ -21,3 +21,6 @@ The future of this project: <br />
 * Create an authentication flow
 * Add REST API endpoints for every user-related event, such as adding Netflix profiles
 
+## Architecture Diagram 
+
+![CloneFlow](https://user-images.githubusercontent.com/36729591/90905326-08c9c400-e39e-11ea-977c-76212f63b2b6.png)

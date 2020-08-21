@@ -82,19 +82,11 @@ const Login = props => {
   let [emailSpan, passwordSpan] = [null, null];
 
   if ((!form.email.valid && form.email.touched) || (form.onSubmitInvalid && !form.email.valid)) {
-    emailSpan = (
-      <span style={{ color: "red", fontSize: "13px" }}>
-        Please enter a valid email or phone number.
-      </span>
-    );
+    emailSpan = <span>Please enter a valid email or phone number.</span>
   }
 
   if ((!form.password.valid && form.password.touched) || (form.onSubmitInvalid && !form.password.valid)) {
-    passwordSpan = (
-      <span style={{ color: "red", fontSize: "13px" }}>
-        Your password must contain between 4 and 60 characters.
-      </span>
-    );
+    passwordSpan = <span>Your password must contain between 4 and 60 characters.</span>
   }
 
   const formSubmitHandler = (event) => {

@@ -20,10 +20,6 @@
   margin-top: 15px;
 }
 
-.landingTexts h1 {
-  font-size: 1.75rem;
-}
-
 .landingTexts h3 {
   margin-top: 0px;
   font-weight: 400;
@@ -135,6 +131,12 @@
 }
 
 @media(min-width: 1650px) {
+    .landingSection,
+    .tv-section,
+    .faq-section {
+        font-size: 1.75rem;
+    }
+
     .tv-section img {
         width: 35%;
     }      

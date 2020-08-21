@@ -102,3 +102,9 @@
     width: 69%;
   }
 }
+
+@media(min-width: 1650px) {
+    .faqComponent {
+        font-size: 1.75rem;
+      }      
+}
