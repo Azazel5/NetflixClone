@@ -1,6 +1,6 @@
 # Netflix-Clone
 
-![](https://media.giphy.com/media/TJfduNisy1Xp8m4UtF/giphy.gif)
+![DemoGif](https://media.giphy.com/media/TJfduNisy1Xp8m4UtF/giphy.gif)
 
 A Netflix clone I created for the sake of practicing React and Redux. It features design 
 patterns recommended by the documentation. Some of the tools used include: <br />
