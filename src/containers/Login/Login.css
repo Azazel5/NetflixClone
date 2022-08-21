@@ -1,6 +1,6 @@
 .Login {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .Login img {
@@ -53,8 +53,7 @@
 @media (min-width: 600px) {
     .LoginCard {
       width: 450px;
-      height: 680px;
-      padding: 60px 68px 40px;
+      padding: 40px 68px 40px;
       margin: auto;
     }
 }
@@ -62,8 +61,7 @@
 @media(min-width: 1650px) {
     .LoginCard {
         width: 550px;
-        height: 880px;
-        padding: 60px 68px 40px;
+        padding: 40px 68px 40px;
         margin: auto;
     }
 
